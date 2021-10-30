@@ -4,9 +4,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage[unicode]{hyperref}
 \usepackage{url}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{pxfonts}
+\usepackage[parfill]{parskip}
+\usepackage{hyphenat}
+
+
 \DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{tt}}
+\newtheorem*{concept}{Primitivní pojem}
+\newtheorem{definition}{Definice}
+\newtheorem{axiom}{Axiom}
+\newtheorem{theorem}{Věta}
+\newtheorem*{example}{Příklad}
+
 
 \begin{document}
+
 %-----------------------------------------------------------------------------------
 \begin{titlepage}
 
@@ -23,11 +37,15 @@
 \end{titlepage}
 %-----------------------------------------------------------------------------------
 
-\section{První přednáška}
+\tableofcontents
 
+\include{lecture1}
+\include{lecture2}
+\include{lecture3}
+\include{lecture4}
 
 \newpage
 \bibliographystyle{czechiso}
-\def\refname{Použitá literatura}
+\def\refname{Reference}
 \bibliography{bibliography}
 \end{document}

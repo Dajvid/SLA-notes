@@ -1,0 +1,198 @@
+\section{První přednáška}
+Matematika se historicky rodila jako celá řada disciplín, například jak tady máme jednu
+z nich, lineární algebra, nebo matematická analýza, teorie čísel a řada dalších...
+
+Byly to takové historicky izolované disciplíny, v podobné situaci je dnes fyzika, ta
+má dnes také různé disciplíny a nedaří se je fyzikům spojit, i když se o to už
+dlouho pokoušejí a hledají tzv. teorii všeho. V matematice nějaká taková teorie všeho již
+byla nalezena a máme tu výhodu, že se podařilo najít ten \uv{spojovací materiál},
+kterým je logika a teorie množin.
+
+Díky tomu se matematiku podařilo dostat na společný jazyk, takže ať už studujete
+teorii pra\-vdě\-po\-dob\-no\-sti, nebo matematickou analýzu, tak začne se s nějakou
+definicí, co je jakási množina a tak dále...
+
+\subsection{Logika}
+V logice je základním pojmem výrok, neboli tvrzení, o kterém můžeme říct, zda je pravdivé,
+nebo nepravdivé. Tedy přiřazujeme mu pravdivostní hodnotu, nulu, nebo jedničku. Výroky následně
+rozlišujeme na jednoduché (atomární), které nejdou dále rozložit a na výroky složité, které
+jsou pospojovány logickými spojkami. Nejznámější logické spojky jsou tyto: $\wedge$, $\vee$,
+$\rightarrow$, $\leftrightarrow$. Zdaleka se však nejedná o jejich vyčerpávajícíc výčet.
+Uvědomme si, že existuje $2^4$ různých logických spojek (binárních).
+
+Další nad čím je vhodné se z těchto základů pozastavit je pojem výroku. Ne všechno v běžné řeči
+je výrok. Je nutné si uvědomit, co výrok je a co není. A i když něco výrokem je, tak to
+ještě nezmanená, že jsme schopni určit pravdivostní hodnotu tohoto výroku. Například tvrzení:
+\textit{Na Saturnově měsíci je voda}, určitě se jedná o výrok, ale jeho pravdivostní hodnotu neznáme.
+Výrokem ale určitě nejsou různá zvolání, výkřiky, otázky...
+
+Je každá dobře utvořená oznamovací věta výrokem? Není, například věta \textit{Colorless green ideas
+sleep furiously.} je z mluvnického hlediska utvořena správně a jedná se o oznamovací větu, ale
+významově je to takový nesmysl, že nelze určit zda se jedná o výrok, protože tomu nelze přiřadit
+pravdivostní hodnota a to ani hypotetická.
+
+Pomocí těchto výroků a spojek se snažíme dokazovat věty. V matematice máme 4 základní kameny:
+\begin{itemize}
+	\item Primitivní pojmy: pojmy které se nedefinují a nevysvětlují, například bod.
+	\item Definice: zavádějí pojmy, pomocí pojmů již známých, například definice prvočísla.
+	\item Axiomy: tvrzení, která se nedokazují a která se považují za platná.
+	\item Vety: tvrzení, které se musí dokázat a odvozuje se z tvrzení již známých.
+\end{itemize}
+
+\subsubsection*{Důkazové techniky}
+\begin{itemize}
+	\item Důkaz přímý: ukážeme, že $v \rightarrow w$.
+	\item Důkaz nepřímy: ukážeme, že $\lnot w \rightarrow v$.
+	\item Důkaz sporem:
+\end{itemize}
+
+\subsection{Teorie množin}
+
+Množina je primitivní pojem. I přesto, že se jedná o primitivní pojem, budeme si ho nějakým
+způsobem specifikovat, aby si každý z nás pod tímto primitivním pojmem představil to stejné.
+
+\begin{concept}[Množina]
+Množina je nějaký soubor prvků, které se neopakují.
+Nad množinami jsou opět definovány nějaké operace, jako sjednocení, průnik, doplněk...
+Množiny a operace nad nimi můžeme vizualizovat například pomocí vennových diagramů.
+\end{concept}
+
+\subsubsection*{Mohutnost}
+\begin{concept}[Mohutnost množiny]
+    Mohutnost množiny jednoduše udává počet jejich prvků. Mohutnost množiny $A$ se značí
+    jako $|A|$, nebo jako $card(A)$.
+    Mohutnost prázdné množiny je 0, $|\emptyset| = 0$.
+\end{concept}
+\begin{example}[Mohutnost množiny]
+    Nechť $A = \{1, 2, 3\}$. Potom $|A| = card(A) = 3$.
+\end{example}
+
+\begin{definition}[Mohutnost množiny přirozených čísel]
+    $|\mathbb{N}|=\aleph_0$.
+\end{definition}
+
+\subsubsection*{Relace}
+Před zavedením relace je nutné nejprve definovat pojem kartézského součinu množin.
+\begin{definition} [Kartézský součin]
+	Kartézský součin dvou množin se skládá z uspořádaných dvojic.
+	$$A \times B = \{(a, b)\: | \: a \in A, b \in B\}$$
+\end{definition}
+\begin{example}[Kartézský součin]
+    \[A = \{u, v\}
+	\textrm{, }
+	B = \{1, 2, 3\}\]
+	$$A \times B = \{(u, 1), (u, 2), (u, 3), (v, 1), (v, 2), (v, 3)\}$$
+\end{example}
+
+\begin{definition}[Relace]
+    Relace je libovolná podmnožina kartézského součinu.
+    $$R \subseteq A \times B \textrm{, například: } R = \{(u, 1), (u, 2), (v, 1)\}$$
+\end{definition}
+
+Relaci lze vyjádřit i graficky jako orientovaný graf.
+
+Některé binární relace jsou zobrazení, neboli funkce (funkce tomu říkáme tehdy, když je cílová
+množina číselná).
+
+% definice
+\begin{definition}[Zobrazení]
+	Řekneme, že relace $R \subseteq A \times B$ je zobrazení jestliže:
+	$$(a, b_1) \in \mathbb{R} \wedge (a, b_2) \in \mathbb{R} \Rightarrow b_1 = b_2$$
+\end{definition}
+
+Zobrazení můžeme značit jako $f: A \rightarrow B$
+
+
+Inverzní relace, stejná jako relace R, jen v grafické reprezentaci otočíme šipky na druhou stranu.
+$R^{-1} \subseteq B \times A,  (b, a) \in R^{-1} \Leftrightarrow (a, b) \in \mathbb{R}$
+
+Řekneme, že zobrazení $f: A \rightarrow B$ je injekce (prosté zobrazení)
+jestliže $f(a_1) = b \wedge f(a_2) = b \Rightarrow a_1 = a_2$
+
+Definiční obor $D(f) = Dom(f) = \{a \in A; \exists b \in B, f(a) = b\}$
+
+Obor hodnot $H(f) = Im(f) = \{b \in B; \exists a \in A, f(a) = b\}$
+
+%definice
+Zobrazení je surjekce (zobrazení na), jestliže oborem hodnot je celá cílová množina, tedy $H(f) = B$.
+
+Jestliže je zobrazení surjekce a současně injekce, jedná se o bijekci. Za bijekci se navíc velmi
+často považuje zobrazení, které je bijekce a zároveň $D(f) = A$.
+Potom platí, že pokud existuje bijekce mezi konečnými množinami $A$ a $B$, potom $|A| = |B|$.
+
+Jestliže zobrazení $f$ je injekce, potom inverzní relace je opět zobrazení (a opet injekce).
+
+\subsubsection*{Binární relace na množinách}
+Relací na množině se rozumí binární relace, kde jsou oba prvky kartézského součinu tatáž
+množina, tedy $R \subseteq A \times A$.
+Specialní případy:
+% definice
+\begin{itemize}
+	\item Reflexivní relace: $(a, a) \in R, \forall a \in A$.
+	\item Symetrická relace: $(a, b) \in R \Rightarrow (b, a) \in R$.
+	\item Antisymetrická relace: $(a, b) \in R \wedge (b, a) \in R \Rightarrow a = b$.
+	\item Tranzitivní relace: $(a, b) \in R \wedge (b, c) \in R \Rightarrow (a, c) \in R$.
+	\item Ireflexivní relace: $(a, a) \notin R, \forall a \in A$.
+\end{itemize}
+Relace, která je současně reflexivní, symetrická a tranzitivní se nazývá ekvivalence.
+Relace ekvivalence vždy rozdělí původní množinu na podmnožiny, kterým říkáme třídy ekvivalence,
+
+Relace, která je reflexivní, antisymetrická a tranzitivní se nazývá relace uspořádání a vytváří
+POSET (Partialy Ordered SET).
+
+\subsubsection*{Opeace}
+Operace je obecně zobrazení, konkrétní podoba tohoto zobrazení záleží na aritě operace.
+
+Binární operace je zobrazení z kartézského součinu dvou množin do nějaké další množiny, velmi často
+jsou všechny tyto 3 množiny totožné.
+$$f: A \times B \rightarrow C$$
+
+\subsubsection*{Konstrukce přirozených čísel}
+Z axiomů teorie množin víme, že prázdná množina existuje. Definujeme unární operaci následníka:
+$$A' = A \cup \{A\}$$
+Opakovanou aplikací operace následníka na původně prázdnou množinu jsme schopni vytvořit
+všechna přirozená čísla.
+$$\emptyset' = \emptyset \cup \{\emptyset\} = \{\emptyset\}$$
+$$\{\emptyset\}' = \{\emptyset\} \cup \{\{\emptyset\}\} = \{\emptyset, \{\emptyset\}\}$$
+
+Definice operace plus ($+$) na takto definovaných přirozených číslech:
+$$A + \emptyset = A$$
+$$A + B' = (A+B)'$$
+
+Definice operace krát ($cdot$) na takto definovaných přirozených číslech:
+$$A \cdot \emptyset = \emptyset$$
+$$A \cdot B' = A \cdot B + A$$
+
+\subsubsection*{Konstrukce přirozených čísel}
+\subsubsection*{Konstrukce celých čísel}
+Oproti přirozeným číslům musíme přidat nulu a záporné hodnoty. Můžeme k tomu
+využít relaci ekvivalence. Uvažujme dvojice přirozených čísel
+$(a, b) \in \mathbb{N} \times \mathbb{N}$. Řekneme, že $(a, b) \sim (c, d): a + d = b + c$
+
+Věta: výše definovaná relace $\sim$ je relace ekvivalence.
+
+Důkaz:
+\begin{itemize}
+	\item Reflexivita $(a, b) \sim (a, b): a + b = b + a$
+	\item Symetrie $(a, b) \sim (c, d) \Rightarrow (c, d) \sim (a, b): a + d = b +
+	c \Rightarrow c + b = d + a$
+	\item Reflexivita $(a, b) \sim (c, d) \wedge (c, d) \sim (e, f) \Rightarrow (a, b) \sim (e, f):
+	a + d = b + c \wedge c + f = d + e \Rightarrow a + f = b + e$
+\end{itemize}
+Množinu $\mathbf{N} \times \mathbf{N}$ tedy relace $\sim$ rozdělí na třídy rozkladu, kde každá třída
+bude tvořena uspořádanými dvojicemi, se stejným rozdílem. Tyto třídy ekvivalence mohou reprezentovat
+všechna celá čísla.
+
+\subsubsection*{Konstrukce racionalních čísel}
+Racionální čísla narozdíl od celých a přirozených mají lepší vlastnosti, umožňují dělení.
+Racionální čísla jsou první obor, který se nazývá těleso, nebo také pole, pole/těleso racionálních
+čísel.
+
+Uvažujme uspořádané dvojice celých čísel
+$(a, b) \in \mathbf{Z} \times \mathbf{Z} \smallsetminus \{0\}$.
+Na takovýchto dvojicích zavedeme následujicí relaci: $(a, b) \sim (c, d): a \cdot d=b \cdot c$.
+Kde $\cdot$ představuje násobení nad množinou celých čísel.
+
+Opět tvrdíme, že relace $\sim$ je relace ekvivalence a zase množinu
+$\mathbf{Z} \times \mathbf{Z} \smallsetminus \{0\}$ rozdělí na třídy ekvivalence, kde jednotlivé
+třídy mohou reprezentovat všechna racionální čísla.
