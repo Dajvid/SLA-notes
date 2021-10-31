@@ -1,1 +1,643 @@
 \section{Druhá přednáška}
+
+\subsection{Algebraické struktury}
+Algebraická struktura je množina, na které mám jednu, nebo více operací
+a tyto operace mají nějaké vlastnosti. Obecně $(G, *)$ je algebraická
+struktura na množině G s operací *. Algebraických struktur je mnoho, nas bude
+zajímat převážně Grupa a Pole. Pokud bychom z následujicí definice grupy vypustili
+všechny 3 podmínky, jednalo by se o tzv. Grupoid (také označován jako Magma). Při splnění první
+podmínky tedy Magma a 1. podmínka, dostáváme tzv Pologrupu. Následně Pologrupou a splněním
+druhé podmínka dostáváme Monoid.
+
+\subsubsection{Grupa}
+\begin{definition}[Grupa]
+    Grupa $(G, *)$ je algebraická struktura s jednou operací $*: G \times G \rightarrow G$,
+    kde operace $*$ splňuje následujicíc vlastnosti:
+    \begin{enumerate}
+        \item $a * (b * c) = (a * b) * c \; \forall a, b, c \in G$ \hfill Asociativita
+        \item $\exists e \in G: e * a = a * e = a \; \forall a \in G$ \hfill Neutrální prvek
+        \item $\forall a \in G, \exists a^{-1} \in G: a * a^{-1} = a^{-1} * a = e$ \hfill
+        Inverzní prvky
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Komutativní \uv{Abelova} grupa]
+    Pokud k požadovaným vlastnostem operace $*$ tvořící grupu přidáme ještě čtvrtou podmínku:
+    \begin{enumerate}[start=4]
+        \item $a * b = b * a \; \forall a, b \in G$ \hfill Komutativita
+    \end{enumerate}
+    Dostaneme tzv. Abelovskou grupu.
+\end{definition}
+
+Jako příklady grupy můžeme uvést $(\mathbb{Z, +})$, $(\mathbb{Q} \smallsetminus \{0\}, \cdot)$
+$(\mathbb{Q}, +)$, $(\mathbb{R}, +)$, $(\mathbb{R} \smallsetminus \{0\}, \cdot)$
+všechny tyto příklady jsou dokonce abelovskou grupou. Zajímavé je zamyslet se nad příkladem
+neabelovské grupy, kterým může být například grupa permutací (permutace s operací skládání s třemi
+a více prvky). Dalším příkladem neabelovské grupy je množina čtvercových regulárních matic s operací
+násobení.
+
+\begin{theorem}
+    Neutrální prvek je jediný.
+\end{theorem}
+\begin{proof}
+    Předpokládejme, že $e_1$ a $e_2$ jsou neutrální prvky. Budeme li chtít na tyto dva neutrální
+    prvky aplikovat operaci $*$ podle definice neutrálního prvku vezmeme $e_1$ jako neutrální a
+    dostáváme:
+    $$e_1 * e_2 = e_2$$
+    Zároveň ale můžeme podle definice neutrálního prvku vzít $e_2$ jako neutrální a v tom případě
+    dostáváme:
+    $$e_1 * e_2 = e_1$$
+    Z toho vyplývá, že $e_1$ a $e_2$ jsou tentýž prvek a nemůže tedy nikdy exisovat více než
+    jeden neutrální prvek.
+\end{proof}
+
+\subsubsection{Pole}
+\begin{definition}[Pole]
+    Pole $(F, +, \cdot)$ je algebraická struktura se dvěma operacemi, kde množina $F$ má alespoň
+    dva prvky, operace $+$ splňuje následujicí vlastnosti\footnote{Všiměte si, že jsou velmi podobné
+    požadovaným vlastnostem na operaci $*$ z definice Abelovy grupy.}:
+    \begin{enumerate}
+        \item $a + (b + c) = (a + b) + c \; \forall a, b, c \in F$ \hfill Asociativita
+        \item $\exists 0_f \in F: 0_f + a = a + 0_f = a \; \forall a \in F$ \hfill Neutrální prvek
+        \item $\forall a \in F, \exists -a \in F: a + (-a) = -a + a = 0_f$ \hfill Inverzní prvky
+        \item $a + b = b + a \; \forall a, b \in F$ \hfill Komutativita
+    \end{enumerate}
+    a zároveň operace $\cdot$ splňuje:
+    \begin{enumerate}
+        \item $a \cdot (b \cdot c) = (a \cdot b) \cdot c \; \forall a, b, c \in F$ \hfill Asociativita
+        \item $\exists 1_f \in F: 1_f \cdot a = a \cdot 1_f = a \; \forall a \in F$ \hfill Neutrální prvek
+        \item $\forall a \in F \smallsetminus \{0_f\}, \exists a^{-1} \in F: a \cdot
+        a^{-1} = a^{-1} \cdot a = 1_f$ \hfill Inverzní prvky
+        \item $a \cdot (b + c) = a \cdot b + a \cdot c \wedge (b + c) \cdot a = b \cdot a + c \cdot a
+        \; \forall a, b,c \in F$ \hfill
+
+    \end{enumerate}
+    \label{def:field}
+\end{definition}
+
+\begin{definition}[Komutativní pole]
+    Pokud se jedná o pole a navíc je operace $cdot$ komutativní, jedná se o komutativní pole:
+    \begin{enumerate}[start=5]
+        \item $a \cdot b = b \cdot a \; \forall a, b \in F$ \hfill Komutativita
+    \end{enumerate}
+\end{definition}
+
+Zatím jediným příkladem pole, který z přednášek známe je $(\mathbb{Q}, +, \cdot)$.\footnote{Dalším
+příkladem by mohlo být pole racionálních funkcí $\mathbb{Z}(X)$, které bylo později velmi okrajově
+zmíněno na přednášce.}
+
+\begin{definition}[Uspořádané pole]
+    Řekneme, že pole $F$ je uspořádané, jestliže v něm existuje $P \subseteq F$ tak, že
+    je li $x, y \in P$ platí $x + y \in P \wedge x \cdot y \in P$ a dále $\forall x \in F$
+    platí, že splňuje právě jednu z následujicích podmínek:
+    \begin{enumerate}
+        \item $x \in P$
+        \item $-x \in P$
+        \item $x = 0_F$
+    \end{enumerate}
+    \label{def:ordered_field}
+\end{definition}
+
+Jinak řečeno, uspořádané pole bude takové, ve kterém je možné nějakým způsobem vybrat \uv{kladnou}
+pod\-mno\-ži\-nu. Příklady uspořádaných polí: $\mathbb{Q}, \mathbb{R}, \mathbb{Z}(x)$
+
+\begin{definition}[Archimédovské pole]
+    Řekneme, že uspořádané pole $F$ je archimédovské, jestliže:
+    $$\forall x, y \in P \exists n\in\mathbb{N}, n \cdot x >y $$
+\end{definition}
+
+Příklady archimédovských polí: $\mathbb{Q}, \mathbb{R}$
+
+\subsubsection{Konečná pole}
+\begin{definition}
+    Konečné pole je pole $(F, +, \cdot)$, kde množina $F$ má konečný počet prvků.
+\end{definition}
+\begin{theorem}[Existence konečného pole]
+    \label{the:field}
+    Konečné pole $(F, +, \cdot)$ existuje právě tehdy, když $|F| = p^k$, kde $p$ je
+    prvnočíslo a $k \in \mathbb{N}$. Toto konečné pole je zároveň jediné.
+\end{theorem}
+
+Z věty \ref{the:field} vyplývá, že existují konečná pole se dvěma prvky, třemi prvky, se
+čtyřmi prvky, s pěti prvky, ale ne se šesti, protože 6 není ani prvočíslo, ani mocnina prvočísla.
+
+Konečná pole budeme značit zdvojeným fontem a počtem prvků v dolním indexu např. $\mathbb{F}_{11}$
+
+Konečná pole si rozdělíme na dva případy a to na prvočíselná pole a na neprvočíselná pole.
+
+Abychom porozuměli konečným polím a mohli s nimi pracovat, potřebujeme vědět,
+jak na nich fungují operace $+$ a $\cdot$.
+
+\subsubsection*{Prvočíselná pole}
+\begin{definition}[Prvočíselné pole]
+    Prvočíselné pole je konečné pole $(F, +, \cdot)$, kde $|F| = p$, p je prvočíslo. Tedy
+    všechny případy, kdy pro $k$ z věty \ref{the:field} platí že $k=1$.
+\end{definition}
+
+Například v prvočíselném poli $\mathbb{F}_{2}$
+máme 2 prvky a tyto prvky můžeme označit jak chceme, pro praktické počítání je však nejlepší
+označit tyto prvky čísly, v tomto případě od $0$ do $1$, kde $0$ bude hrát roli hodnoty nula a
+$1$ roli hodnoty jedna, tak jak potřebujeme.
+
+\begin{example}[Prvočíselné pole $\mathbb{F}_{2}$]
+    $$\mathbb{F}_2 = \{0, 1\}$$
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|l|l|l|c|c|l|}
+        \hline
+        $+$ & $0$ & $1$ &  &  & $\cdot$ & $0$ & $1$ \\ \hline
+        $0$ & $0$ & $1$ &  &  & $0$     & $0$ & $0$ \\ \hline
+        $1$ & $1$ & $0$ &  &  & $1$     & $0$ & $1$ \\ \hline
+        \end{tabular}
+        \caption{Operace $+$ a $\cdot$ nad $\mathbb{F}_{2}$}
+        \label{tab:F2}
+    \end{table}
+
+    Můžeme si všimnout, že u obou operací v tomto případě vlastně počítáme modulo 2,
+    tedy modulo počet prvků pole, tato vlastnost platí obecně u prvočíselných polí.
+\end{example}
+
+
+\begin{example}[Prvočíselné pole $\mathbb{F}_{5}$]
+    $$\mathbb{F}_5 = \{0, 1, 2, 3, 4\}$$
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    $+$ &
+      $0$ &
+      $1$ &
+      $2$ &
+      $3$ &
+      $4$ &
+       &
+       &
+      $\cdot$ &
+      $0$ &
+      $1$ &
+      $2$ &
+      $3$ &
+      $4$ \\ \hline
+    $0$ &
+      $0$ &
+      $1$ &
+      $2$ &
+      $3$ &
+      $4$ &
+       &
+       &
+      $0$ &
+      $0$ &
+      $0$ &
+      $0$ &
+      $0$ &
+      $0$ \\ \hline
+    $1$ &
+      $1$ &
+      \cellcolor[HTML]{FFFFFF}$2$ &
+      \cellcolor[HTML]{FFFFFF}$3$ &
+      \cellcolor[HTML]{FFFFFF}$4$ &
+      \cellcolor[HTML]{FFFFFF}$0$ &
+       &
+       &
+      $1$ &
+      $0$ &
+      \cellcolor[HTML]{34FF34}$1$ &
+      \cellcolor[HTML]{34FF34}$2$ &
+      \cellcolor[HTML]{34FF34}$3$ &
+      \cellcolor[HTML]{34FF34}$4$ \\ \hline
+    $2$ &
+      $2$ &
+      \cellcolor[HTML]{FFFFFF}$3$ &
+      \cellcolor[HTML]{FFFFFF}$4$ &
+      \cellcolor[HTML]{FFFFFF}$0$ &
+      \cellcolor[HTML]{FFFFFF}$1$ &
+       &
+       &
+      $2$ &
+      $0$ &
+      \cellcolor[HTML]{34FF34}$2$ &
+      \cellcolor[HTML]{34FF34}$4$ &
+      \cellcolor[HTML]{34FF34}$1$ &
+      \cellcolor[HTML]{34FF34}$3$ \\ \hline
+    $3$ &
+      $3$ &
+      \cellcolor[HTML]{FFFFFF}$4$ &
+      \cellcolor[HTML]{FFFFFF}$0$ &
+      \cellcolor[HTML]{FFFFFF}$1$ &
+      \cellcolor[HTML]{FFFFFF}$2$ &
+       &
+       &
+      $3$ &
+      $0$ &
+      \cellcolor[HTML]{34FF34}$3$ &
+      \cellcolor[HTML]{34FF34}$1$ &
+      \cellcolor[HTML]{34FF34}$4$ &
+      \cellcolor[HTML]{34FF34}$2$ \\ \hline
+    $4$ &
+      $4$ &
+      \cellcolor[HTML]{FFFFFF}$0$ &
+      \cellcolor[HTML]{FFFFFF}$1$ &
+      \cellcolor[HTML]{FFFFFF}$2$ &
+      \cellcolor[HTML]{FFFFFF}$3$ &
+       &
+       &
+      $4$ &
+      $0$ &
+      \cellcolor[HTML]{34FF34}$4$ &
+      \cellcolor[HTML]{34FF34}$3$ &
+      \cellcolor[HTML]{34FF34}$2$ &
+      \cellcolor[HTML]{34FF34}$1$ \\ \hline
+    \end{tabular}
+    \caption{Operace $+$ a $\cdot$ nad $\mathbb{F}_{5}$}
+    \label{tab:F5}
+    \end{table}
+
+    Z definice pole vyplývá, že operace $+$ musí být Abelovská grupa. V Abelovské grupě
+    platí, že při rozepsání operace do tabulky je v každém sloupci a v každém řádku každý
+    prvek obsažen právě jednou\footnote{V počátcích definic teorie grup se tato vlastnost
+    používala pro definici grupy.}. Což si můžeme všimnout že zde platí.
+
+    U operace $\cdot$ si můžeme všimnout, že bez prvního sloupce a bez prvního řádku
+    (zeleně označená část) operace $\cdot$ tvoří grupu. Tato vlastnost u pole a jeho
+    operace $\cdot$ platí vždy.
+\end{example}
+
+\subsubsection*{Neprvočíselná pole}
+\begin{definition}[Neprvočíselné pole]
+    Neprvočíselné pole je konečné pole $(F, +, \cdot)$, kde $|F| = p^k$, $p$ je prvočíslo a
+    zároveň $k > 1, k \in \mathbb{N}$. Tedy všechny případy, kdy pro $k$ z věty \ref{the:field}
+    platí, že $k>1$.
+\end{definition}
+
+V případě neprvočíselných polí nebude fungování operací tak zřejmé jako tomu bylo u
+prvočíselných polé. Použitím stejného triku
+jako u prvočíselných polý, tedy použití běžných operací $+$ a $\cdot$ modulo počet prvků,
+totiž nejsme schopni vytvořit pole. Problém je v takovém případě operace $\cdot$, kdy
+pouze s přidáním modula nebude splňovat požadované vlastnosti z definice \ref{def:field}.
+
+Opět platí, že prvky pole můžeme označit jak chceme, ale je dobré, udělat to tak, aby se nám
+s nimi vhodně pracovalo. V případě neprvočíselných polí je pro jejich odvození vhodné
+označit si prvky jako polynomy v proměnné $t$, kde koeficienty jsou z $\mathbb{F}_p$ až do
+stupně $k - 1$, kde $n = p^k$ pro $\mathbb{F}_n$.
+
+\begin{example}[Definice pro $\mathbb{F}_4$]
+    $$4 = 2^2,\; p = 2,\; k = 2$$
+    Polynomy v tomto případě tedy budou:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Polynomy          & $0$ & $1$ & $t$ & $t + 1$ \\ \hline
+        Pomyslná hodnota & $0$ & $1$ & $2$ & $3$      \\ \hline
+        \end{tabular}
+        \caption{Vyjádření polynomů pro $\mathbb{F}_{4}$}
+        \label{tab:F4_pol}
+        \end{table}
+\end{example}
+
+Pro vytvoření aditivní operace stačí sčítat polynomy v každém stupni modulo $p$.
+
+\begin{example}[Tvorba aditivní operace pro $\mathbb{F}_4$]
+Budeme sčítat polynomy v každém stupni modulo $p$
+\[
+2 + 3 = t + (t + 1)
+=
+\begin{array}{rr}
+    t & + 0\\
+    t & + 1\\ \hline
+    0 & + 1\\
+      &
+\end{array}
+= 1
+\]
+
+\[
+1 + 1 = 1 + 1 = t
+=
+\begin{array}{rr}
+    0t & + 1\\
+    0t & + 1\\ \hline
+    0t & + 0\\
+       &
+\end{array}
+= 0
+\]
+\[
+    1 + 2 = 1 + t
+=
+\begin{array}{rr}
+    0t & + 1\\
+    t  & + 0\\ \hline
+    t  & + 1\\
+       &
+\end{array}
+= 3
+\]
+Stejným postupem pro ostatní hodnoty (některé jdou rovnou doplnit díky vlasnostem operace $+$)
+dostaneme kompletní tabulku definujicí aditivní operaci $+$.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \multicolumn{1}{|c|}{$+$} & \multicolumn{1}{c|}{$0$} & \multicolumn{1}{c|}{$1$} & \multicolumn{1}{c|}{$2$} & \multicolumn{1}{c|}{$3$} \\ \hline
+    \multicolumn{1}{|c|}{$0$} & \multicolumn{1}{c|}{$0$} & \multicolumn{1}{c|}{$1$} & \multicolumn{1}{c|}{$2$} & \multicolumn{1}{c|}{$3$} \\ \hline
+    $1$                       & $1$                      & $0$                      & $3$                      & $2$                      \\ \hline
+    $2$                       & $2$                      & $3$                      & $0$                      & $1$                      \\ \hline
+    $3$                       & $3$                      & $2$                      & $1$                      & $0$                      \\ \hline
+    \end{tabular}
+    \caption{Aditivní operace pro $\mathbb{F}_{4}$}
+    \label{tab:F4_plus}
+    \end{table}
+
+\end{example}
+
+\begin{example}[Příklad polynomů pro $\mathbb{F}_{125}$]
+    $$125 = 5^3, \; p = 5, \; k = 3$$
+    Polynomy budou následující:
+    $$0, \; 1, \; 2, \; 3, \; 4, \; t, \; t + 1, \; t + 2, \; t + 3, \; t + 4,
+        2t + 1,\; \dots \;4t^2 + 4t + 3, \;  4t^2 + 4t + 4$$
+
+Ukázka součtu dvou polynomů:
+\[
+    (4t + 2) + (t^2 + 2t + 3)
+    =
+    \begin{array}{rrr}
+        0t^2 & + 4t & + 2\\
+        t^2  & + 2t & + 3\\ \hline
+        t^2  & + 1t & + 0\\
+          &
+    \end{array}
+= t^2 + t
+\]
+\end{example}
+
+Při vytváření multiplikativní operace se nám stane, že po vynásobení dvou polynomů
+vznikne polynom stupně, který je větší, než $k - 1$ a tedy není mezi polynomy daného pole.
+Budeme proto potřebovat tzv. redukční polynom.
+\begin{definition}[Redukční polynom]
+    Redukční polynom $P_{red}:$ polynom stupně $k$, který je nerozložitelný na součin
+    polynomů stupně nižších (řekneme, že je ireducibilní).
+\end{definition}
+
+Polynom stupně $k$ chceme rozložit na
+
+\begin{example}[Hledání redukčního polynomu pro $\mathbb{F}_4$]
+
+Všechny polynomy stupně $k=2$:
+    \begin{itemize}
+        \item $t^2$ lze rozložit na $t \cdot t$
+        \item $t^2 + 1$ lze rozložit na $(t + 1) \cdot (t + 1)$
+        \item $t^2 + t$ lze rozložit na $t \cdot (t + 1)$
+        \item $t^2 + t + 1$ nelze rozložit
+    \end{itemize}
+
+\[
+    (t + 1) \cdot (t + 1) =
+    \begin{array}{rrr}
+        &t&+1 \\
+        &t&+1 \\ \hline
+        &t&+1 \\
+        t&+1& \\ \hline
+        t^2&+0t&+1
+    \end{array}
+= t^2 + 1
+\]
+\end{example}
+
+Tvorba multiplikativní operace: po vynásobení dvou prvků z $\mathbb{F}_{p^k}$ vyjádřených pomocí
+polynomů odečítáme (je-li třeba) $t^h \cdot P_{red}$ tak dlouho, až je výsledek stupně nejvýše
+$k - 1$.
+
+\begin{example}[Aplikace multiplikativní operace v $\mathbb{F}_4$ a využití $P_{red}$]
+$$t \cdot (t + 1) = t^2 + t$$
+Polynom $t^2 + t$ má ale příliš vysoký stupeň (vyšší, než $k - 1$). Začneme proto s odečítáním
+redukčního polynomu\footnote{Můžeme odečítat i jeho $t^h$ násobky, ale v tomto případě stačí
+redukční polynom sám o sobě.}, který je v tomto případě $t^2 + t + 1$.
+\[
+    (t^2 + t) - (t^2 + t + 1)
+    =
+    \begin{array}{rrr}
+        t^2&+t&+0 \\
+       -(t^2&t&+1) \\ \hline
+        0t^2&+0t&+1 \\
+        &&
+    \end{array}
+    = 1
+\]
+\end{example}
+
+\begin{example}[Tvorba tabulky multiplikativní operace v $\mathbb{F}_4$]
+    Hodnoty pro $0$ a $1$ jsou jasné. V předchozím příkladu jsme spočítali,
+    že $3 \cdot 2 = 1$, díky čemuž zároveň víme že, $2 \cdot 3 = 1$. Ostatní
+    hodnoty jsme již schopni doplnit díky požadovaným vlastnostem operace $\cdot$.
+    Ale pojďme ověřit $2 \cdot 2$.
+
+    $$2 \cdot 2 = t \cdot t = t^2$$
+    Stupeň polynomu je větší, než $k - 1$. Odečteme $T_{red}$.
+    \[
+        t^2 - (t^2 + t + 1)
+        =
+        \begin{array}{rrr}
+            t^2&+0t&+0 \\
+           -(t^2&+t&+1) \\ \hline
+            0t^2&+t&+1 \\
+            &&
+        \end{array}
+        = t + 1 = 3
+    \]
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $\cdot$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        $0$     & $0$ & $0$ & $0$ & $0$ \\ \hline
+        $1$     & $0$ & $1$ & $2$ & $3$ \\ \hline
+        $2$     & $0$ & $2$ & $3$ & $1$ \\ \hline
+        $3$     & $0$ & $3$ & $1$ & $2$ \\ \hline
+        \end{tabular}
+        \caption{Multiplikativní operace pro $\mathbb{F}_{4}$}
+        \label{tab:F4_mul}
+    \end{table}
+\end{example}
+
+\subsection{Konstrukce množiny reálných čísel}
+Využijeme definici reálných čísel pomocí Dedekindových řezů.
+
+\begin{definition}[Dedekinduv řez]
+    Dedekinduv řez $D$ je podmnožina racionálních čísel $D \subseteq \mathbb{Q}$, která splňuje:
+    \begin{enumerate}
+        \item $x \in D \Rightarrow \exists y > x, y \in D$ \hfill Neexistence největšího prvku
+        \item $x \in D, y < x \Rightarrow y \in D$ \hfill
+    \end{enumerate}
+\end{definition}
+
+Příklady Dedekindových řezů:
+\begin{itemize}
+    \item $\mathbb{Q}$ tento řez označme $\infty$
+    \item $\emptyset$ tento řez označme $- \infty$
+    \item $\mathbb{Q}^{-}$
+    \item $\{x \in \mathbb{Q};\,x < 7\}$
+    \item $\{x \in \mathbb{Q};\, x \cdot x < 2 \vee x < 0\}$
+\end{itemize}
+
+Budeme li uvažovat všechny dedekindovy řezy, dostaneme množinu rozšířených reálných
+čísel, kterou budeme označovat $\overline{\mathbb{R}}$.
+
+Potom $$\mathbb{R} = \overline{\mathbb{R}} \smallsetminus \{-\infty, \infty\}$$
+Kde $\mathbb{R}$ označuje množinu reálných čísel.
+
+\begin{definition}[Součet Dedekindových řezů]
+    $$D + E = \{x + y; x\in D, y \in E\}$$
+\end{definition}
+
+\begin{definition}[Nezáporný dedekindův řez]
+    Řekneme, že dedekindův řez $D$ je nezáporný právě tehdy, když:
+    $$D \supseteq \mathbb{Q}^{-}$$
+\end{definition}
+
+\begin{definition}[Součin Dedekindových řezů]
+    Předpokládáme, že řezy $D$ a $E$ jsou nezáporné.
+    $$D \cdot E = \{x \cdot y; \forall x, y \geq 0, x \in D, y \in E\} \cup \{z; z < 0, z \in \mathbb{Q}\}$$
+    Pokud je jeden z řezů záporný a druhý nezáporný, potom musíme definovat opačný řez,
+    k zápornému řezu vytobit řez opačný, použijeme násobení nezáporných řezů a z výsledku opět vyrobíme
+    řez opačný.
+
+    Pokud budou oba řezy záporné, z obou řezů vezmu opačné řezy, použiji násobení nezáporných řezů
+    a dostanu korektní výsledek. \footnote{Násobení dedekindových řezů bylo na přednášce definováno
+    pouze takto částečně.}
+\end{definition}
+
+\subsubsection*{Komplexní čísla}
+Uvažujme $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. V $\mathbb{R}^2$ není
+definována multiplukativní operace $(a, b) \cdot (c, d)$. Pokud v $\mathbb{R}^2$
+multiplikativní operaci definujeme takovým způsobem, aby splňovala
+vlastnosti na multiplikativní operaci z definice \ref{def:field}:
+
+$$(a, b) \cdot (c, d) = (ac - bd, ad + bc)$$
+
+Což je totéž jako
+$$(a + bi) \cdot (c + di) = ac + (b + d)i^2 + a \cdot di + bi \cdot c = ac - bd + (ad + bc)i, \; i^2 = -1$$
+
+Přidáním této operace dostaneme množinu komplexních čísel $\mathbb{C}$, která opět tvoří
+strukturu pole.
+
+Byly snahy tento postup zobecnit. Pro $\mathbb{R}^3$ však vhodná multiplikativní operace, která by
+vyhovovala požadavkům z definice \ref{def:field} neexistuje.
+
+Pro $\mathbb{R}^4$ už multiplikativní operaci splňujicí požadované vlastnosti vytvořit
+lze, tím dostáváme tzv. kvaterniony, značíme je $\mathbb{H}$.
+Opět máme \uv{pomůcky} a pravidla pro jejich násobení.
+Kvaterniony zapisujeme ve tvaru:
+$$a + bi + cj + dk$$
+A pravidla pro jejich násobení jsou:
+\begin{enumerate}
+    \item $i^2 = j^2 = k^2 = -1$
+    \item $ij = -ji = k$
+\end{enumerate}
+U kvaternionů však máme jednu změnu, nejedná se o komutativní pole (je to zřejmé z druhého pravidla)
+a jsou tedy prvním příkladem nekomutativního pole se kterým jsme se v přednáškách zatím setkali.
+
+\subsection{Mohutnosti nekonečných množin}
+Kardinalita nejvšednější nekonečné množiny, přirozených čísel, je definována jako \textit{alef 0}
+$$|\mathbb{N}| = \aleph_0$$
+Jakákoliv jiná nekonečná množina bude mít stejnou kardinalitu, pokud existuje bijekce
+mezi touto nekonečnou množinou a množinou přirozených čísel.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cccccccccccc}
+    $\mathbb{N}$   & $1$ & $2$ & $3$  & $4$ & $5$  & $6$  & $7$  & $8$  & $9$  & $10$ & $\dots$ \\
+    $\mathbb{N}_0$ & $0$ & $1$ & $2$  & $3$ & $4$  & $5$  & $6$  & $7$  & $8$  & $9$  & $\dots$ \\
+    $2\mathbb{N}+1$   & $1$ & $3$ & $5$  & $7$ & $9$  & $11$ & $13$ & $15$ & $17$ & $19$ & $\dots$ \\
+    $\mathbb{Z}$  d & $0$ & $1$ & $-1$ & $2$ & $-2$ & $3$  & $-3$ & $4$  & $-4$ & $5$  & $\dots$ \\
+    $\mathbb{Q}$ &
+      $\frac{0}{1}$ &
+      $\frac{-1}{1}$ &
+      $\frac{-2}{1}$ &
+      $\frac{-1}{2}$ &
+      $\frac{1}{2}$ &
+      $\frac{2}{1}$ &
+      $\frac{-3}{1}$ &
+      $\frac{-1}{3}$ &
+      $\frac{1}{3}$ &
+      $\frac{3}{1}$ &
+      $\dots$
+    \end{tabular}
+    \caption{Ukázka některých bijekcí s přirozenými čísly}
+    \label{tab:Naturlas_bijection}
+\end{table}
+
+Z bijekcí naznačených v tabulce \ref{tab:Naturlas_bijection} vyplývá:
+$$|\mathbb{N}| = |\mathbb{N}_0| = |2\mathbb{N}+1| = |\mathbb{Z}| = |\mathbb{Q}| = \aleph_0$$
+
+\subsubsection*{Mohutnost množiny reálných čísel}
+Mohutnost množiny reaálných čísel je větší, než mohutnost množiny celých čísel.
+$$|\mathbb{R}| > |\mathbb{N}|$$
+\begin{proof}
+    Neexistence bijekce mezi $\mathbb{R}$ a $\mathbb{N}$
+
+    Předpokládejme, že bijekce mezi $\mathbb{R}$ a $\mathbb{N}$ existuje.
+    Vezměme reálný interval $\langle0, 1)$ a předpokládejme, že jeho prvky lze seřadit\footnote{Tento
+    předpoklad vychází z předpokladu, že existuje bijekce s $\mathbb{N}$.}.
+
+    Za předpokladu, že jsme schopni hodnoty tohoto intervalu seřadit, jsme schopni
+    je všechny reprezentovat nekonečnou tabulkou \ref{tab:diag_real}.
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{cccccl}
+    $a_1 = $ & $0,$     & \cellcolor[HTML]{3166FF}$a_{11}$ & $a_{12}$                         & $a_{13}$                         & $\dots$  \\
+    $a_2 = $ & $0,$     & $a_{21}$                         & \cellcolor[HTML]{3166FF}$a_{22}$ & $a_{23}$                         & $\dots$  \\
+    $a_3 = $ & $0,$     & $a_{31}$                         & $a_{32}$                         & \cellcolor[HTML]{3166FF}$a_{33}$ & $\dots$  \\
+    $\vdots$ & $\vdots$ & $\vdots$                         & $\vdots$                         & $\vdots$                         & $\ddots$
+    \end{tabular}
+    \caption{Seřazení hodnot reálného intervalu $\langle 0, 1)$}
+    \label{tab:diag_real}
+\end{table}
+
+    Teď vytvoříme číslo $b = 0,b_1 b_2 b_3 \ldots$, kde každou číslici $b_i$ určíme následovně:
+    \[
+    b_i =
+    \left\{
+    \begin{array}{ll}
+        1 & \text{pokud} \; a_{ii} \neq 1\\
+        2 & \text{pokud} \; a_{ii} = 1   \\
+    \end{array}
+    \right.
+\]
+
+    Tím jsme ale zkonstruovali reálné číslo $b$, které se však liší\footnote{A to alespoň v
+    jedné číslici na diagonále (zobrazeno modře).} od každého čísla v tabulce
+    \ref{tab:diag_real}.
+
+    Z našich předpokladů však vycházelo, že v tabulce musí být obsažena všechna čísla z daného
+    intervalu. Dostáváme tedy spor a z toho vychází, že naše předpoklady nebyly správné a
+    neexistuje bijekce mezi $\mathbb{N}$ a reálným intervalem $\langle 0, 1)$. Tím pádem nemůže
+    existovat bijekce ani mezi $\mathbb{R}$ a $\mathbb{N}$.
+
+    Z důkazu nám zároveň vychází, že $|\mathbb{R}| > |\mathbb{N}|$.
+\end{proof}
+
+Kardinalitu reálných čísel budeme značit $c$
+$$|\mathbb{R}| = c > \aleph_0$$
+
+\begin{definition}[Kardinalita potenčních množin přirozených čísel]
+    $$|P(\mathbb{N})| = \aleph_1$$
+    $$|P(P(\mathbb{N}))| = \aleph_2$$
+    $$\vdots$$
+\end{definition}
+
+Není jednoznačné, zda $\aleph_1 = c$.
+
+\subsubsection*{Mohutnost množiny komplexních čísel}
+$$|\mathbb{C}| = |\mathbb{R}^2| = |\mathbb{R}| = c$$
+Což ovšem znamená, že musíme být schopni najít bijekci mezi $\mathbb{R}$ a $\mathbb{R}^2$.
+
+Toho dosáhneme následovně, každé reálné číslo zobrazíme na uspořádanou dvojici takto:
+$$0,3451239956\ldots \rightarrow (0,35295\ldots ;0,41396\ldots)$$
+
+Tímto způsobem jsme schopni obecně najít bijekci mezi $\mathbb{R}$ a $\mathbb{R}^n$.
