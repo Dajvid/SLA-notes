@@ -1,1 +1,267 @@
 \section{Třetí přednáška}
+
+\subsection{Vektorový prostor}
+\begin{definition}[Vektorový prostor]
+
+    Vektorový prostor je především Abelovská grupa
+    $$(\mathcal{V}, +)$$
+    Kromě operace + budeme mít další operaci vztaženou k nějakému poli $(F, +, \cdot)$
+    a to operaci
+    $$\cdot: F \times \mathcal{V} \rightarrow \mathcal{V}$$
+    této operaci budeme říkat násobení skalárem a bude mít následujicí vlastnosti:
+    \begin{enumerate}
+        \item $a \cdot (\vec{u} + \vec{v}) = a \cdot \vec{u} + a \cdot \vec{v}, \forall
+            a \in F \; \forall \vec{u}, \vec{v} \in \mathcal{V}$
+        \item $(a + b) \cdot \vec{u} = a \cdot \vec{u} + b \cdot \vec{u},
+            \forall a,b \in F \; \forall \vec{u} \in V$
+        \item $(a \cdot b ) \cdot \vec{u} = a \cdot (b \cdot \vec{u}),
+            \forall a,b \in F \; \forall \vec{u} \in V$
+        \item $1 \cdot \vec{u} = \vec{u}, \forall \vec{u} \in \mathcal{V}$
+    \end{enumerate}
+    Tedy pokud máme nějaké pole $F$, nějakou abelovskou grupu $\mathcal{V}$ a definovaný
+    skalární součin $\cdot$ s uvedenými vlastnostmi. Potom řekneme, že $\mathcal{V}$ je
+    vektorovým prostorem nad polem $F$.
+
+    Prvkům $\mathcal{V}$ pak budeme říkat vektory. Prvkům $F$ často říkáme skaláry,
+    nebo čísla.
+    \label{def:vector_space}
+\end{definition}
+\begin{example}[Příklad vektorového prostoru]
+    $$F = \mathbb{R}, \mathcal{V} = \mathbb{R}^3$$
+    $$\vec{u} + \vec{v} = (u_1 + v_1, u_2 + v_2, u_3 + v_3)
+    \forall \vec{u}, \vec{v} \in \mathcal{V}$$
+    Je $(\mathcal{V}, +)$ abelovská grupa?
+    \begin{enumerate}[start=0]
+        \item Operace $+$ je zjevně uzavřená na množině $\mathbb{R}^3$.
+        \item Asociativita vychází z asociativity sčítání v $\mathbb{R}$.
+        \item Neutrálním prvkem je: $\vec{o} = (0, 0, 0)$.
+        \item Inverzní prvek k prvku $u$ dostaneme jako: $-\vec{u} = (-u_1, -u_2, -u_3)$.
+        \item Komutativita je v tomto případě také jasná.
+    \end{enumerate}
+    $(\mathcal{V}, +)$ je tedy abelovská grupa\footnote{Otázka k zamyšlení je, zda by bylo
+    možné operaci $+$ zavést nějak jinak a stále dodržet všechny požadované vlastnosti.}.
+
+    operaci násobení skalárem $\cdot$ zavedeme takto:
+    $$a \cdot (u_1, u_2, u_3) = (a \cdot u_1, a \cdot u_2, a \cdot u_3)$$
+    Je zřejmé, že tato operace splňuje všechny požadované vlastnosti z definice
+    \ref{def:vector_space}. Pojďme ověřit například třetí axiom:
+    \begin{proof} Platnost třetí vlasnosti:
+        $$LS: (a \cdot b) \cdot (u_1, u_2, u_3) =
+        (a \cdot b \cdot u_1, a \cdot b \cdot u_2, a \cdot b \cdot u_3)$$
+        $$PS: a\cdot (b \cdot (u_1, u_2, u_3)) = a \cdot (b \cdot u_1, b \cdot u_2, b \cdot u_3) =
+        (a \cdot b \cdot u_1, a \cdot b \cdot u_2, a \cdot b \cdot u_3)$$
+        $$LS = PS$$
+    \end{proof}
+    \label{ex:vec_space}
+\end{example}
+
+Ověření platnosti požadovaných vlastností bylo v případě \ref{ex:vec_space} triviální.
+Podobně jednoduchý postup by šel použít i pro případy, kdy obecně
+$\mathcal{V} = \mathbb{R}^n, \forall n \in \mathbb{N}$. Existují však příklady, ke kterým
+se dostaneme později, kdy ověření platnosti není tak jednoduché.
+
+\begin{definition}[Triviální vektorový prostor]
+    Uvažujme libovolné pole $F$ a abelovskou grupu
+    $$(V, +), \mathcal{V} = \{\vec{o}\}$$
+    Což je zároveň minimální případ grupy, protože ta z definice vždy musí
+    obsahovat minimálně jeden prvek, kterým je neutrální prvek.
+
+    A operaci násobení skalárem zavedeme takto:
+    $$a \cdot \vec{o} = \vec{o}, a \in F, \vec{o} \in \mathcal{V}$$
+    Opět budou splněny všechny požadované vlastnosti, jedná se tedy o vektorový prostor
+    a tento vektorový prostor budeme označovat jako triviální vektorový prostor.
+\end{definition}
+
+Dalším jednoduchý příklad vektorového prostorů:
+libovolné pole $F$, $\mathcal{V} = F^n, n \in \mathbb{N}$
+
+\begin{example}[Je $\mathbb{R}$ vektorový prostor nad $\mathbb{Q}$?]
+    $$F = \mathbb{Q}, \mathcal{V} = \mathbb{R}$$
+    Víme, že $\mathbb{R}$ s běžnou operací $+$ tvoří Abelovskou grupu.
+    Násobení skalárem zavedeme jako běžné násobení.
+    To že platí vlastnosti z definice \ref{def:vector_space} plyne z vlastností
+    bežné operace násobené $\cdot$ na množině $\mathbb{R}$.
+
+    Takže ano, v tomto případě se jedná o vektorový prostor.
+\end{example}
+
+Další příklady vektorových prostorů:
+\begin{itemize}
+    \item $F = \mathbb{R}, \mathcal{V} = C^0\langle a, b \rangle$
+        \footnote{$C^n\langle a,b \rangle$ značí množinu funkcí na reálném intervalu
+        $\langle a,b \rangle$, které jsou spojité až v n-té derivaci, $n \in \mathbb{N}$.}
+    \item $F = \mathbb{R}, \mathcal{V} = C^1\langle a, b \rangle$
+    \item $F = \mathbb{R}, \mathcal{V}=$ množina matic o velikosti $n \times n$
+    \item $F = \mathbb{Q}, \mathcal{V} = \mathbb{R}$
+    \item $F = \mathbb{R}, \mathcal{V} = \mathbb{C}$
+    \item A dokonce i $F = \mathbb{C}, \mathcal{V} = \mathbb{R}$, v tomto případě však bude
+        vytvoření vhodných operací netriviální.
+\end{itemize}
+
+\begin{definition}[Vektorový podprostor]
+    Nechť $\mathcal{V}$ je vektorový prostor
+    $$\mathcal{W} \subseteq \mathcal{V}$$
+    A zároveň platí tyto vlastnosti:
+    \begin{enumerate}
+        \item $\vec{u}, \vec{v} \in \mathcal{W} \Rightarrow \vec{u} + \vec{v} \in \mathcal{W}$
+        \item $\vec{u} \in \mathcal{W}, a \in F \Rightarrow  a \cdot \vec{u} \in \mathcal{W}$
+    \end{enumerate}
+
+    Pokud je $\mathcal{W}$ podmnožina $\mathcal{V}$ a zároveň splňuje dvě výše uvedené vlastnosti,
+    potom řekneme, že $\mathcal{W}$ je vektorovým podprostorem vektorového prostu $\mathcal{V}$.
+\end{definition}
+
+\begin{example}[Ověření vektorového podprostoru]
+    Mějme
+    $$F = \mathbb{R}, \mathcal{V} = \mathbb{R}^3$$
+    $$\mathcal{W}_1 = \{(a, 2\cdot a, 1), a \in \mathbb{R}\}$$
+
+    Je $\mathcal{W}_1$ vektorový podprostor $\mathcal{V}$?
+    \begin{enumerate}[start=0]
+        \item Je zřejmé, že $\mathcal{W}_1 \subseteq \mathbb{R}^3$
+        \item $(a, 2 \cdot a, 1) + (b, 2 \cdot b, 1) = (a + b, 2 \cdot a + 2 \cdot b, 2)
+        \notin \mathcal{W}_1$
+    \end{enumerate}
+    První podmínka tedy není splněna a $\mathcal{W}_1$ v tomto případě není vektorovým podprostorem
+    vektorového prostoru $\mathcal{V}$.
+
+    Nyní uvažme $\mathcal{W}_2$ definované následovně:
+    $$\mathcal{W}_2 = \{(a, 2\cdot a, 0), a \in \mathbb{R}\}$$
+    \begin{enumerate}[start=0]
+        \item Opět je zřejmé, že $\mathcal{W}_2 \subseteq \mathbb{R}^3$
+        \item $(a, 2 \cdot a, 0) + (b, 2 \cdot b, 0) = (a + b, 2 \cdot (a + b), 0) = (c, 2 \cdot c, 0) \in \mathcal{W}$
+        \item $a \cdot (b, 2b, 0) = (a \cdot b, 2\cdot a \cdot b, 0) = (c, 2c, 0) \in \mathcal{W}$
+    \end{enumerate}
+    Všechny požadované vlastnosti platí a $\mathcal{W}$ je tedy vektorový podprostor vektorového
+    prostoru $mathcal{V}$.
+\end{example}
+
+\subsection{Matice}
+
+Intuitivně můžeme matici definovat jako čísla, která jsou uspořádaná do obdélníkového schématu.
+
+\begin{definition}[Matice]
+    Uvažujme zobrazení $a$ definované takto:
+    $$a = \{1 \ldots m\} \times \{1 \ldots n\} \rightarrow F$$
+
+    Toto zobrazení vlastně přiřazuje dvojici indexů (sloupcový a řádkový) hodnotu,
+    která se v matici nachází na daném indexu. Indexy budeme značit dolním indexem
+    jako $a_{mn}$
+\end{definition}
+
+Psát matice jako zobrazení by bylo silně nepraktické, proto nadále budeme využívat
+právě ono uspořádání čísel do obdélníkového schématu a označovat je velkými písmeny.
+
+Prvky $a_{11}, a_{22}, \ldots, a_{kk}, k = min(m, n)$ budeme označovat jako hlavní
+diagonálu.
+
+Dále budeme často používat indexování pomocí $i, j$, kde
+$$i = 1, \ldots, m$$
+$$j = 1, \ldots, n$$
+
+\begin{example}[Matice]
+
+    Mějme matici A definovanou takto:
+    $$ A = \begin{pmatrix}
+        3 & 2 & 1 & -5 \\
+        2 & \sqrt{2} & 3 & -\frac{1}{3}
+        \end{pmatrix}  $$
+
+    Potom $a(2, 2) = a_{22} = \sqrt{2}$, $a(2, 4) = a_{24} = -\sqrt{1}{3}$
+\end{example}
+
+\subsection{Speciální případy matic}
+Mezi maticemi rozlišujeme celou řadu speciálních případů. Některé z nich jsou pouze
+pro případ matic čtvercových, ale některé se dají definovat i obecně pro obdélníkové matice.
+
+\begin{definition}[Horní trojúhelníková matice]
+    Jestliže jsou v matici $A$ všechny prvky pod hlavní diagonálou 0,
+    řekneme že matice $A$ je horní trojúhelníková.
+
+    Řečeno formálně, v matici musí platit:
+    $$i > j \Rightarrow a_{ij} = 0$$
+
+    Podobně je definovaná dolní trojúhelníková matice, pouze se $i < j$ změni na $i > j$.
+\end{definition}
+
+\begin{definition}[Diagonální matice]
+    Jestliže jsou v matici $A$ všechny prvky mimo hlavní diagonálou 0,
+    řekneme že matice $A$ je horní diagonální.
+
+    Řečeno formálně, v matici musí platit:
+    $$i \neq j \Rightarrow a_{ij} = 0$$
+\end{definition}
+
+\begin{definition}[Nulová matice]
+    Jestliže jsou v matici $A$ všechny prvky 0,
+    řekneme že matice $A$ je nulová.
+
+    Řečeno formálně, v matici musí platit:
+    $$\forall i,j: a_{ij} = 0$$
+\end{definition}
+
+\begin{definition}[Jednotková matice]
+    Jestliže je matice $A$ diagonální a zároveň jsou všechny hodnoty na hlavní diagonále 1,
+    řekneme, že matice $A$ je jednotková.
+
+    Řečeno formálně, v matici musí platit:
+    \[
+        a_{ij} = \delta_{ij}\footnote{Kroneckerovo delta} =
+        \left\{
+            \begin{array}{ll}
+                1 & \text{ pro } i = j\\
+                0 & \text{ pro } i \neq j\\
+            \end{array}
+        \right.
+    \]
+
+    Jednotkovou matici budeme značit $E$.
+\end{definition}
+
+\subsection{Základní operace na maticích}
+
+Množinu všech matic o $m$ řádcích a $n$ sloupcích nad polem F
+budeme označovat následovně $$Mat_{m,n}(F)$$
+
+\begin{definition}[Součet matic]
+    $$+: Mat_{m,n}(F) \times Mat_{m,n}(F) \rightarrow Mat_{m,n}(F)$$
+    $$c_{ij} = a_{ij} + b_{ij}\; \forall i,j$$
+
+    Tato operace je uzavřená, asociativní, má definovaný neutrální i inverzní prvek a navíc
+    je komutativní.
+
+    A tvoří tedy Abelovskou grupu $(Mat_{m,n}(F), +)$
+    \label{def:mat_plus}
+\end{definition}
+
+\begin{definition}[Násobení matice skalárem]
+    $$\cdot: F \times Mat_{m,n}(F) \rightarrow Mat_{m,n}(F)$$
+    $$b_{ij} = k \cdot a_{ij}$$
+
+    Tato operace splňuje požadavky pro operaci násobení skalárem z
+    definice vektorového prostoru \ref{ex:vec_space}.
+
+    A $Mat_{m,n}(F)$ v kombinaci s operací $+$ z definice \ref{def:mat_plus} a s
+    touto operací $\cdot$ tvoří vektorový prostor:
+    $$(Mat_{m,n}(F), +, \cdot)$$
+\end{definition}
+
+\begin{definition}[Transpozice matice]
+    $$Mat_{m,n}(F) \rightarrow Mat_{m,n}(F)$$
+    $$B = A^T$$
+    $$b_{ji} = a_{ij}$$
+    $$(A^T)^T = A$$
+    $$(A + B)^T = A^T + B^T$$
+\end{definition}
+
+\begin{definition}[Násobení matic]
+    $$\cdot: Mat_{m,n}(F) \times Mat_{m,p}(F) \rightarrow Mat_{m,p}(F)$$
+    $$c_{ij} = \sum_{k=1}^n a_{ik} \cdot b_{kj}$$
+
+    Tato operace nemusí být vždy definována (musí správně sedět dimenze).
+    Je to operace asociativní. Ale není komutativní.
+
+    Omezíme li se na čtvercové regulární matice řádu $n$, dostaneme v kombinaci s touto operací
+    strukturu grupy.
+\end{definition}
+

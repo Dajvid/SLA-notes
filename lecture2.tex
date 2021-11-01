@@ -101,9 +101,23 @@ zmíněno na přednášce.}
 Jinak řečeno, uspořádané pole bude takové, ve kterém je možné nějakým způsobem vybrat \uv{kladnou}
 pod\-mno\-ži\-nu. Příklady uspořádaných polí: $\mathbb{Q}, \mathbb{R}, \mathbb{Z}(x)$
 
+Mejme uspořádané pole dle definice \ref{def:ordered_field}, potom
+zavedeme relaci $<$ následovně:
+$$a < b, \text{jestliže}\,b - a \in P$$
+
+Taková relace je ostré uspořádání\footnote{To znamená, že je tato relace ireflexivní
+a tranzitivní}.
+
+\begin{definition}[Husté pole]
+    Řekneme, že pole F je husté, jestliže $\forall a, b \in F, a < b$ existuje $c \in F$
+    takové, že $a < c < b$.
+\end{definition}
+
+Příklady hustého pole: $\mathbb{Q}, \mathbb{R}$.
+
 \begin{definition}[Archimédovské pole]
     Řekneme, že uspořádané pole $F$ je archimédovské, jestliže:
-    $$\forall x, y \in P \exists n\in\mathbb{N}, n \cdot x >y $$
+    $$\forall x, y \in P \exists n\in\mathbb{N}, n \cdot x > y $$
 \end{definition}
 
 Příklady archimédovských polí: $\mathbb{Q}, \mathbb{R}$
@@ -626,12 +640,32 @@ Kardinalitu reálných čísel budeme značit $c$
 $$|\mathbb{R}| = c > \aleph_0$$
 
 \begin{definition}[Kardinalita potenčních množin přirozených čísel]
+    Značíme pomocí $\aleph_i$
     $$|P(\mathbb{N})| = \aleph_1$$
     $$|P(P(\mathbb{N}))| = \aleph_2$$
+    $$|P(P(P(\mathbb{N})))| = \aleph_3$$
     $$\vdots$$
+    Kde
+    $$\aleph_0 < \aleph_1 < \aleph_2 < \aleph_3 \ldots$$
 \end{definition}
 
-Není jednoznačné, zda $\aleph_1 = c$.
+\begin{proof}
+    Neexistence bijekce mezi $\mathbb{N}$ a $P(\mathbb{N})$
+
+    Předpokládejme, že $f: \mathbb{N} \rightarrow P(\mathbb{N})$ je bijekce.
+
+    Nyní uvažujme množinu
+    $$D = \{n \in \mathbb{N}; n \notin f(n)\}$$
+    $D$ je nějaká podmnožina všech přirozených čísel $a$, kde bijekce $f$ zobrazí $a$ na
+    podmnožinu, která číslo $a$ neobsahuje.
+
+    Vzhledem k tomu, že $D \subseteq \mathbb{N}$, musí platit $D \in P(\mathbb{N})$, pak
+    $$\exists m \in \mathbb{N}: f(m) = D$$
+    Potom ale $$m \in D \Leftrightarrow m \notin D$$
+    Čímž se dostáváme ke sporu a bijekce $f$ jejíž existenci jsme předpokládali neexistuje.
+\end{proof}
+
+Není jednoznačné, zda $\aleph_1 = c$ \footnote{Jedná se o nezávislý axiom.}.
 
 \subsubsection*{Mohutnost množiny komplexních čísel}
 $$|\mathbb{C}| = |\mathbb{R}^2| = |\mathbb{R}| = c$$
