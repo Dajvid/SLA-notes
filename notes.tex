@@ -7,7 +7,6 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
-
 \usepackage{pxfonts}
 \usepackage[parfill]{parskip}
 \usepackage{hyphenat}
@@ -15,6 +14,13 @@
 \usepackage[table,xcdraw]{xcolor}
 
 \DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{tt}}
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{break}
+
 \newtheorem*{concept}{Primitivní pojem}
 \newtheorem{definition}{Definice}
 \newtheorem{axiom}{Axiom}
@@ -46,6 +52,7 @@
 \include{lecture2}
 \include{lecture3}
 \include{lecture4}
+\include{lecture5}
 
 \newpage
 \bibliographystyle{czechiso}
