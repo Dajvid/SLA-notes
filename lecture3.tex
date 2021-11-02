@@ -44,7 +44,7 @@
     operaci násobení skalárem $\cdot$ zavedeme takto:
     $$a \cdot (u_1, u_2, u_3) = (a \cdot u_1, a \cdot u_2, a \cdot u_3)$$
     Je zřejmé, že tato operace splňuje všechny požadované vlastnosti z definice
-    \ref{def:vector_space}. Pojďme ověřit například třetí axiom:
+    vektorového prostoru \ref{def:vector_space}. Pojďme ověřit například třetí vlastnost:
     \begin{proof} Platnost třetí vlasnosti:
         $$LS: (a \cdot b) \cdot (u_1, u_2, u_3) =
         (a \cdot b \cdot u_1, a \cdot b \cdot u_2, a \cdot b \cdot u_3)$$
@@ -79,8 +79,8 @@ libovolné pole $F$, $\mathcal{V} = F^n, n \in \mathbb{N}$
     $$F = \mathbb{Q}, \mathcal{V} = \mathbb{R}$$
     Víme, že $\mathbb{R}$ s běžnou operací $+$ tvoří Abelovskou grupu.
     Násobení skalárem zavedeme jako běžné násobení.
-    To že platí vlastnosti z definice \ref{def:vector_space} plyne z vlastností
-    bežné operace násobené $\cdot$ na množině $\mathbb{R}$.
+    To že platí vlastnosti z definice vektorového prostoru\ref{def:vector_space}
+    plyne z vlastností bežné operace násobení $\cdot$ na množině $\mathbb{R}$.
 
     Takže ano, v tomto případě se jedná o vektorový prostor.
 \end{example}
@@ -89,7 +89,7 @@ Další příklady vektorových prostorů:
 \begin{itemize}
     \item $F = \mathbb{R}, \mathcal{V} = C^0\langle a, b \rangle$
         \footnote{$C^n\langle a,b \rangle$ značí množinu funkcí na reálném intervalu
-        $\langle a,b \rangle$, které jsou spojité až v n-té derivaci, $n \in \mathbb{N}$.}
+        $\langle a,b \rangle$, které jsou spojité až do n-té derivace, $n \in \mathbb{N}$.}
     \item $F = \mathbb{R}, \mathcal{V} = C^1\langle a, b \rangle$
     \item $F = \mathbb{R}, \mathcal{V}=$ množina matic o velikosti $n \times n$
     \item $F = \mathbb{Q}, \mathcal{V} = \mathbb{R}$
@@ -136,7 +136,7 @@ Další příklady vektorových prostorů:
         \item $a \cdot (b, 2b, 0) = (a \cdot b, 2\cdot a \cdot b, 0) = (c, 2c, 0) \in \mathcal{W}$
     \end{enumerate}
     Všechny požadované vlastnosti platí a $\mathcal{W}$ je tedy vektorový podprostor vektorového
-    prostoru $mathcal{V}$.
+    prostoru $\mathcal{V}$.
 \end{example}
 
 \subsection{Matice}
@@ -244,8 +244,8 @@ budeme označovat následovně $$Mat_{m,n}(F)$$
     Tato operace splňuje požadavky pro operaci násobení skalárem z
     definice vektorového prostoru \ref{ex:vec_space}.
 
-    A $Mat_{m,n}(F)$ v kombinaci s operací $+$ z definice \ref{def:mat_plus} a s
-    touto operací $\cdot$ tvoří vektorový prostor:
+    A $Mat_{m,n}(F)$ v kombinaci s operací $+$ z definice součtu matic\ref{def:mat_plus}
+    a s touto operací $\cdot$ tvoří vektorový prostor:
     $$(Mat_{m,n}(F), +, \cdot)$$
 \end{definition}
 

@@ -18,7 +18,7 @@
     $$v = c_1 \cdot u_1 + \ldots + c_n \cdot u_n$$
     Takovému vektoru $v$ potom říkáme lineární kombinace věktorů $u_1, \ldots, u_n$
 
-    Zároveň platí, že vektor $v$ je lineárně zásivlý na věktorech $u_1, \ldots, u_n$
+    Zároveň platí, že vektor $v$ je lineárně zásivlý na vektorech $u_1, \ldots, u_n$
 \end{definition}
 
 \begin{theorem}[Rovnost množiny všech lin. kombinací a lineárního obalu]
@@ -42,7 +42,7 @@
     \end{enumerate}
     $lcM$ je tedy vektorový podprostor. A pro každý vektor $\vec{v} \in M$ určitě existuje
     lineární kombinace $\vec{c}$ taková, že $\vec{v} = \vec{c}$. $lcM$ tedy určitě
-    obsahuje $M$
+    obsahuje $M$.
 
     Důkaz pro $\langle M \rangle \subseteq lcM$: plyne z toho, že $lcM$ je vektorový
     podprostor obsahujicí $M$ a z toho, že $<M>$ je průnik všech takových vektorových
@@ -52,17 +52,17 @@
     $$\vec{v} \in lcM \Rightarrow \vec{v} = c_1
         \cdot \vec{u_1} + \ldots + c_n \cdot \vec{u_n}, \vec{u} \in M$$
     Potom:
-    $$\vec{u_i} \in \mathcal{W}\; \forall \text{vektorové podprostory}
+    $$\vec{u_i} \in \mathcal{W}\; \forall\,\text{vektorové podprostory}\;
         \mathcal{W} \subseteq \mathcal{V}$$
     $$c_1 \cdot \vec{u_1} + \ldots + c_n \cdot \vec{u_n} \; \forall
     \text{vektorové podprostory} \mathcal{W} \subseteq \mathcal{V}$$
     to znamená, že $\vec{v} \in \bigcap\limits_{i} \mathcal{W}_i$
 \end{proof}
 
-Označení $lcM$ nebudeme nadále používat, protože jak jsme si ukázali, jedná se vlastně
+Označení $lcM$ nebudeme nadále používat, protože jak jsme ukázali, jedná se vlastně
 o ekvivalentní definici lienárního obalu.
 
-\begin{definition}[Lineárné nezávislost vektorů]
+\begin{definition}[Lineární nezávislost vektorů]
     Uvažujme množinu vektorů:
     $$(\vec{u_1}, \ldots, \vec{u_n})$$
     Řekneme, že vektory $\vec{u_1}, \ldots, \vec{u_n}$ jsou lineárně nezávislé,
@@ -86,6 +86,7 @@ o ekvivalentní definici lienárního obalu.
         \item $c_1 \cdot(1, 0, 0) + c_2 \cdot (0, 1, 0) + c_3 \cdot (0, 0, 1) = (0, 0, 0)
             \Rightarrow c_1 = 0, c_2 =, c_3 = 0$ \hfill $\mathcal{B}$ je lineárně nezávislé
     \end{enumerate}
+    A $\mathcal{B}$ je tedy báze vektorového podprostoru $\mathcal{W}$.
 \end{example}
 
 \begin{definition}[Dimenze vektorového prostoru]
@@ -149,11 +150,11 @@ o ekvivalentní definici lienárního obalu.
     Neformálně řeceno $\varphi$ je zobrazení, které zachovává operace.
 
     Potom zobrazení $\varphi$ nazýváme homomorfismus\footnote{Někdy se také používá pojem
-    lineární zobrazení} (vektorových prostorů).
+    lineární zobrazení.} (vektorových prostorů).
     \label{def:homo}
 \end{definition}
 
-\begin{example}[Příklad homomorfismu vektorových prostorů]
+\begin{example}[Homomorfismus vektorových prostorů]
     $$\mathcal{V} = \mathbb{R}^2, \mathcal{W} = \mathbb{R}^4$$
     $$\varphi(\vec{v}) = \vec{w}$$
     $$\vec{w} = (v_1, 0, v_1, v_1 + v_2)$$
@@ -234,7 +235,7 @@ o ekvivalentní definici lienárního obalu.
     $$\varphi: V \rightarrow V$$
     nazveme ho endomorfismus.
 
-    Intuitivně můžeme říct, že se jedná se o homomorfismus
+    Intuitivně můžeme říct, že se jedná o homomorfismus
     do sebe sama.
 \end{definition}
 

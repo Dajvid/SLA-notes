@@ -9,7 +9,7 @@ byla nalezena a máme tu výhodu, že se podařilo najít ten \uv{spojovací mat
 kterým je logika a teorie množin.
 
 Díky tomu se matematiku podařilo dostat na společný jazyk, takže ať už studujete
-teorii pra\-vdě\-po\-dob\-no\-sti, nebo matematickou analýzu, tak začne se s nějakou
+teorii pra\-vdě\-po\-dob\-no\-sti, nebo matematickou analýzu, tak se začne s nějakou
 definicí, co je jakási množina a tak dále...
 
 \subsection{Logika}
@@ -28,7 +28,7 @@ Výrokem ale určitě nejsou různá zvolání, výkřiky, otázky...
 
 Je každá dobře utvořená oznamovací věta výrokem? Není, například věta \textit{Colorless green ideas
 sleep furiously.} je z mluvnického hlediska utvořena správně a jedná se o oznamovací větu, ale
-významově je to takový nesmysl, že nelze určit zda se jedná o výrok, protože tomu nelze přiřadit
+významově je to takový nesmysl, že nelze určit, zda se jedná o výrok, protože tomu nelze přiřadit
 pravdivostní hodnota a to ani hypotetická.
 
 Pomocí těchto výroků a spojek se snažíme dokazovat věty. V matematice máme 4 základní kameny:
@@ -36,14 +36,7 @@ Pomocí těchto výroků a spojek se snažíme dokazovat věty. V matematice má
 	\item Primitivní pojmy: pojmy které se nedefinují a nevysvětlují, například bod.
 	\item Definice: zavádějí pojmy, pomocí pojmů již známých, například definice prvočísla.
 	\item Axiomy: tvrzení, která se nedokazují a která se považují za platná.
-	\item Vety: tvrzení, které se musí dokázat a odvozuje se z tvrzení již známých.
-\end{itemize}
-
-\subsubsection*{Důkazové techniky}
-\begin{itemize}
-	\item Důkaz přímý: ukážeme, že $v \rightarrow w$.
-	\item Důkaz nepřímy: ukážeme, že $\lnot w \rightarrow v$.
-	\item Důkaz sporem:
+	\item Vety: tvrzení, které se musí dokázat a odvozují se z tvrzení již známých.
 \end{itemize}
 
 \subsection{Teorie množin}
@@ -68,31 +61,35 @@ Množiny a operace nad nimi můžeme vizualizovat například pomocí vennových
 \end{example}
 
 \begin{definition}[Mohutnost množiny přirozených čísel]
-    $|\mathbb{N}|=\aleph_0$.
+	Mohutnost množiny přirozených čísel definujeme jako \uv{alef nula}:
+    $$|\mathbb{N}|=\aleph_0$$
 \end{definition}
 
 \subsubsection*{Relace}
 Před zavedením relace je nutné nejprve definovat pojem kartézského součinu množin.
-\begin{definition} [Kartézský součin]
+\begin{definition} [Kartézský součin množin]
 	Kartézský součin dvou množin se skládá z uspořádaných dvojic.
 	$$A \times B = \{(a, b)\: | \: a \in A, b \in B\}$$
 \end{definition}
-\begin{example}[Kartézský součin]
+\begin{example}[Kartézský součin množin]
+	Mejme dvě množiny $A$ a $B$:
     \[A = \{u, v\}
 	\textrm{, }
 	B = \{1, 2, 3\}\]
+	Jejich kartézský součin $A\times B$ je potom:
 	$$A \times B = \{(u, 1), (u, 2), (u, 3), (v, 1), (v, 2), (v, 3)\}$$
 \end{example}
 
 \begin{definition}[Relace]
     Relace je libovolná podmnožina kartézského součinu.
-    $$R \subseteq A \times B \textrm{, například: } R = \{(u, 1), (u, 2), (v, 1)\}$$
+	$$R \subseteq A \times B \textrm{, například: } R = \{(u, 1), (u, 2), (v, 1)\}$$
+
+	Relaci lze vyjádřit i graficky jako orientovaný graf.
 \end{definition}
 
-Relaci lze vyjádřit i graficky jako orientovaný graf.
 
-Některé binární relace jsou zobrazení, neboli funkce (funkce tomu říkáme tehdy, když je cílová
-množina číselná).
+Některé binární relace jsou zobrazení, neboli funkce\footnote{funkce jim říkáme tehdy,
+když je cílová množina číselná.}.
 
 % definice
 \begin{definition}[Zobrazení]
@@ -102,31 +99,62 @@ množina číselná).
 
 Zobrazení můžeme značit jako $f: A \rightarrow B$
 
+\begin{definition}[Inverzní relace]
+	Uvažujme množiny $A$, $B$ a binární relaci $R \subseteq B \times A$, potom pro
+	inverzní relaci k relaci $R$ platí:
+	$$R^{-1} \subseteq B \times A,  (b, a) \in R^{-1} \Leftrightarrow (a, b) \in \mathbb{R}$$
 
-Inverzní relace, stejná jako relace R, jen v grafické reprezentaci otočíme šipky na druhou stranu.
-$R^{-1} \subseteq B \times A,  (b, a) \in R^{-1} \Leftrightarrow (a, b) \in \mathbb{R}$
+	Inverzní relaci k relaci $R$ budeme značit jako $R^{-1}$
 
-Řekneme, že zobrazení $f: A \rightarrow B$ je injekce (prosté zobrazení)
-jestliže $f(a_1) = b \wedge f(a_2) = b \Rightarrow a_1 = a_2$
+	Neformálně řečeno je inverzní relace k relaci $R$ stejná, jako relace R,
+	jen v grafické reprezentaci otočíme šipky na druhou stranu.
+\end{definition}
 
-Definiční obor $D(f) = Dom(f) = \{a \in A; \exists b \in B, f(a) = b\}$
 
-Obor hodnot $H(f) = Im(f) = \{b \in B; \exists a \in A, f(a) = b\}$
+\begin{definition}[Definiční obor]
+	$$D(f) = Dom(f) = \{a \in A; \exists b \in B, f(a) = b\}$$
 
-%definice
-Zobrazení je surjekce (zobrazení na), jestliže oborem hodnot je celá cílová množina, tedy $H(f) = B$.
+	Budeme značit $D(f)$, nebo $Dom(f)$\footnote{Z anglického Domain.}.
+\end{definition}
 
-Jestliže je zobrazení surjekce a současně injekce, jedná se o bijekci. Za bijekci se navíc velmi
-často považuje zobrazení, které je bijekce a zároveň $D(f) = A$.
-Potom platí, že pokud existuje bijekce mezi konečnými množinami $A$ a $B$, potom $|A| = |B|$.
+\begin{definition}[Obor hodnot]
+	$$H(f) = Im(f) = \{b \in B; \exists a \in A, f(a) = b\}$$
 
-Jestliže zobrazení $f$ je injekce, potom inverzní relace je opět zobrazení (a opet injekce).
+	Budeme značit $H(f)$, nebo $Im(F)$\footnote{Z anglického Image.}.
+\end{definition}
+
+\begin{definition}[Injekce, prosté zobrazení]
+	Řekneme, že zobrazení $f: A \rightarrow B$ je injekce (prosté zobrazení)
+	jestliže: $$f(a_1) = b \wedge f(a_2) = b \Rightarrow a_1 = a_2$$
+
+	Jestliže zobrazení $f$ je injekce,
+	potom inverzní relace je opět zobrazení (a opět injekce).
+\end{definition}
+
+\begin{definition}[Surjekce]
+	Uvažujme zobrazení $f: A \rightarrow B$
+
+	Potom řekneme, že zobrazení $f$ je surjekce (zobrazení na),
+	jestliže oborem hodnot je celá cílová množina, tedy právě tehdy, když:
+	$$H(f) = B$$
+\end{definition}
+
+\begin{definition}[Bijekce]
+	Uvažujme zobrazení $f: A \rightarrow B$
+
+	Jestliže je zobrazení $f$ surjekce a současně injekce,
+	řekneme, že se jedná o bijekci.\footnote{Za bijekci se navíc velmi
+	často považuje zobrazení, které je bijekce a zároveň v platí $D(f) = A$.}
+
+	Pokud existuje bijekce mezi konečnými množinami $A$ a $B$, potom:
+	$$|A| = |B|$$.
+\end{definition}
 
 \subsubsection*{Binární relace na množinách}
 Relací na množině se rozumí binární relace, kde jsou oba prvky kartézského součinu tatáž
 množina, tedy $R \subseteq A \times A$.
 Specialní případy:
-% definice
+% TODO should be in definition env.
 \begin{itemize}
 	\item Reflexivní relace: $(a, a) \in R, \forall a \in A$.
 	\item Symetrická relace: $(a, b) \in R \Rightarrow (b, a) \in R$.
@@ -134,11 +162,20 @@ Specialní případy:
 	\item Tranzitivní relace: $(a, b) \in R \wedge (b, c) \in R \Rightarrow (a, c) \in R$.
 	\item Ireflexivní relace: $(a, a) \notin R, \forall a \in A$.
 \end{itemize}
-Relace, která je současně reflexivní, symetrická a tranzitivní se nazývá ekvivalence.
-Relace ekvivalence vždy rozdělí původní množinu na podmnožiny, kterým říkáme třídy ekvivalence,
 
-Relace, která je reflexivní, antisymetrická a tranzitivní se nazývá relace uspořádání a vytváří
-POSET (Partialy Ordered SET).
+\begin{definition}[Relace ekvivalence]
+	Relace, která je současně reflexivní, symetrická a
+	tranzitivní se nazývá relace ekvivalence.
+
+	Relace ekvivalence vždy rozdělí původní množinu na disjunktní podmnožiny,
+	kterým říkáme třídy ekvivalence,
+\end{definition}
+
+\begin{definition}[Relace uspořádání]
+	Relace, která je reflexivní, antisymetrická a tranzitivní se nazývá
+	relace uspořádání a vytváří POSET (Partialy Ordered SET).
+\end{definition}
+
 
 \subsubsection*{Opeace}
 Operace je obecně zobrazení, konkrétní podoba tohoto zobrazení záleží na aritě operace.
@@ -160,27 +197,34 @@ Definice operace plus ($+$) na takto definovaných přirozených číslech:
 $$A + \emptyset = A$$
 $$A + B' = (A+B)'$$
 
-Definice operace krát ($cdot$) na takto definovaných přirozených číslech:
+Definice operace krát ($\cdot$) na takto definovaných přirozených číslech:
 $$A \cdot \emptyset = \emptyset$$
 $$A \cdot B' = A \cdot B + A$$
 
-\subsubsection*{Konstrukce přirozených čísel}
 \subsubsection*{Konstrukce celých čísel}
 Oproti přirozeným číslům musíme přidat nulu a záporné hodnoty. Můžeme k tomu
-využít relaci ekvivalence. Uvažujme dvojice přirozených čísel
-$(a, b) \in \mathbb{N} \times \mathbb{N}$. Řekneme, že $(a, b) \sim (c, d): a + d = b + c$
+využít relaci ekvivalence.
 
-Věta: výše definovaná relace $\sim$ je relace ekvivalence.
+Uvažujme dvojice přirozených čísel:
+$$(a, b) \in \mathbb{N} \times \mathbb{N}$$
+Potom řekneme, že:
+$$(a, b) \sim (c, d): a + d = b + c$$
 
-Důkaz:
-\begin{itemize}
-	\item Reflexivita $(a, b) \sim (a, b): a + b = b + a$
-	\item Symetrie $(a, b) \sim (c, d) \Rightarrow (c, d) \sim (a, b): a + d = b +
-	c \Rightarrow c + b = d + a$
-	\item Reflexivita $(a, b) \sim (c, d) \wedge (c, d) \sim (e, f) \Rightarrow (a, b) \sim (e, f):
-	a + d = b + c \wedge c + f = d + e \Rightarrow a + f = b + e$
-\end{itemize}
-Množinu $\mathbf{N} \times \mathbf{N}$ tedy relace $\sim$ rozdělí na třídy rozkladu, kde každá třída
+\begin{theorem}
+	Výše definovaná relace $\sim$ je relace ekvivalence.
+\end{theorem}
+\begin{proof}
+	Je třeba ověřit splnění vlastností, které z definice požadujeme od relace ekvivalence:
+	\begin{itemize}
+		\item $(a, b) \sim (a, b): a + b = b + a$ \hfill Reflexivita
+		\item  $(a, b) \sim (c, d) \Rightarrow (c, d) \sim (a, b): a + d = b +
+		c \Rightarrow c + b = d + a$ \hfill Symetrie
+		\item $(a, b) \sim (c, d) \wedge (c, d) \sim (e, f) \Rightarrow (a, b) \sim (e, f):
+		a + d = b + c \wedge c + f = d + e \Rightarrow a + f = b + e$ \hfill Tranzitivita
+	\end{itemize}
+\end{proof}
+
+Množinu $\mathbb{N} \times \mathbb{N}$ tedy relace $\sim$ rozdělí na třídy rozkladu, kde každá třída
 bude tvořena uspořádanými dvojicemi, se stejným rozdílem. Tyto třídy ekvivalence mohou reprezentovat
 všechna celá čísla.
 

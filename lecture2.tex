@@ -1,13 +1,13 @@
 \section{Druhá přednáška}
 
 \subsection{Algebraické struktury}
-Algebraická struktura je množina, na které mám jednu, nebo více operací
+Algebraická struktura je množina, na které máme jednu, nebo více operací
 a tyto operace mají nějaké vlastnosti. Obecně $(G, *)$ je algebraická
 struktura na množině G s operací *. Algebraických struktur je mnoho, nas bude
 zajímat převážně Grupa a Pole. Pokud bychom z následujicí definice grupy vypustili
 všechny 3 podmínky, jednalo by se o tzv. Grupoid (také označován jako Magma). Při splnění první
-podmínky tedy Magma a 1. podmínka, dostáváme tzv Pologrupu. Následně Pologrupou a splněním
-druhé podmínka dostáváme Monoid.
+podmínky tedy Magma a 1. podmínka, dostáváme tzv Pologrupu. Následně Pologrupou a
+splněním podmínky číslo 2 dostáváme Monoid.
 
 \subsubsection{Grupa}
 \begin{definition}[Grupa]
@@ -22,7 +22,8 @@ druhé podmínka dostáváme Monoid.
 \end{definition}
 
 \begin{definition}[Komutativní \uv{Abelova} grupa]
-    Pokud k požadovaným vlastnostem operace $*$ tvořící grupu přidáme ještě čtvrtou podmínku:
+    Pokud k požadovaným vlastnostem operace $*$ tvořící grupu přidáme ještě
+    čtvrtou vlastnost:
     \begin{enumerate}[start=4]
         \item $a * b = b * a \; \forall a, b \in G$ \hfill Komutativita
     \end{enumerate}
@@ -76,7 +77,7 @@ násobení.
 \end{definition}
 
 \begin{definition}[Komutativní pole]
-    Pokud se jedná o pole a navíc je operace $cdot$ komutativní, jedná se o komutativní pole:
+    Pokud se jedná o pole a navíc je operace $\cdot$ komutativní, jedná se o komutativní pole:
     \begin{enumerate}[start=5]
         \item $a \cdot b = b \cdot a \; \forall a, b \in F$ \hfill Komutativita
     \end{enumerate}
@@ -117,7 +118,7 @@ Příklady hustého pole: $\mathbb{Q}, \mathbb{R}$.
 
 \begin{definition}[Archimédovské pole]
     Řekneme, že uspořádané pole $F$ je archimédovské, jestliže:
-    $$\forall x, y \in P \exists n\in\mathbb{N}, n \cdot x > y $$
+    $$\forall x, y \in P\,\exists n\in\mathbb{N}, n \cdot x > y $$
 \end{definition}
 
 Příklady archimédovských polí: $\mathbb{Q}, \mathbb{R}$
@@ -129,7 +130,7 @@ Příklady archimédovských polí: $\mathbb{Q}, \mathbb{R}$
 \begin{theorem}[Existence konečného pole]
     \label{the:field}
     Konečné pole $(F, +, \cdot)$ existuje právě tehdy, když $|F| = p^k$, kde $p$ je
-    prvnočíslo a $k \in \mathbb{N}$. Toto konečné pole je zároveň jediné.
+    prvočíslo a $k \in \mathbb{N}$. Toto konečné pole je zároveň jediné.
 \end{theorem}
 
 Z věty \ref{the:field} vyplývá, že existují konečná pole se dvěma prvky, třemi prvky, se
@@ -285,10 +286,10 @@ $1$ roli hodnoty jedna, tak jak potřebujeme.
 \end{definition}
 
 V případě neprvočíselných polí nebude fungování operací tak zřejmé jako tomu bylo u
-prvočíselných polé. Použitím stejného triku
-jako u prvočíselných polý, tedy použití běžných operací $+$ a $\cdot$ modulo počet prvků,
+prvočíselných polí. Použitím stejného triku
+jako u prvočíselných polí, tedy použití běžných operací $+$ a $\cdot$ modulo počet prvků,
 totiž nejsme schopni vytvořit pole. Problém je v takovém případě operace $\cdot$, kdy
-pouze s přidáním modula nebude splňovat požadované vlastnosti z definice \ref{def:field}.
+pouze s přidáním modula nebude splňovat požadované vlastnosti z definice pole\ref{def:field}.
 
 Opět platí, že prvky pole můžeme označit jak chceme, ale je dobré, udělat to tak, aby se nám
 s nimi vhodně pracovalo. V případě neprvočíselných polí je pro jejich odvození vhodné
@@ -395,7 +396,6 @@ Budeme proto potřebovat tzv. redukční polynom.
     polynomů stupně nižších (řekneme, že je ireducibilní).
 \end{definition}
 
-Polynom stupně $k$ chceme rozložit na
 
 \begin{example}[Hledání redukčního polynomu pro $\mathbb{F}_4$]
 
@@ -481,7 +481,7 @@ redukční polynom sám o sobě.}, který je v tomto případě $t^2 + t + 1$.
 Využijeme definici reálných čísel pomocí Dedekindových řezů.
 
 \begin{definition}[Dedekinduv řez]
-    Dedekinduv řez $D$ je podmnožina racionálních čísel $D \subseteq \mathbb{Q}$, která splňuje:
+    Dedekindův řez $D$ je podmnožina racionálních čísel $D \subseteq \mathbb{Q}$, která splňuje:
     \begin{enumerate}
         \item $x \in D \Rightarrow \exists y > x, y \in D$ \hfill Neexistence největšího prvku
         \item $x \in D, y < x \Rightarrow y \in D$ \hfill
@@ -516,7 +516,7 @@ Kde $\mathbb{R}$ označuje množinu reálných čísel.
     Předpokládáme, že řezy $D$ a $E$ jsou nezáporné.
     $$D \cdot E = \{x \cdot y; \forall x, y \geq 0, x \in D, y \in E\} \cup \{z; z < 0, z \in \mathbb{Q}\}$$
     Pokud je jeden z řezů záporný a druhý nezáporný, potom musíme definovat opačný řez,
-    k zápornému řezu vytobit řez opačný, použijeme násobení nezáporných řezů a z výsledku opět vyrobíme
+    k zápornému řezu vyrobit řez opačný, použijeme násobení nezáporných řezů a z výsledku opět vyrobíme
     řez opačný.
 
     Pokud budou oba řezy záporné, z obou řezů vezmu opačné řezy, použiji násobení nezáporných řezů
@@ -528,7 +528,7 @@ Kde $\mathbb{R}$ označuje množinu reálných čísel.
 Uvažujme $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. V $\mathbb{R}^2$ není
 definována multiplukativní operace $(a, b) \cdot (c, d)$. Pokud v $\mathbb{R}^2$
 multiplikativní operaci definujeme takovým způsobem, aby splňovala
-vlastnosti na multiplikativní operaci z definice \ref{def:field}:
+vlastnosti na multiplikativní operaci z definice pole\ref{def:field}, dostáváme:
 
 $$(a, b) \cdot (c, d) = (ac - bd, ad + bc)$$
 
@@ -539,7 +539,7 @@ Přidáním této operace dostaneme množinu komplexních čísel $\mathbb{C}$, 
 strukturu pole.
 
 Byly snahy tento postup zobecnit. Pro $\mathbb{R}^3$ však vhodná multiplikativní operace, která by
-vyhovovala požadavkům z definice \ref{def:field} neexistuje.
+vyhovovala požadavkům z definice pole\ref{def:field} neexistuje.
 
 Pro $\mathbb{R}^4$ už multiplikativní operaci splňujicí požadované vlastnosti vytvořit
 lze, tím dostáváme tzv. kvaterniony, značíme je $\mathbb{H}$.
@@ -555,7 +555,7 @@ U kvaternionů však máme jednu změnu, nejedná se o komutativní pole (je to 
 a jsou tedy prvním příkladem nekomutativního pole se kterým jsme se v přednáškách zatím setkali.
 
 \subsection{Mohutnosti nekonečných množin}
-Kardinalita nejvšednější nekonečné množiny, přirozených čísel, je definována jako \textit{alef 0}
+Kardinalita nejvšednější nekonečné množiny, přirozených čísel, je definována jako \uv{alef 0}
 $$|\mathbb{N}| = \aleph_0$$
 Jakákoliv jiná nekonečná množina bude mít stejnou kardinalitu, pokud existuje bijekce
 mezi touto nekonečnou množinou a množinou přirozených čísel.
