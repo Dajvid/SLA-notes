@@ -2,7 +2,7 @@ PROJ=notes
 
 pdf:
 	latex $(PROJ).tex
-	bibtex $(PROJ)
+	if grep "\\citation" ./bin/$(*F).aux > /dev/null; then   if bibtex -terse ./bin/$(*F).aux; then     echo "bibtex:  OK"; else echo "bibtex:  Failed";   fi; fi
 	latex $(PROJ).tex
 	latex $(PROJ).tex
 	dvips $(PROJ).dvi
