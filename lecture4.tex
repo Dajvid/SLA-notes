@@ -13,12 +13,13 @@
 
 \begin{definition}[Lineární kombinace]
     Mějme nějaké vektory:
-    $$u_1, \ldots, u_n$$
-    Potom můžeme uvažovat jiný vektor $v$ ve tvaru:
-    $$v = c_1 \cdot u_1 + \ldots + c_n \cdot u_n$$
+    $$\vec{u_1}, \ldots, \vec{u_n}$$
+    Potom můžeme uvažovat jiný vektor $\vec{v}$ ve tvaru:
+    $$\vec{v} = c_1 \cdot \vec{u_1} + \ldots + c_n \cdot \vec{u_n}$$
     Takovému vektoru $v$ potom říkáme lineární kombinace věktorů $u_1, \ldots, u_n$
 
-    Zároveň platí, že vektor $v$ je lineárně zásivlý na vektorech $u_1, \ldots, u_n$
+    Zároveň platí, že vektor $\vec{v}$ je lineárně zásivlý na vektorech
+        $\vec{u_1}, \ldots, \vec{u_n}$
 \end{definition}
 
 \begin{theorem}[Rovnost množiny všech lin. kombinací a lineárního obalu]
@@ -125,7 +126,7 @@ o ekvivalentní definici lienárního obalu.
             \end{pmatrix}
             \Bigg)
     \]
-    A vidíme, že báze tohoto vektorového prostoru je 6.
+    A vidíme, že dimenze tohoto vektorového prostoru je 6.
 
     Což dává smysl mimo jiné díky tomu, že v případě $Mat_{2,3}$ v podstatě pracujeme s
     $\mathbb{R}^6$ pouze s tím, že jsme prvky uspořádali do obdélníku. Tato změna uspořádání
@@ -172,12 +173,6 @@ o ekvivalentní definici lienárního obalu.
 
     První podmínka tedy platí a stejným postupem by bylo možné ukázat i platnost
     druhé podmínky, jedná se tedy o homomorfismus.
-
-    % \begin{enumerate}
-    %     \item $LS = \varphi(\vec{u} + \vec{v}) = \varphi(u_1 + v_1, u_2 + v_2)$
-    %         kde $\vec{u}, \vec{v} \in \mathbb{R}^2$
-    %         $PS = \varphi(\vec{u}) = + $
-    % \end{enumerate}
 \end{example}
 
 \begin{definition}[Jádro a obraz homomorfismu] Uvažujme vektorový prostor $\mathcal{V}$
@@ -288,7 +283,7 @@ o ekvivalentní definici lienárního obalu.
 \subsection{Matice}
 
 \begin{definition}[Stopa]
-    Stopa je definována pro čtvercové matice. Jedná se o nějaké zobrazení,
+    Stopa je definována pro čtvercové matice. Jedná se o zobrazení,
     které čtvercové matici přiřadí jedno číslo. Stopu budeme značit
     $tr$\footnote{Z anglického trace.}
 
@@ -318,7 +313,7 @@ o ekvivalentní definici lienárního obalu.
 
 \begin{definition}[Determinant]
     Determinant budeme definovat pro čtvercové matice.
-    Opět se jedná o nějaké zobrazení, které čtvercové matici přiřadí
+    Opět se jedná o zobrazení, které čtvercové matici přiřadí
     jedno číslo. Determinant matice $A$ budeme značit $det\,A$, nebo také $|A|$.
 
     $$det: Mat_n(F) \rightarrow F$$

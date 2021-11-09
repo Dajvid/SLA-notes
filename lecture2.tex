@@ -70,7 +70,7 @@ násobení.
         \item $\forall a \in F \smallsetminus \{0_f\}, \exists a^{-1} \in F: a \cdot
         a^{-1} = a^{-1} \cdot a = 1_f$ \hfill Inverzní prvky
         \item $a \cdot (b + c) = a \cdot b + a \cdot c \wedge (b + c) \cdot a = b \cdot a + c \cdot a
-        \; \forall a, b,c \in F$ \hfill
+        \; \forall a, b,c \in F$ \hfill Distributivita
 
     \end{enumerate}
     \label{def:field}
@@ -268,10 +268,11 @@ $1$ roli hodnoty jedna, tak jak potřebujeme.
     \label{tab:F5}
     \end{table}
 
-    Z definice pole vyplývá, že operace $+$ musí být Abelovská grupa. V Abelovské grupě
-    platí, že při rozepsání operace do tabulky je v každém sloupci a v každém řádku každý
-    prvek obsažen právě jednou\footnote{V počátcích definic teorie grup se tato vlastnost
-    používala pro definici grupy.}. Což si můžeme všimnout že zde platí.
+    Z definice pole\ref{def:field} vyplývá, že $(\mathbb{F}_5, +)$ musí tvořit Abelovskou grupu.
+    V Abelovské grupě platí, že při rozepsání operace do tabulky je v každém sloupci
+    a v každém řádku každý prvek obsažen právě jednou\footnote{V počátcích definic
+    teorie grup se tato vlastnost používala pro definici grupy.}. Což si můžeme všimnout
+    že zde platí.
 
     U operace $\cdot$ si můžeme všimnout, že bez prvního sloupce a bez prvního řádku
     (zeleně označená část) operace $\cdot$ tvoří grupu. Tato vlastnost u pole a jeho
@@ -413,7 +414,7 @@ Všechny polynomy stupně $k=2$:
         &t&+1 \\
         &t&+1 \\ \hline
         &t&+1 \\
-        t&+1& \\ \hline
+        t^2&+t& \\ \hline
         t^2&+0t&+1
     \end{array}
 = t^2 + 1
@@ -434,7 +435,7 @@ redukční polynom sám o sobě.}, který je v tomto případě $t^2 + t + 1$.
     =
     \begin{array}{rrr}
         t^2&+t&+0 \\
-       -(t^2&t&+1) \\ \hline
+       -(t^2&+t&+1) \\ \hline
         0t^2&+0t&+1 \\
         &&
     \end{array}
@@ -538,7 +539,7 @@ $$(a + bi) \cdot (c + di) = ac + (b + d)i^2 + a \cdot di + bi \cdot c = ac - bd 
 Přidáním této operace dostaneme množinu komplexních čísel $\mathbb{C}$, která opět tvoří
 strukturu pole.
 
-Byly snahy tento postup zobecnit. Pro $\mathbb{R}^3$ však vhodná multiplikativní operace, která by
+Byly snahy tento postup zobecnit. Pro $\mathbb{R}^3$ avšak vhodná multiplikativní operace, která by
 vyhovovala požadavkům z definice pole\ref{def:field} neexistuje.
 
 Pro $\mathbb{R}^4$ už multiplikativní operaci splňujicí požadované vlastnosti vytvořit
@@ -566,7 +567,7 @@ mezi touto nekonečnou množinou a množinou přirozených čísel.
     $\mathbb{N}$   & $1$ & $2$ & $3$  & $4$ & $5$  & $6$  & $7$  & $8$  & $9$  & $10$ & $\dots$ \\
     $\mathbb{N}_0$ & $0$ & $1$ & $2$  & $3$ & $4$  & $5$  & $6$  & $7$  & $8$  & $9$  & $\dots$ \\
     $2\mathbb{N}+1$   & $1$ & $3$ & $5$  & $7$ & $9$  & $11$ & $13$ & $15$ & $17$ & $19$ & $\dots$ \\
-    $\mathbb{Z}$  d & $0$ & $1$ & $-1$ & $2$ & $-2$ & $3$  & $-3$ & $4$  & $-4$ & $5$  & $\dots$ \\
+    $\mathbb{Z}$  & $0$ & $1$ & $-1$ & $2$ & $-2$ & $3$  & $-3$ & $4$  & $-4$ & $5$  & $\dots$ \\
     $\mathbb{Q}$ &
       $\frac{0}{1}$ &
       $\frac{-1}{1}$ &
@@ -624,7 +625,7 @@ $$|\mathbb{R}| > |\mathbb{N}|$$
     \right.
 \]
 
-    Tím jsme ale zkonstruovali reálné číslo $b$, které se však liší\footnote{A to alespoň v
+    Tím jsme ale zkonstruovali reálné číslo $b$, které se liší\footnote{A to alespoň v
     jedné číslici na diagonále (zobrazeno modře).} od každého čísla v tabulce
     \ref{tab:diag_real}.
 
