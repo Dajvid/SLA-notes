@@ -1,2 +1,676 @@
 \section{Pátá přednáška}
-TBD
+\subsection{Metody pro výpočet determinantu}
+Vzorec pro obecný výpočet determinantu \ref{def:determinant} vyžaduje
+všechny permutace řádkových indexů, pro matici řádu $n$ je takových
+permutací $n!$ a jejich počet tak roste velmi rychle s řádem matice.
+Je proto komplikované tímto způsobem spočítat determinanty větších
+matic.
+
+Dost často se v praxi vyskytují matice, které jsou nějakým způsobem
+speciální a to hlavně tím, že buďto obsahují řádek, případně
+sloupec s hodně nulami, nebo nějakou jednoduchou úpravou můžeme
+takový řádek s hodně nulami do matice dostat. V takovém případě
+je možné použít následujicí metody a výpočet determinantu zefektivnit.
+
+Pokud však takový řádek/sloupec s hodně nulami v matici neexistuje,
+nebo je jich tam velice málo, aplikováním těchto metod si příliš nepomůžeme
+a stále se bude jednat o problém s časovou náročností $n!$.
+\subsubsection{Laplaceova metoda}
+Laplaceova metoda rozvoje podle vybraného řádku, nebo podle
+vybraného sloupce. Vybereme řádek/sloupec podle kterého chceme
+rozvoj udělat, index tohoto řádku/sloupce označmě jako $i$ a
+následně pomocí tohoto řádku výpočet determninantu matice řádu $n$ rozložit na součet $n$
+determninantů matice řádu $n - 1$ vynásobené hodnotami z
+řádku/sloupce podle kterého jsme rozvoj vytvářeli.
+
+\[
+|A| = (-1)^{i+1} \cdot a_{i1} \cdot M_{i1} + (-1)^{i+2}
+\cdot a_{i2} \cdot M_{i2} + \ldots + (-1)^{i+n} \cdot a_{in} \cdot M_{in}
+\]
+\[
+|A| = \sum_{j=1}^n (-1)^{i + j} \cdot a_{ij} \cdot M_{ij}
+\]
+
+Kde $M_{ij}$ představuje minor vzniklý vynecháním i-tého řádku a j-tého sloupce.
+
+Mějme matici řádu 3:
+\[
+    A = \begin{pmatrix}
+        \tikzmark{l1} a_{11} & a_{12} & a_{13}  \tikzmark{r1} \\
+        a_{21} & a_{22} & a_{23} \\
+        a_{31} & a_{32} & a_{33} \\
+    \end{pmatrix}
+    \DrawBox[dashed, red, rounded corners=0.5ex ]{l1}{r1}{\textcolor{red}{}}
+\]
+
+Vyberme pro aplikaci Laplaceova rozvoje první řádek a zamysleme
+se, v jakých všech součinech bude figurovat jeho první člen $a_{11}$:
+$$M_{a_{11}} = a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32}$$
+Když z $M_{a_{11}}$ vytkneme $a_{11}$, dostáváme:
+\[
+    M_{a_{11}} =
+    a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32}) =
+    a_{11} \cdot
+    \begin{vmatrix}
+        a_{22} & a_{23} \\
+        a_{32} & a_{33} \\
+    \end{vmatrix}
+\]
+Totéž pro $a_{12}$:
+    $$M_{a_{12}} = a_{12} \cdot a_{23} \cdot a_{31} - a_{12} \cdot a_{21} \cdot a_{33}$$
+\[
+    M_{a_{12}} =
+    a_{12} \cdot (a_{23} \cdot a_{31} - a_{21} \cdot a_{33}) =
+    - a_{12} \cdot
+    \begin{vmatrix}
+        a_{21} & a_{23} \\
+        a_{31} & a_{33} \\
+    \end{vmatrix}
+\]
+
+Proto:
+\[
+    det(A) =
+        a_{11} \cdot
+            \begin{vmatrix}
+                a_{22} & a_{23} \\
+                a_{32} & a_{33} \\
+            \end{vmatrix} -
+        a_{12} \cdot
+        \begin{vmatrix}
+            a_{21} & a_{23} \\
+            a_{31} & a_{33} \\
+        \end{vmatrix} +
+        a_{13} \cdot
+        \begin{vmatrix}
+            a_{21} & a_{22} \\
+            a_{31} & a_{32} \\
+        \end{vmatrix}
+\]
+
+Znaménka u jednotlivých prvků plynou ze známének permutací ve výpočtu determinantu,
+můžeme však použít pomůcku, která říka, že pokud součet indexů prvku pro který počítáme
+minor bude sudý, bude mít znaménko $+$ a pokud bude součet lichý, bude mít znaménko $-$.
+
+Postup, který byl naznačen na matici řádu $3$ funguje obecně pro libovolné matice řádu $n$.
+
+\begin{example}[Výpočet determinantu pomocí Laplaceova rozvoje]
+    \[
+      d = \begin{vmatrix}
+          2 & 1 & 5 & -1 & \tikzmark{l1}0 \\
+          3 & 2 & 4 & 0 & 0  \\
+          1 & 0 & -2 & 1 & 1 \\
+          3 & 2 & 0 & 5 & 0  \\
+          2 & 0 & -2 & 4 &  9 \tikzmark{r1}
+      \end{vmatrix}
+      \DrawBox[dashed, red, rounded corners=0.5ex ]{l1}{r1}{\textcolor{red}{}}
+      % \DrawBox[thick, red, rounded corners=2ex ]{left1}{right1}{\textcolor{red}{\footnotesize$s^1$}}
+    % \DrawBox[thick, blue, dashed]{left2}{right2}{\textcolor{blue}{\footnotesize$s^2$}}
+    \]
+
+    \[ d = 1 \cdot
+    \begin{vmatrix}
+        2 & 1 & 5 & -1 \\
+        \tikzmark{l1} 3  & 2 & 4 & 0 \tikzmark{r1}\\
+        3 & 2 & 0 & 5 \\
+        2 & 0 & -2 & 4
+        \DrawBox[dashed, red, rounded corners=0.5ex ]{l1}{r1}{\textcolor{red}{}}
+    \end{vmatrix}
+     + 9 \cdot
+    \begin{vmatrix}
+        2 & 1 & 5 & -1 \\
+        \tikzmark{l1} 3  & 2 & 4 & 0 \tikzmark{r1}\\
+        1 & 0 & -2 & 1 \\
+        3 & 2 & 0 & 5
+        \DrawBox[dashed, red, rounded corners=0.5ex ]{l1}{r1}{\textcolor{red}{}}
+    \end{vmatrix}
+    \]
+
+    \[d =
+        -3 \cdot
+        \begin{vmatrix}
+            1 & 5 & -1 \\
+            2 & 0 & 5 \\
+            0 & -2 & 4
+        \end{vmatrix}
+        + 2 \cdot
+        \begin{vmatrix}
+            2 & 5 & -1 \\
+            3 & 0 & 5 \\
+            2 & -2 & 4
+        \end{vmatrix}
+        - 4 \cdot
+        \begin{vmatrix}
+         2 & 1 & -1 \\
+         3 & 2 & 5 \\
+         2 & 0 & 4
+        \end{vmatrix} + 9 \cdot \Bigg (
+        -3 \cdot
+        \begin{vmatrix}
+            1 & 5 & -1 \\
+            0 & -2 & 1 \\
+            2 & 0 & 5
+        \end{vmatrix}
+        + 2 \cdot
+        \begin{vmatrix}
+            2 & 5 & -1 \\
+            1 & -2 & 1 \\
+            3 & 0 & 5 \\
+        \end{vmatrix}
+        - 4 \cdot
+        \begin{vmatrix}
+            2 & 1 & -1 \\
+            1 & 0 & 1 \\
+            3 & 2 & 5
+        \end{vmatrix} \Bigg)
+    \]
+\end{example}
+
+S použitím této metody je možné také vybrat více řádků/sloupců současně, což v některých
+případech může být výhodné.
+
+Mějme matici $A$ řádu $n$ a indexy $$i, j = 1, \ldots n$$
+Potom vybereme řádky $$i_1 \ldots i_q, 1 \leq q \leq n$$
+Potom:
+$$det(A) =(-1)^{i_1 + \ldots i_q + 1 + \ldots + q}
+A_{i_1, \ldots, i_q; 1,\ldots, q} M_{i_1, \ldots, i_q; 1,\ldots, q} + \ldots +
+(-1)^{i_1, \ldots, i_q; n - q + 1,\ldots, n} \cdot
+A_{i_1, \ldots, i_q; n - q + 1,\ldots, n} M_{i_1, \ldots, i_q; n - q + 1,\ldots, n}
+$$
+
+\begin{example}[Laplaceova metoda s výběrem více řádků/sloupců]
+\[d =
+    \begin{vmatrix}
+        2 & 1 & 0 & 1 & 5 \\
+        \tikzmark{l1}0 & 0 & 2 & 0 & 7 \tikzmark{r1}\\
+        3 & 1 & 5 & 2 & -2 \\
+        \tikzmark{l2} 1 & 0 & 0 & 0 & 0 \tikzmark{r2}\\
+        2 & 5 & 2 & 3 & -8
+    \end{vmatrix}
+    \DrawBox[dashed, red, rounded corners=0.5ex ]{l1}{r1}{\textcolor{red}{}}
+    \DrawBox[dashed, red, rounded corners=0.5ex ]{l2}{r2}{\textcolor{red}{}}
+\]
+
+\[d =
+(-1)^{2 + 4 + 1 + 2} \cdot
+\begin{vmatrix}
+    0 & 0\\
+    1 & 0
+\end{vmatrix}
+\cdot
+\begin{vmatrix}
+    0 & 1 & 5\\
+    5 & 2 & -2\\
+    2 & 3 & -8
+\end{vmatrix}
+\ldots
+\]
+Takových členů bude obecně $\binom{n}{q}$, kde $q$ označuje počet vybraných řádků/sloupců
+v tomto případě tedy $\binom{5}{2}$. Díky vhodně vybraným řádkům pro vytvoření rozvoje však velká
+část těchto členů bude ve výsledku nulová a ty můžeme tedy stejně jako v předchozím příkladu rovnou
+vynechat a psát pouze ty nenulové a stejně tak můžeme rovnou vyjádřit hodnotu subdeterminantu,
+pokud je zřejmá.
+\[d =
+-2 \cdot
+\begin{vmatrix}
+    1 & 1 & 5 \\
+    1 & 2 & -2 \\
+    5 & 3 & -8
+\end{vmatrix}
+-7 \cdot
+\begin{vmatrix}
+    1 & 0 & 1 \\
+    1 & 5 & 2 \\
+    5 & 2 & 3 \\
+\end{vmatrix}
+\]
+\end{example}
+
+\subsection{Inverzní matice}
+\begin{definition}[Algebraický doplňek]
+    Algebraický doplněk prvku $a_{ij}$ je $(-1)^{i+j}\cdot M_{ij}$.
+\end{definition}
+
+\begin{definition}[Adjungovaná matice]
+    Adjungovaná matice $A^*$ vznikne z matice $A$ tak, že každý prvek
+    nahradíme jeho algebraickým doplňkem.
+\end{definition}
+
+\begin{definition}[Inverzní matice]
+    Inverzní matice, je matice k dané matici A, která splňuje:
+
+    $$A \cdot A^{-1} = E = A^{-1} \cdot A$$
+
+    Inverzní matici můžeme spočítat jako:
+    $$A^{-1} = \frac{1}{|A|}\cdot (A^*)^{T}$$
+
+    Z Cauchyho věty o součinu vyplývá, že determinant A musí být nenulový\footnote{Matice s nenulovým determinantem
+    nazýváme regulární, a naopak matice s nulovým determinantem nazýváme singulární.}. % TODO add definition ref
+\end{definition}
+
+\begin{example}[Výpočet inverzní matice]
+    Spočítejte inverzní matici $A^{-1}$ k matici $A$:
+    \[A =
+        \begin{pmatrix}
+            1 & 2 & 0\\
+            2 & -1 & 3 \\
+            3 & 0 & 4 \\
+        \end{pmatrix}
+    \]
+    Prvním krokem je zjistit, zda je $A$ vůbec regulární matice, tedy spočítat determinant $A$.
+    $$|A| = 1 \cdot (-1) \cdot 4 + 3 \cdot 2 \cdot 3 - (4 \cdot 2 \cdot 2) = -2$$
+    Následně potřebujeme vyjádřit adjungovanou matici $A^+$
+    \[A^*=
+        \begin{pmatrix}
+            \begin{vmatrix}
+                -1 & 3 \\
+                0 & 4
+            \end{vmatrix} &
+            - \begin{vmatrix}
+                2 & 3 \\
+                3 & 4
+            \end{vmatrix} &
+            \begin{vmatrix}
+                2 & -1 \\
+                3 & 0
+            \end{vmatrix} \\
+
+            - \begin{vmatrix}
+                2 & 0 \\
+                0 & 4
+            \end{vmatrix} &
+            \begin{vmatrix}
+                1 & 0 \\
+                3 & 4
+            \end{vmatrix} &
+            - \begin{vmatrix}
+                1 & 2 \\
+                3 & 0
+            \end{vmatrix} \\
+
+            \begin{vmatrix}
+                2 & 0 \\
+                -1 & 3
+            \end{vmatrix} &
+            - \begin{vmatrix}
+                1 & 0 \\
+                2 & 3
+            \end{vmatrix} &
+            \begin{vmatrix}
+                1 & 2 \\
+                2 & -1
+            \end{vmatrix}
+        \end{pmatrix}
+        = \begin{pmatrix}
+            -4 & 1 & 3 \\
+            -8 & 4 & 6 \\
+            6 & -3 & -5
+        \end{pmatrix}
+    \]
+    \[
+    A^{-1} = \frac{1}{|A|} \cdot {A^*}^T = \frac{1}{-2} \cdot
+        \begin{pmatrix}
+            -4 & -8 & 6\\
+            1 & 4 & -3 \\
+            3 & 6 & -5
+        \end{pmatrix}
+        = \begin{pmatrix}
+            2  & 4 & -3 \\
+            \frac{-1}{2}  & -2 & \frac{3}{2} \\
+            \frac{-3}{2} & -3 & \frac{5}{2}
+        \end{pmatrix}
+    \]
+    Pro ověření:
+    \[
+      A \cdot A^{-1} =
+      \begin{pmatrix}
+          1 & 0 & 0\\
+          0 & 1 & 0\\
+          0 & 0 & 1
+      \end{pmatrix}
+    \]
+ \end{example}
+
+ Pro každou regulární matici jsme schopni tímto způsobem najít matici inverzní.
+ Vezmeme li množinu regulárních matic řádu n a operaci násobení matic, zjistíme,
+ že toto násobení je asociativní, ke každé matici existuje matice inverzní a vzhledem
+ k násobení máme i neutrální prvek, kterým je jednotková matice. Regulární matice nad
+ polem $F$ řádu $n$ s operací násobení matic tvoří grupu! Tuto grupu značíme jako:
+ $$GL(n, F)$$
+
+\begin{example}[Počet prvků grupy GL nad konečným polem]
+    Kolik prvků má $GL(n, \mathbb{F}_{2^k})$?
+\end{example}
+
+\begin{example}[Nad polem $F_7$ řešte maticovou rovnici]
+    $$X\cdot A = B$$
+    Pro neznámou matici $X$ a
+    \[
+    A = \begin{pmatrix}
+        2 & 3 \\
+        5 & 1
+    \end{pmatrix}, \;
+    B = \begin{pmatrix}
+        3 & 0 \\
+        5 & 6
+    \end{pmatrix}
+    \]
+
+Je nutné pamatovat na to, že násobení matic není komutativní a správně vynásobit obě
+strany korektně inverzní maticí.
+    \begin{align*}
+        X \cdot A &= B \\
+        X \cdot A \cdot A^{-1} &= B \cdot A^{-1}\\
+        X &= B \cdot A^{-1}
+    \end{align*}
+Vyjádříme inverzní matici $A^{-1}$:
+\[A^{-1} =\frac{1}{|A|} \cdot {A^*}^T = \frac{1}{1} \cdot
+\begin{pmatrix}
+    1 & 2 \\
+    4 & 2
+\end{pmatrix}^T = \begin{pmatrix}
+    1 & 4 \\
+    2 & 2
+\end{pmatrix}
+\]
+A dosadíme do dříve získaného vztahu:
+    \begin{align*}
+        X &=
+        \begin{pmatrix}
+            3 & 0 \\
+            5 & 6
+        \end{pmatrix} \cdot
+        \begin{pmatrix}
+            1 & 4 \\
+            2 & 2
+        \end{pmatrix} \\
+        X &=
+        \begin{pmatrix}
+        3 & 5 \\
+        3 & 4
+        \end{pmatrix}
+    \end{align*}
+\end{example}
+
+\subsection{Hodnost matice}
+Z definice \ref{def:lin_nezavislost} víme co je lineární nezávislost vektorů. V každé
+matici můžeme řádky (případně sloupce) uvažovat jako vektory. Může nás zajímat, kolik je v
+matici lineárně nezávislých řádků (případně sloupců).
+
+Počet lineárně nezávislých řádků se nazývá hodnost matice. Hodnost matice je tedy počet jejich
+lineárně nezávislých řádků, což je totéž jako počet lineárně nezávislých sloupců. Hodnost
+matice $A$ značíme:
+$$h(A)$$
+
+Nejmenší hodnost matice může být 0, hodnost 0 má pouze nulová matice, protože nulový vektor
+není nezávislý ani sám o sobě. A maximální možná hodnost pro matici o rozměrech
+$m \times n$ je $min(m, n)$.
+$$0 \leq h(A) \leq min(m, n)$$
+
+
+\subsubsection{Výpočet hodnosti matice}
+Pro jednotlivé řádky by bylo možné využít vztahu z definice \ref{def:lin_nezavislost},
+pomocí něj sestavit soustavu lineárních rovnic a vypočítat její řešení. To však může být
+zbytečně zdlouhavé, budeme tedy používat tzv. ekvivalentní (elementární) úpravy matice,
+které nemění hodnost matice.
+
+Ekvivalentními úpravami matice jsou:
+\begin{enumerate}
+    \label{ekv_upravy}
+    \item Přičtení k-násobku řádku k jinému řádku.
+    \item Vynásobení řádku nějakým nenulovým číslem $l$.
+    \item Výměna řádků\footnote{Výměna řádků jde relizovat pomocí prvních dvou úprav,
+    její uvádění zde tedy není nutné.}.
+\end{enumerate}
+
+Pomocí těchto ekvivalentních úprav upravíme matici na schodovitou. A hodnost schodovité
+matice je velice snadné spočítat, protože u schodovité matice je její hodnost počet nenulových
+řádků (vektorů).
+
+Maximální hodnost matice označujeme jako plnou hodnost.
+
+\begin{example}[Výpočet hodnosti matice]
+    Vypočtěte hodnost matice $Q$.
+    \[Q =
+    \begin{pmatrix}
+        1 & 2 & 0 & 5 \\
+        2 & -1 & 2 & -3\\
+        2 & 1 & -3 & 6\\
+        6 & -1 & 1 & 0
+    \end{pmatrix}
+    \]
+
+    Pomocí elementárních úprav převedeme matici $Q$ do schodovítého tvaru.
+    \begin{align*}
+        Q \sim
+        \begin{pmatrix}
+            1 & 2 & 0 & 5 \\
+            0 & -5 & 2 & -13\\
+            0 & -3 & -3 & -4\\
+            0 & -13 & 1 & -30
+        \end{pmatrix} \sim
+        \begin{pmatrix}
+            1 & 2 & 0 & 5 \\
+            0 & -5 & 2 & -13\\
+            0 & 15 & 15 & 20\\
+            0 & 65 & -5 & 150
+        \end{pmatrix} \sim
+        \begin{pmatrix}
+            1 & 2 & 0 & 5 \\
+            0 & -5 & 2 & -13\\
+            0 & 0 & 21 & -19\\
+            0 & 0 & 21 & -19
+        \end{pmatrix} \sim
+        \begin{pmatrix}
+            1 & 2 & 0 & 5 \\
+            0 & -5 & 2 & -13\\
+            0 & 0 & 21 & -19\\
+            0 & 0 & 0 & 0
+        \end{pmatrix} = R
+    \end{align*}
+
+    Z upravené matice vidímě, že:
+    $$h(Q) = h(R) = 3$$
+\end{example}
+
+\subsection{Výpočet determinantu pomocí ekvivalentních úprav}
+S využitím ekvivalentních úprav \ref{ekv_upravy} můžeme matici převést na
+schodovitý tvar a jednoduše spočítat determinant schodovité matice jako
+součin prvků na hlavní diagonále.
+
+Při aplikaci úprav však musíme dávat pozor na to, jakým způsobem která úprava mění
+determinant upravené matice:
+
+\begin{enumerate}
+    \item Přičtení k-násobku řádku k jinému řádku. \hfill Determinant se nemění.
+    \item Vynásobení řádku nějakým nenulovým číslem $l$. \hfill Determinant bude $l$ krát větší.
+    \item Výměna řádků.\hfill Změní se znaménko determinantu.
+\end{enumerate}
+
+Vliv těchto úprav na determinant je lehké ukázat na matici řádu 2. Platí však obecně pro
+jakoukoliv matici řádu $n$.
+
+Z těchto pravidel lze také vyvodit, že každá čtvercová matice řádu $n$ s plnou hodností
+je regulární a s jakoukoliv menší než plnou hodností je singulární.
+
+\begin{example}[Výpočet determinantu pomocí ekvivalentních úprav]
+    Pomocí ekvivalentních úprav spočtěte determinant matice M.
+    \[M=
+    \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        2 & 4 & 6 & 2 \\
+        0 & 0 & 5 & 6 \\
+        0 & 1 & 10 & 1
+    \end{pmatrix}
+    \eqop{r_2 \cdot  \frac{1}{2}}
+    \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        1 & 2 & 3 & 1 \\
+        0 & 0 & 5 & 6 \\
+        0 & 1 & 10 & 1
+    \end{pmatrix} \eqop{r_2 - r_1}
+    \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        0 & 0 & 0 & -3 \\
+        0 & 0 & 5 & 6 \\
+        0 & 1 & 10 & 1
+    \end{pmatrix} \eqop{r_2 \leftrightarrow r_4}
+    \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        0 & 1 & 10 & 1 \\
+        0 & 0 & 5 & 6 \\
+        0 & 0 & 0 & -3
+    \end{pmatrix} = N
+    \]
+
+    \begin{align*}
+        det(N) &= -15\\
+        det(N) &= \frac{1}{2} \cdot -1 \cdot det(M)\\
+        det(M) &= -2 \cdot det(N) = 30
+    \end{align*}
+\end{example}
+
+\begin{definition}[Symetrická matice]
+    Matice $A$ je symetrická, pokud platí:
+    $$A^T = A$$
+    Pro jednotlivé prvky matice musí tedy platit:
+    $$a_{ij} = a_{ji}$$
+    Symetrickou matici značíme s dolním indexem $sym$, např. $A_{sym}$
+\end{definition}
+
+\begin{definition}[Antisymetrická matice]
+    Matice $A$ je antisymetrická, pokud platí:
+    $$A^T = -A$$
+    Pro jednotlivé prvky matice musí tedy platit:
+    $$a_{ij} = -a_{ji}$$
+    Antisymetrickou matici značíme s dolním indexem $alt$, např. $A_{alt}$
+\end{definition}
+
+\begin{theorem}[Rozklad čtvercové matice na symetrickou a antisymetrickou matici]
+    Každou čtvercovou matici lze rozložit na součet matice symetrické a antisymetrické.
+
+    $$A = A_{sym} + A_{alt}$$
+\end{theorem}
+\begin{proof}
+    Matice $A_{sym}$ a $A_{alt}$ můžeme vždy zkonstruovat následovně:
+    $$A_{sym} = \frac{1}{2} \cdot (A + A^T)$$
+    Takto zvolená matice $A_{sym}$ je určitě symetrická, protože:
+    $$(A_{sym})^T = \frac{1}{2}(A^T + (A^T)^T) = A_{sym}$$
+
+    Podobně pro $A_{alt}$:
+    $$A_{alt} = \frac{1}{2}\cdot (A - A^T)$$
+    Takto zvolená matice $A_{alt}$ je určitě antisymetrická, protože:
+    $$(A_{alt})^T = \frac{1}{2} \cdot (A^T - (A^T)^T) = - A_{alt}$$
+
+    Zároveň vidíme, že výsledkem součtu těchto dvou matic je opravdu původní matice:
+    $$A_{sym} + A_{alt} = \frac{1}{2} \cdot (A + A^T) + \frac{1}{2}\cdot (A - A^T) = A$$
+\end{proof}
+
+\subsection{Soustavy linearních rovnic}
+Soustavy lineárních rovnic můžeme řešit elementárně (vyjadřovat neznámé a dosazovat
+do ostatních rovnic, případně sečíst dvě rovnice a tím nějakou neznámou eliminovat). Tento
+způsob však má nevýhodu, že není algoritmický.
+
+Proto budeme používat postupy pomocí matic, které jsou jednoduše algoritmizovatelné.
+
+Soustava lineárních rovnic obecně:
+\begin{align*}
+    a_{11} \cdot x_1 + \ldots a_{1n} \cdot x_n &= b_1\\
+    \vdots\\
+    a_{m1} \cdot x_1 + \ldots a_{mn} \cdot x_n &= b_m\\
+\end{align*}
+Proměnným $a_{ij}$ říkáme koeficienty, které tvoří obdélníkovou matici
+o $m$ řádcích a $n$ sloupcích. Proměnné $x_1, \ldots, x_n$ nazýváme neznámé, ty budeme
+počítat. A proměnné $b_1, \ldots, b_m$ nazýváme absolutní členy.
+Tuto obecnou soustavu lineárních rovnic můžeme zapsat maticově:
+\[
+    \begin{pmatrix}
+        a_{11} & \ldots & a_{1n} \\
+        \vdots & \vdots & \vdots\\
+        a_{m1} & \ldots & a_{mn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\
+        \vdots \\
+        x_m
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        b_1 \\
+        \vdots \\
+        b_m
+    \end{pmatrix}
+\]
+
+Někdy také zapisujeme jako:
+$$A \cdot \vec{x} = \vec{b}$$
+
+\subsubsection{Gaussova eliminační metoda}
+Matici soustavy\footnote{Tuto matici tvoří jednotlivé koeficienty.} $A$ a vektor absolutních členů
+$\vec{b}$ zapíšeme do jedné rozšířené matice následovně:
+\begin{align*}
+    \begin{pmatrix}[c|c]
+        A & \vec{b}
+    \end{pmatrix} =
+    \begin{pmatrix}[ccc|c]
+        a_{11} & \ldots & a_{1n} & b_1\\
+        \vdots & \vdots & \vdots & \vdots \\
+        a_{m1} & \ldots & a_{mn} & b_m
+    \end{pmatrix}
+\end{align*}
+Tuto rozšířenou matici poté pomocí elementárních úprav upravujeme do vhodného (schodovitého) tvaru,
+ze kterého dokážeme lehce zjistit řešení celé soustavy. Ze schodovité matice pak jednoduše dostaneme
+řešení celé soustavy "zpětným chodem" od posledního řádku, kdy postupně zjišťujeme hodnoty neznámých.
+
+Soustava rovnice je řešitelná právě tehdy, když:
+\[
+    h(A) = h\Bigg (
+    \begin{pmatrix}[c|c]
+        A & \vec{b}
+    \end{pmatrix} \Bigg )
+\]
+V opačném případě matice řešitelná není.
+
+V případě, že se hodnosti rovnají, a soustava je tedy řešitelná, mohou nastat dva případy:
+\begin{enumerate}
+    \item $h(A) = n$, kde n je počet neznámých \hfill Rovnice má právě jedno řešení.
+    \item $h(A) = k < n$ \hfill Rovnice má nekonečně mnoho řešení\footnote{A tato řešení jsou
+    závislá na $n-k$ libovolných parametrech. V případě, že navíc pracujeme nad konečným polem, není jich
+    tedy nekonečně mnoho}.
+\end{enumerate}
+Mohou tedy nastat pouze 3 případy:
+\begin{enumerate}
+    \item Soustava není řešitelná.
+    \item Soustava je řešitelná a má právě jedno řešení.
+    \item Soustava je řešitelná a má nekončně mnoho řešení.
+\end{enumerate}
+
+\begin{example}[Příklad neřešitelné soustavy]
+    Řešte následujicí soustavu rovnic:
+    \begin{align*}
+        x + y + z &= 2 \\
+        x - y + 2z &= 1 \\
+        7x + 4y + 7z &= -3
+    \end{align*}
+
+    Tuto soustava přepíšeme do matice a upravíme do schodovitého tvaru:
+    \[
+        \begin{pmatrix}[ccc|c]
+            1 & 1 & 1 & 2 \\
+            2 & -1 & 2 & 1 \\
+            7 & 4 & 7 & -3
+        \end{pmatrix} \eqop{r_2 - 2\cdot r_1, r_3 - 7\cdot r_1}
+        \begin{pmatrix}[ccc|c]
+            1 & 1 & 1 & 2 \\
+            0 & -3 & 0 & -3 \\
+            0 & -3 & 0 & -17
+        \end{pmatrix} \eqop{r_3 - r_2}
+        \begin{pmatrix}[ccc|c]
+            1 & 1 & 1 & 2 \\
+            0 & -3 & 0 & -3 \\
+            0 & 0 & 0 & -14
+        \end{pmatrix}
+    \]
+    Hodnost základní matice je v tomto případě zjevně 2 a hodnost
+    celé rozšířené matice je zjevně 3. Hodnosti se nerovnají a soustava tedy nemá řešení.
+\end{example}

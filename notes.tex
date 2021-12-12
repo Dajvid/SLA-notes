@@ -11,7 +11,36 @@
 \usepackage[parfill]{parskip}
 \usepackage{hyphenat}
 \usepackage{enumitem}
+\usepackage{xparse}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage[nodisplayskipstretch]{setspace} \setstretch{1.5}
+
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[4][]{%
+    \tikz[overlay,remember picture]{%
+        \coordinate (TopLeft)     at ($(#2)+(-0.2em,0.9em)$);
+        \coordinate (BottomRight) at ($(#3)+(0.2em,-0.3em)$);
+        %
+        \path (TopLeft); \pgfgetlastxy{\XCoord}{\IgnoreCoord};
+        \path (BottomRight); \pgfgetlastxy{\IgnoreCoord}{\YCoord};
+        \coordinate (LabelPoint) at ($(\XCoord,\YCoord)!0.5!(BottomRight)$);
+        %
+        \draw [red,#1] (TopLeft) rectangle (BottomRight);
+        \node [below, #1, fill=none, fill opacity=1] at (LabelPoint) {#4};
+    }
+}
+
+\newcommand\eqop[1]{\overset{#1}  \sim}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 
 \newtheoremstyle{break}
   {\topsep}{\topsep}%

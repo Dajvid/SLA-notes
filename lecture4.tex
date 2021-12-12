@@ -64,6 +64,7 @@ Označení $lcM$ nebudeme nadále používat, protože jak jsme ukázali, jedná
 o ekvivalentní definici lienárního obalu.
 
 \begin{definition}[Lineární nezávislost vektorů]
+    \label{def:lin_nezavislost}
     Uvažujme množinu vektorů:
     $$(\vec{u_1}, \ldots, \vec{u_n})$$
     Řekneme, že vektory $\vec{u_1}, \ldots, \vec{u_n}$ jsou lineárně nezávislé,
@@ -312,6 +313,7 @@ o ekvivalentní definici lienárního obalu.
 \end{proof}
 
 \begin{definition}[Determinant]
+    \label{def:determinant}
     Determinant budeme definovat pro čtvercové matice.
     Opět se jedná o zobrazení, které čtvercové matici přiřadí
     jedno číslo. Determinant matice $A$ budeme značit $det\,A$, nebo také $|A|$.
@@ -319,6 +321,11 @@ o ekvivalentní definici lienárního obalu.
     $$det: Mat_n(F) \rightarrow F$$
     $$det\, A = \sum_{\sigma \in S_n} sgn(\sigma) \cdot a_{1\sigma(1)} \cdot a_{2\sigma(2)}
     \cdot \ldots \cdot a_{n\sigma(n)}$$
+
+    Pří výpočtu podle vzorce je vhodné postupovat tak, že u řádkových indexů zvyšujeme začneme
+    od jedničky a postupně zvyšujeme řádkový index a u sloupcových indexů uvažujeme všechny možné
+    permutace n prvkové množiny těchto sloupcových indexů, tím nám vznikne nějaká permutace, která
+    je buďto sudá, nebo lichá a danému součinu přiřadíme znaménko permutace.
 \end{definition}
 
 \begin{example}[Výpočet determinantu pro matice řádu 1]
@@ -345,6 +352,7 @@ o ekvivalentní definici lienárního obalu.
 \end{example}
 
 \begin{definition}[Schodovitá matice]
-
+    Je horní trojúhelníková matice, ve které můžeme nulovou část oddělit "schody", které
+    mají výšku stupně 1.
 \end{definition}
 
