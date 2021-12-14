@@ -1,0 +1,526 @@
+\section{Šestá přednáška}
+\subsection{Matice}
+
+\begin{theorem}[Cauchyho věta o součinu]
+    \label{the:cauchy}
+    Determinant součinu je součin determinantů.
+
+    $$|A \cdot B| = |A| \cdot |B|$$
+\end{theorem}
+\begin{proof}
+    Idea důkazu: Uvažujme matici H v tomto tvaru:
+    \[H =
+    \begin{pmatrix}
+        A & O \\
+        \begin{pmatrix}
+            -1 & \ldots & 0\\
+            \vdots & \ddots & \vdots \\
+            0 & \ldots & -1
+        \end{pmatrix} & B
+    \end{pmatrix}
+    \]
+    Jestliže matice $A$ a $B$ jsou řádu $n$, potom matice $H$ je řádu $2\cdot n$.
+    Nyní zkonstruujeme matici K:
+    \[K =
+        \begin{pmatrix}
+            A & C \\
+            \begin{pmatrix}
+                -1 & \ldots & 0\\
+                \vdots & \ddots & \vdots \\
+                0 & \ldots & -1
+            \end{pmatrix} & O
+        \end{pmatrix}
+    \]
+    S tím, že:
+    $$C = A\cdot B$$
+    Zřejmě:
+    \begin{align*}
+    |H| &= |A| \cdot |B|\\
+    |K| &= |C|
+    \end{align*}
+    A $K$ lze obdržet vhodnými elementárními úpravami z $H$.
+\end{proof}
+
+\subsection{Soustavy lineárních rovnic}
+Příklady na řešitelnost soustavy. Příklad na soustavu, která nemá řešení je na konci
+předchozí přednášky.
+
+\begin{example}[Řešení soustavy linearních rovnic s právě jedním řešením]
+    Řešte následujicí soustavu linearních rovnic:
+
+    \begin{align*}
+        2x + y - z & = 43\\
+        3x + 3y +5z &= 84\\
+        4x - y - 2z &= 86
+    \end{align*}
+
+    Soustavu přepíšeme do rozšířené matice a elementárními úpravami
+    převedeme do schodovitého tvaru:
+    \begin{align*}
+        \begin{pmatrix}[ccc|c]
+            2 & 1 & -1 & 43\\
+            3 & 3 & 5 & 84\\
+            4 & -1 & -2 & 86
+        \end{pmatrix} \eqop{r_2  \cdot (-2); r_3 \cdot (-1)}
+        \begin{pmatrix}[ccc|c]
+            2 & 1 & -1 & 43\\
+            -6 & -6 & -10 & -168\\
+            -4 & 1 & 2 & 86
+        \end{pmatrix} \eqop{r_2 + 3 \cdot r_1; r_3 + 2 \cdot r_1}
+        \begin{pmatrix}[ccc|c]
+            2 & 1 & -1 & 43\\
+            0 & -3 & -13 & -39\\
+            0 & 3 & 0 & 0
+        \end{pmatrix} \eqop{r_2 + r_3; r_3 \cdot \frac{1}{3}; r_3 \leftrightarrow r_2; } \\
+        \eqop{r_2 + r_3; r_3 \cdot \frac{-1}{3}; r_3 \leftrightarrow r_2; }
+        \begin{pmatrix}[ccc|c]
+            2 & 1 & -1 & 43\\
+            0 & 1 & 0 & 0\\
+            0 & 0 & -13 & -39
+        \end{pmatrix} \eqop{r_3 \cdot \frac{-1}{13}}
+        \begin{pmatrix}
+            2 & 1 & -1 & 43\\
+            0 & 1 & 0 & 0\\
+            0 & 0 & 1 & 3
+        \end{pmatrix}
+    \end{align*}
+    Hodnost základní matice je 3, hodnost rozšířené matice je také 3, soustava má tedy právě jedno řešení.
+    Nyní provedeme \uv{zpětný chod} a ze schodovitého tvaru matice vyjádříme odspodu hodnoty
+    jednotlivých proměnných.
+    \begin{align*}
+        z &= 3\\
+        y &= 0\\
+        2x + y -z &= 43\\
+        2x +0 -3 &= 43\\
+        2x &=46\\
+        x &= 23
+    \end{align*}
+\end{example}
+
+\begin{example}[Řešení soustavy linearních rovnic s nekonečným počtem řešení]
+    Řešte následujicí soustavu linearních rovnic v $\mathbb{R}$:
+
+    \begin{align*}
+        2a - b + c -4d &= -2\\
+        4a + 2b -c + 5d &= 1\\
+        10a -b +2c -7d &= -5\\
+        30a + 9b -3c +18d &= 0
+    \end{align*}
+    Soustavu přepíšeme do rozšířené matice a elementárními úpravami
+    převedeme do schodovitého tvaru:
+    \begin{align*}
+        \begin{pmatrix}[cccc|c]
+            2 & -1 & 1 & -4 & -2\\
+            4 & 2 & -1 & 5 & 1\\
+            10 & -1 & 2 & -7 & -5\\
+            30 & 9 & -3 & 18 & 0
+        \end{pmatrix} \eqop{r_2 \cdot (-1); r_3 \cdot -1; r_4 \cdot \frac{-1}{3}}
+        \begin{pmatrix}[cccc|c]
+            2 & -1 & 1 & -4 & -2\\
+            -4 & -2 & 1 & -5 & -1\\
+            -10 & 1 & -2 & 7 & 5\\
+            -10 & -3 & 1 & -6 & 0
+        \end{pmatrix} \eqop{r_2 + 2 \cdot r_1; r_3 + 5 \cdot r_1; r_4 + 5 \cdot r_1}\\
+        \eqop{r_2 + 2 \cdot r_1; r_3 + 5 \cdot r_1; r_4 + 5 \cdot r_1}
+        \begin{pmatrix}[cccc|c]
+            2 & -1 & 1 & -4 & -2\\
+            0 & -4 & 3 & -13 & -5\\
+            0 & -4 & 3 & -13 & -5\\
+            0 & -8 & 6 & -26 & -10
+        \end{pmatrix} \eqop{r_3 - r_2; r_4 - 2\cdot r_2}
+        \begin{pmatrix}[cccc|c]
+            2 & -1 & 1 & -4 & -2\\
+            0 & -4 & 3 & -13 & -5\\
+            0 & 0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0 & 0
+        \end{pmatrix}
+    \end{align*}
+
+    Vidíme, že hodnost základní matice soustavy je 2 a hodnost rozšířené matice soustavy je také 2
+    hodnosti se rovnají a soustava je tedy řešitelná. Máme ovšem 4 neznáme a hodnosti jsou rovny
+    dvěma, řešení lze tedy vyjádřit pomocí $4-2=2$ parametrů.
+
+    Za neznámé $c, d$ dosadíme parametry $p, q$ a pomocí těchto parametrů opět zpětným
+    chodem vyjádříme ostatní neznámé.
+    \begin{align*}
+        d &= q\\
+        c &= p\\
+        p, q &\in \mathbb{R}
+    \end{align*}
+    \begin{align*}
+        -4 b +3 c -13d &= -5\\
+        -4b +3p -13q &= -5\\
+        -4b &= -3p + 13q -5\\
+        b &= \frac{3p - 13q + 5}{4}
+    \end{align*}
+    \begin{align*}
+        2a -b +c -4d &= -2\\
+        2a -\frac{3p - 13q + 5}{4} + p -4q &= -2\\
+        2a &= \frac{3p - 13q + 5}{4} + \frac{-4p+16q-8}{4}\\
+        2a &= \frac{-p +3q -3}{4}\\
+        a &= \frac{-p +3q -3}{8}
+    \end{align*}
+    Jako parametry ovšem nebylo nutné zvolit zrovna neznámé $c, d$. Jako parametr jsme mohli vzít
+    například $a$, nebo $b$, nebo také výraz $a + 2b$. Můžeme si je zkrátka zvolit dle potřeby a
+    parametrické vyjádření tedy není jednoznačné. Ne vždy je navíc možné parametry volit takto
+    vhodně \uv{odzadu}, jak jsme to udělali v tomto příkladu.
+\end{example}
+
+\begin{example}[Případ, kdy nejde neznámé parametrizovat odzadu]
+    Mějme rozšířenou matici soustavy upravenou na schodovitý tvar:
+    \[
+        \begin{pmatrix}[cccc|c]
+            1 & 1 & 1 & 2 & 3\\
+            0 & 0 & 0 & 2 & 5\\
+            0 & 0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0 & 0\\
+        \end{pmatrix}
+    \]
+    V tomto případě si pro parametrizaci nemůžeme jednoduše zvolit poslední neznámou,
+    protože ta má přesně danou hodnotu 5, k parametrizaci tak musíme využít jiný vhodný postup.
+\end{example}
+
+\begin{example}[Vytvoření soustavy rovnic dle požadavků]
+    Vytvořte soustavu tří různých linearnách rovnic o dvou neznámých, která má
+    nekonečně mnoho řešení.
+
+    \begin{align*}
+        x &= 0\\
+        2y &= 0\\
+        3y &= 0
+    \end{align*}
+\end{example}
+
+
+\subsection{Výpočet inverzní matice pomocí Gaussovy metody}
+%01:00:00 příklad na výpočet inverzní matice pomocí adjungované matice
+Gaussovu metodu můžeme použít i k výpočtu inverzní matice. Pro výpočet
+inverzní matice k matici $A$ stačí vytvořit rozšířenou matici:
+\[
+    \begin{pmatrix}[c|c]
+    A & E
+    \end{pmatrix}
+\]
+Kde matice E představuje jednotkovou matici. A pomocí elementárních úrav tuto rozšířeno
+matici upravit do tvaru, kdy jednotkovou matici dostaneme na levé straně, inverzní
+matice pak bude na pravé straně:
+\[
+    \begin{pmatrix}[c|c]
+        E & A^{-1}
+        \end{pmatrix}
+\]
+Tato úprava je realizovatelná v případě, že je matice $A$ regulární a existuje k ní tedy inverzní
+matice.
+
+\begin{example}[Výpočet inverzní matice Gaussovou metodou]
+    Gaussovou metodou spočítejte inverzní matici $A^{-1}$ k matici $A$.
+    \[A=
+    \begin{pmatrix}
+        2 & 3 & 0\\
+        1 & 0 & -1\\
+        1 & 1 & 5
+    \end{pmatrix}
+    \]
+
+    Matici přepíšeme do rozšířené matice s jednotkovou maticí na pravé straně a levou
+    stranu pomocí elementárních úprav převedeme na matici jednotkovou.
+    \begin{align*}
+        \begin{pmatrix}[ccc|ccc]
+            2 & 3 & 0 & 1 & 0 & 0\\
+            1 & 0 & -1 & 0 & 1 & 0\\
+            1 & 1 & 5 & 0 & 0 & 1
+        \end{pmatrix} \eqop{r_1 \leftrightarrow r_2; r_3 \cdot (-1)}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & -1 & 0 & 1 & 0\\
+            2 & 3 & 0 & 1 & 0 & 0\\
+            -1 & -1 & -5 & 0 & 0 & -1
+        \end{pmatrix} \eqop{r_2 - 2\cdot r_1; r_3 + r_1}  \\ \eqop{r_2 - 2\cdot r_1; r_3 + r_1}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & -1 & 0 & 1 & 0\\
+            0 & 3 & 2 & 1 & -2 & 0\\
+            0 & -1 & -6 & 0 & 1 & -1
+        \end{pmatrix} \eqop{r_2 + 3\cdot r_3; r_2 \leftrightarrow r_3}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & -1 & 0 & 1 & 0\\
+            0 & -1 & -6 & 0 & 1 & -1\\
+            0 & 0 & -16 & 1 & 1 & -3
+        \end{pmatrix} \eqop{r_3 \cdot \frac{1}{16}} \\ \eqop{r_3 \cdot \frac{-1}{16}}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & -1 & 0 & 1 & 0\\
+            0 & -1 & -6 & 0 & 1 & -1\\
+            0 & 0 & 1 & \frac{-1}{16} & \frac{-1}{16} & \frac{3}{16}
+        \end{pmatrix} \eqop{r_2 + 6 \cdot r_3; r_1 - r_3}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & 0 & \frac{-1}{16} & \frac{15}{16} & \frac{3}{16}\\
+            0 & -1 & 0 & \frac{-6}{16} & \frac{10}{16} & \frac{2}{16}\\
+            0 & 0 & 1 & \frac{-1}{16} & \frac{-1}{16} & \frac{3}{16}
+        \end{pmatrix} \eqop{r_2 \cdot (-1)} \\ \eqop{r_2 \cdot (-1)}
+        \begin{pmatrix}[ccc|ccc]
+            1 & 0 & 0 & \frac{-1}{16} & \frac{15}{16} & \frac{3}{16}\\
+            0 & 1 & 0 & \frac{6}{16} & \frac{-10}{16} & \frac{-2}{16}\\
+            0 & 0 & 1 & \frac{-1}{16} & \frac{-1}{16} & \frac{3}{16}
+        \end{pmatrix}
+    \end{align*}
+\end{example}
+
+\subsection{Cramerovo pravidlo}
+Cramerovo pravidlo je k řešení soustav lineárních rovnic, kde základní matice soustavy je
+čtvercová regulární matice.
+
+Cramerovo pravidlo říká, že i-tou neznámnou $x_i$ z matice soustavy $A$ můžeme vyjádřit jako:
+$$x_i = \frac{|A_i|}{|A|}$$
+Kde $A_i$ je matice vytvořená z matice $A$ tak, že i-tý sloupec nahradíme sloupcem absolutních
+členů soustavy.
+
+Tuto metodu je výhodné použít když nepotřebujeme všechny neznámé, nebo když máme \uv{nepěkné}
+koeficienty.
+
+\begin{example}[Výpočet neznámé pomocí cramerova pravidla]
+    Pomocí Cramerova pravidla vyjádřete neznámou $y$ z následujicí soustavy rovnic:
+    \begin{align*}
+        \sqrt{2} x + y + z &= 2\sqrt{2}\\
+        3x -\sqrt{2}z &= 1\\
+        4y + 3\cdot \sqrt{2} z &= 1 + \sqrt{2}
+    \end{align*}
+    Spočítáme potřebné determinanty
+    \begin{align*}
+        |A| &=
+        \begin{vmatrix}
+            \sqrt{2} & 1 & 1\\
+            3 & 0 & -\sqrt{2}\\
+            0 & 4 & 3\cdot \sqrt{2}
+        \end{vmatrix} =
+        12 - (-4 \cdot \sqrt{2} \cdot \sqrt{2} + 9 \cdot \sqrt{2}) = 20 - 9 \cdot \sqrt{2} \\
+        |A_2| &=
+    \begin{vmatrix}
+        \sqrt{2} & 2\cdot\sqrt{2} & 1\\
+        3 & 1 & -\sqrt{2}\\
+        0 & 1+\sqrt{2} & 3\cdot \sqrt{2}
+    \end{vmatrix}
+    = 9 + 3\cdot \sqrt{2} - [-2 - 2\sqrt{2} + 36] = -25 + 5 \sqrt{2}
+      \end{align*}
+    A pomocí nich vyjádříme neznámou $y$:
+    $$y = \frac{|A_2|}{|A|} = \frac{-25 + 5 \cdot \sqrt{2}}{20 - 9 \cdot \sqrt{2}} \cdot
+    \frac{20 + 9 \cdot \sqrt{2}}{20 + 9 \cdot \sqrt{2}} =
+    \frac{-500 - 225\sqrt{2} + 100\sqrt{2} + 90}{238} = \frac{-410-125\sqrt{2}}{238}
+    $$
+\end{example}
+
+\begin{definition}[Podobnost matic]
+    %nástřel příkladů na podobnost matic 1:35
+    Řekneme, že matice $B$ je podobná matici $A$, jestliže existuje regulární
+    matice $S$ tak, že:
+    $$B = S\cdot A \cdot S^{-1}$$
+\end{definition}
+
+\begin{theorem}[Relace podobnosti matic]
+    Relace \uv{být podobná} je ekvivalence.
+\end{theorem}
+\begin{proof}
+    Pro důkaz ekvivalence musíme dokázat, že se jedná o reflexivní, symetrickou a tranzitivní
+    relaci:
+
+    Reflexivita:
+    $$A = S\cdot A\cdot S^{-1}\; pro\; S=E,  \forall A$$
+
+    Symetrie: Předpokládejme, že B je podobná A:
+    $$B = S\cdot A \cdot S$$
+    Potom musíme ukázat, že existuje regulární matice T taková, že:
+    $$A = T \cdot B \cdot T^{-1}$$
+    Pro splnění tohoto požadavku však stačí vzít $T = S^{-1}$
+
+    Tranzitivita:
+    Předpokládejme, že B je podobná A a že C je podobná B.
+    \begin{align*}
+        B &= SAS^{-1}\\
+        C &= TBT^{-1}
+    \end{align*}
+    A nyní chceme ukázat, že C je podobná A.
+    \begin{align*}
+        C &= UAU^{-1}\\
+        C &= TSAS^{-1}T^{-1}
+    \end{align*}
+    Pro splnění tohoto požadavku stačí zvolit $U = TS$
+\end{proof}
+
+\subsection{Charakteristický polynom, vlastní čísla a vlastní vektory matice}
+% 1:40 opáčko soustav rovnic
+\begin{definition}[Charakteristický polynom]
+    Charakteristický polynom čtvercové matice $A$ je polynom:
+    $$|A - \lambda E|$$
+\end{definition}
+
+\begin{definition}[Charakteristická rovnice]
+    Charakteristický rovnice čtvercové matice $A$ je rovnice, kde charakteristický polynom
+    položíme roven 0:
+    $$|A - \lambda E| = 0$$
+\end{definition}
+
+\begin{definition}[Vlastní hodnoty]
+    Vlastní hodnoty čtvercové matice $A$ jsou kořeny charakteristického polynomu této matice.
+\end{definition}
+
+\begin{example}
+    Vyjádřete charakteristický polynom a vlastní hodnoty matice $A$.
+    \[A=
+    \begin{pmatrix}
+        5 & 1\\
+        -1 & 0
+    \end{pmatrix}
+    \]
+    \begin{align*}
+        |A - \lambda E| &= 0\\
+        det \Bigg(
+        \begin{pmatrix}
+            5 & 1\\
+            -1 & 0
+        \end{pmatrix} - \lambda \cdot
+        \begin{pmatrix}
+            1 & 0\\
+            0 & 1
+        \end{pmatrix} \Bigg ) &= 0 \\
+        det \Bigg(
+        \begin{pmatrix}
+            5 & 1\\
+            -1 & 0
+        \end{pmatrix} -
+        \begin{pmatrix}
+            \lambda & 0\\
+            0 & \lambda
+        \end{pmatrix} \Bigg ) &= 0 \\
+        \begin{vmatrix}
+            5 - \lambda & 1\\
+            -1 & - \lambda
+        \end{vmatrix} &= 0 \\
+        -5 \cdot \lambda + \lambda^2 + 1 &= 0\\
+        \lambda^2 -5 \cdot \lambda + 1 &= 0\\
+        \lambda_{1,2} &= \frac{5 \pm \sqrt{21}}{2}
+    \end{align*}
+\end{example}
+
+\begin{definition}[Vlastní vektor matice A]
+    Vezmeme li jednu konkrétní vlastní hodnotu $\lambda_1$ matice $A$.
+    Potom nenulový vektor $\vec{u}$, který splňuje:
+    $$(A - \lambda_1 \cdot E) \cdot \vec{u} = \vec{o}$$
+    Nazýváme vlastní vektor matice $A$ odpovídajicí vlastní hodnotě $lambda_1$.
+    Tento vlastní vektor tvoří vektorový podprostor.
+\end{definition}
+
+\begin{example}[Vlastní hodnoty a vlastní vektory]
+    Najděte všechny vlastní hodnoty a vlastní vektory matice A.
+    \[A =
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 2
+        \end{pmatrix}
+    \]
+Vyjádříme vlastní čísla:
+    \begin{align*}
+        \begin{vmatrix}
+            1 - \lambda & 0 \\
+            0 & 2 - \lambda
+        \end{vmatrix} &= (1 - \lambda)(2 - \lambda)\\
+        \lambda_1 &= 1\\
+        \lambda_2 &= 2
+    \end{align*}
+
+K vlastním číslům vyjádříme vlastní vektory:
+Pro $\lambda_1$
+\begin{align*}
+    \begin{pmatrix}
+        0 & 0\\
+        0 & 1
+    \end{pmatrix} \cdot
+    \begin{pmatrix}
+        u_1\\
+        u_2
+    \end{pmatrix} &=
+    \begin{pmatrix}
+        0 \\
+        0
+    \end{pmatrix}\\
+    u_1 &= p\\
+    u_2 &= 0\\
+\end{align*}
+Pro $\lambda_2$ stejným postupem:
+\begin{align*}
+    u_1 &= 0\\
+    u_2 &= p
+\end{align*}
+A vlastní vektory matice A jsou tedy $
+\begin{pmatrix}
+    p\\0
+\end{pmatrix}$ a $
+\begin{pmatrix}
+    0\\p
+\end{pmatrix}
+$, kde $p\in \mathbb{R} \smallsetminus 0$
+\end{example}
+
+\begin{theorem}[Nezávislost vlastních vektorů]
+    Vlastní vektory příslušné různým vlastním hodnotám jsou lineárně nezávislé.
+\end{theorem}
+
+\begin{theorem}[Vlastní hodnoty symetrické matice]
+    Vlastní hodnoty symetrické matice $A$ jsou reálné ($\in \mathbb{R}$).
+\end{theorem}
+
+\begin{theorem}[Charakteristický polynom podobných matic]
+    Charakteristický polynom podobných matic je stejný a tedy mají i stejné vlastní hodnoty.
+    %důkaz 2:06
+\end{theorem}
+
+\subsection{Matice homomorfismů}
+\begin{definition}[Matice homomorfismů]
+    Mějme vektorový prostor $\mathcal{V}$ nad nějakým polem $F$, dimenze $\mathcal{V}$ bude
+    $m$ a báze $\mathcal{B} = (\vec{e_1}, \ldots, \vec{e_m})$. A vektorový prostor $\mathcal{W}$
+    s dimenzí $n$ a bází $\overline{B} = (\vec{f_1}, \ldots, \vec{f_n})$.
+
+    Dále budeme mít zobrazení $\varphi: \mathcal{V} \rightarrow \mathcal{W}$, které bude homomorfismus
+    (lineární zobrazení)
+    Označme:
+    \begin{align*}
+        \vec{w_1} &= \varphi(\vec{e_1})\\
+        &\vdots\\
+        \vec{w_m} &= \varphi(\vec{e_m})\\
+    \end{align*}
+    Pak vektory $\vec{w_1}, \ldots, \vec{w_m}$ jsou lineárnímí kombinacemi bázových vektorů v prostoru
+    $\mathcal{W}$.
+    \begin{align*}
+        \vec{w_1} &= a_{11} \cdot \vec{f_1} + \ldots a_{1n} \cdot \vec{f_n}\\
+        &\vdots\\
+        \vec{w_m} &= a_{n1} \cdot \vec{f_1} + \ldots a_{mn} \cdot \vec{f_n}\\
+    \end{align*}
+    Potom matici koeficientů $a$:
+    \[
+        \begin{vmatrix}
+            a_{11} & \ldots & a_{1n} \\
+            \vdots & \ddots & \vdots\\
+            a_{n1} & \ldots & a_{mn}
+        \end{vmatrix}
+    \]
+    Nazveme matice homomorfismu $\varphi: \mathcal{V} \rightarrow \mathcal{W}$ v bázích $\mathcal{B}$
+    a $\overline{\mathcal{B}}$.
+\end{definition}
+
+\begin{example}[Matice homomorfismu]
+    Nechť:
+    \begin{align*}
+        \mathcal{V} &= \mathbb{R}^3,\;\mathcal{B} = \big((1,1,1), (1,0,1), (1,0,0) \big)\\
+        \mathcal{W} &= \mathbb{R}^2,\;\overline{\mathcal{B}} = \big((2,3), (3,2) \big)\\
+        \varphi \big((\vec{v_1}, \vec{v_2}, \vec{v_3})\big) &= (0, \vec{v_2} + 2\cdot \vec{v_3})
+    \end{align*}
+    Potom:
+    \begin{align*}
+        \vec{w_1} &= (0, 3) = a_{11} \cdot (2, 3) + a_{12}\cdot (3,2)\\
+        \vec{w_2} &= (0, 2) = a_{21} \cdot (2, 3) + a_{22}\cdot (3,2)\\
+        \vec{w_3} &= (0, 0) = a_{31} \cdot (2, 3) + a_{32}\cdot (3,2)
+    \end{align*}
+    Vyřešíme tyto 3 soustavy lineárních rovnic a tím dostaneme následujicí matici homomorfismů:
+    % TODO rozepsat sousavy rovnic
+    $$\begin{pmatrix}
+       0 & 0\\
+       \frac{6}{5} & \frac{-4}{5}\\
+       0 & 0\\
+    \end{pmatrix}$$
+\end{example}

@@ -244,8 +244,8 @@ pokud je zřejmá.
     Inverzní matici můžeme spočítat jako:
     $$A^{-1} = \frac{1}{|A|}\cdot (A^*)^{T}$$
 
-    Z Cauchyho věty o součinu vyplývá, že determinant A musí být nenulový\footnote{Matice s nenulovým determinantem
-    nazýváme regulární, a naopak matice s nulovým determinantem nazýváme singulární.}. % TODO add definition ref
+    Z Cauchyho věty o součinu \ref{the:cauchy} vyplývá, že determinant A musí být nenulový\footnote{Matice s nenulovým determinantem
+    nazýváme regulární, a naopak matice s nulovým determinantem nazýváme singulární.}.
 \end{definition}
 
 \begin{example}[Výpočet inverzní matice]
@@ -604,6 +604,14 @@ Tuto obecnou soustavu lineárních rovnic můžeme zapsat maticově:
 
 Někdy také zapisujeme jako:
 $$A \cdot \vec{x} = \vec{b}$$
+
+V případě, že je vektor absolutních členů $\vec{b}$ nulový vektor, tedy:
+$$\vec{b} = \vec{o}$$
+Nazýváme takovou soustavu homogenní. Homogenní soustava lineárních rovnic je vždy řešitelná.
+Obecně řešení homogenní soustavy lineárních rovnic tvoří vektorový podprostor.
+
+V případě nehomogenních soustav se nejedná o vektorový podprostor, ale o affinní podprostor.
+
 
 \subsubsection{Gaussova eliminační metoda}
 Matici soustavy\footnote{Tuto matici tvoří jednotlivé koeficienty.} $A$ a vektor absolutních členů
