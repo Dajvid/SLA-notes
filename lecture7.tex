@@ -1,0 +1,225 @@
+\section{Sedmá přednáška}
+
+\subsection{Matice homomorfismů a přechodů}
+
+\begin{example}[Výpočet matice homomorfismu]
+    \label{ex:homo_mat}
+    Vyjádřete matici homomorfismu $\varphi$ v bázích $\mathcal{B}$ a $\overline{\mathcal{B}}$, kde:
+    \begin{align*}
+        \mathcal{V} &= \mathbb{R}^3,\;
+        \mathcal{B} = \big (e_1 = (0, 0, 1), e_2 = (0, 1, 2), e_3 = (1, 2, 3)\big)\\
+        \mathcal{W} &= \mathbb{R}^4,\;
+        \overline{\mathcal{B}} = \big (f_1 = (0, 0, 0, 1), f_2 = (0, 0, -1, 0), f_3 = (0, 1, 0, 0), f_4 = (-1, 0, 0, 0)\big)\\
+        \varphi &: \mathcal{V} \rightarrow \mathcal{W}, \;
+        \varphi\big( (v_1, v_2, v_3) \big) = (v_1 + v_2, v_2 + v_3, v_1, v_2)
+    \end{align*}
+
+    Měli bychom nejprve ověřit, že $\mathcal{B}$ a $\overline{\mathcal{B}}$ jsou opravdu
+    báze vektorových prostorů $\mathcal{V}$ a $\mathcal{W}$. A to tak, že přepsáním báze do
+    matice dostaneme matici se správnou hodností (v tomto případě 3 a 4). Což zde zjevně platí.
+    \begin{align*}
+        h \begin{pmatrix}
+            0 & 0 & 1\\
+            0 & 1 & 2\\
+            1 & 2 & 3
+        \end{pmatrix} &= 3\\
+        h \begin{pmatrix}
+            0 & 0 & 0 & 1\\
+            0 & 0 & -1 & 0\\
+            0 & 1 & 0 & 0\\
+            -1 & 0 & 0 & 0
+        \end{pmatrix} &= 4
+    \end{align*}
+
+    Dále je třeba ověřit, zda $\varphi$ je skutečně homomorfismus. Musíme zkontrolovat platnost
+    vlastností z definice homomorfismu \ref{def:homo}:
+    Platnost první vlastnosti $\varphi(\vec{u} + \vec{v}) = \varphi(\vec{u}) + \varphi(\vec{v})$
+    můžeme ověřit takto:
+    \begin{align*}
+        \varphi(\vec{u} + \vec{v}) &= \varphi\big ( (u_1 + v_1, u_2 + v_2, u_3 + v_3) \big) =
+            (u_1 + v_1 + u_2 + v_2, u_2 + v_2 + u_3 + v_3, u_1 + v_1, u_2 + v_2)\\
+        \varphi(\vec{u}) + \varphi(\vec{v}) &= (u_1 + u_2, u_2 + u_3, u_1, u_2) +
+            (v_1 + v_2, v_2 + v_3, v_1, v_2) \\
+            L &= P
+    \end{align*}
+    Platnost druhé vlastnosti bychom ověřili podobným způsobem.
+
+    Nyní přes $\varphi$ zobrazíme vektory báze prostoru $\mathcal{V}$ a vyjádříme tento
+    obrazk jako lineární kombinaci vektorů báze prostoru $\mathcal{W}$:
+    \begin{align*}
+        \vec{w_1} & = \varphi(e_1) = (0, 1, 0, 0) =
+            a_{11} \cdot (0, 0, 0, 1) + a_{12} \cdot (0, 0, -1, 0) + a_{13} \cdot (0, 1, 0, 0) + a_{14} \cdot (-1, 0, 0, 0)\\
+        \vec{w_2} & = \varphi(e_2) = (1, 3, 0, 1) =
+            a_{21} \cdot (0, 0, 0, 1) + a_{22} \cdot (0, 0, -1, 0) + a_{23} \cdot (0, 1, 0, 0) + a_{24} \cdot (-1, 0, 0, 0)\\
+        \vec{w_3} & = \varphi(e_3) = (3, 5, 1, 2) =
+            a_{31} \cdot (0, 0, 0, 1) + a_{32} \cdot (0, 0, -1, 0) + a_{33} \cdot (0, 1, 0, 0) + a_{34} \cdot (-1, 0, 0, 0)\\
+    \end{align*}
+    Vyřešením těchto 3 soustav 4 lineárních rovnic dostaneme hodnoty koeficientů $a$, které tvoří
+    matici homomorfismu:
+    První řádek jde na první pohled vyřešit snadno jako:
+    \begin{align*}
+        a_{11} &= a_{12} = a_{14} = 0\\
+        a_{13} &= 1
+    \end{align*}
+    Řádky 2 a 3 už nejsou tak zřejmé. Rozepíšeme tedy soustavu rovnic pro druhý řádek:
+    \begin{align*}
+        0\cdot a_{21} + 0\cdot a_{22} + 0\cdot a_{23} -1 \cdot a_{24} &= 1\; \Rightarrow a_{24} = -1\\
+        0\cdot a_{21} + 0\cdot a_{22} + 1\cdot a_{23} +0 \cdot a_{24} &= 3\; \Rightarrow a_{23} = 3\\
+        0\cdot a_{21} - 1 \cdot a_{22} + 0\cdot a_{23} +0 \cdot a_{24} &= 0 \; \Rightarrow a_{22} = 0\\
+        1\cdot a_{21} + 0 \cdot a_{22} + 0\cdot a_{23} +0 \cdot a_{24} &= 1 \; \Rightarrow a_{21} = 1\\
+    \end{align*}
+    Díky jednoduchému zadání báze $\overline{\mathcal{B}}$ jsme byli schopni rovnou odvodit
+    řešení této soustavy.
+
+    Nyní rozepíšeme a vyřešíme soustavu pro 3 řádek:
+    \begin{align*}
+        0\cdot a_{31} + 0\cdot a_{32} + 0\cdot a_{33} -1 \cdot a_{34} &= 3\; \Rightarrow a_{34} = -3\\
+        0\cdot a_{31} + 0\cdot a_{32} + 1\cdot a_{33} +0 \cdot a_{34} &= 5\; \Rightarrow a_{33} = 5\\
+        0\cdot a_{31} - 1 \cdot a_{32} + 0\cdot a_{33} +0 \cdot a_{34} &= 1 \; \Rightarrow a_{32} = -1\\
+        1\cdot a_{31} + 0 \cdot a_{32} + 0\cdot a_{33} +0 \cdot a_{34} &= 2 \; \Rightarrow a_{31} = 2\\
+    \end{align*}
+
+    Ze zjištěných koeficientů nyní můžeme vyjádřit požadovanou matici homomorfismu $\varphi$ v
+    bázích $\mathcal{B}$ a $\overline{\mathcal{B}}$:
+    \[
+        \begin{pmatrix}
+            a_{11} & a_{12} & a_{13} & a_{14} \\
+            a_{21} & a_{22} & a_{23} & a_{24} \\
+            a_{31} & a_{32} & a_{33} & a_{34} \\
+        \end{pmatrix} =
+        \begin{pmatrix}
+            0 & 0 & 1 & 0\\
+            1 & 0 & 3 & -1\\
+            2 & -1 & 5 & -3\\
+        \end{pmatrix}
+    \]
+\end{example}
+
+Matici homomorfismu můžeme použít k rychlému převádění vektorů mezi bázemi.
+\begin{example}[Převod vektorů mezi bázemi]
+    Mějme vektorové prostory, báze, $\varphi$ a matici homomorfismu
+    z příkladu \ref{ex:homo_mat}.
+
+    A mějme vektor $\vec{w_{\mathcal{B}}}$ vyjádřený v bázi $\mathcal{B}$:
+    $$\vec{w_{\mathcal{B}}} = (2, 4, 3)$$
+    Vyjádřete tento vektor v bázi $\overline{\mathcal{B}}$ jako
+    $\vec{w_{\overline{\mathcal{B}}}}$.
+
+    To, že je vektor $\vec{w_{\mathcal{B}}}$ vyjádřený v bázi $\mathcal{B}$ znamená,
+    že se jedná o lineární kombinaci vektorů $\vec{e_1}, \vec{e_2}, \vec{e_3}$ s koeficienty
+    $2, 4, 3$.
+    Tento vektor můžeme převést do implicitní báze\footnote{Implicitní báze je obvyklá báze, ve
+    které, i když třeba nechceme, musíme implicitně pracovat, abychom se mohli
+    numericky vyjadřovat. Implicitní báze je obvykle
+    $\big((1, 0, 0), (0, 1, 0), (0, 0, 1) \big)$, takové bázi říkáme kanonická a může být
+    podobně vyjádřena i pro jiné dimenze, než právě 3.} následovně:
+    $$\vec{u} = (2\cdot 0 + 4\cdot 0 + 3\cdot 1,\; 2\cdot 0 + 4\cdot 1 + 3\cdot 2,\;
+    2\cdot 1 + 4\cdot 2 + 3\cdot 3) = (3, 10, 19)$$
+    Nyní tento vektor $\vec{u}$ vyjádřený v kanonické bázi zobrazíme pomocí $\varphi$:
+    $$\vec{v} = \varphi(\vec{u}) = \varphi\big( (3, 10, 19) \big) = (13, 29, 3, 10)$$
+    A nyní $\vec{v}$ vyjádříme v bázi $\overline{\mathcal{B}}$:
+    $$\vec{v_{\overline{\mathcal{B}}}} = (10, -3, 29, -13)$$
+    V tomto případě jsme převod provedli bez využití matice homomorfismu. Provedli jsme převod
+    na kanonickou bázi, zobrazení a nakonec převod do cílové báze.
+
+    Stejný výsledek ovšem můžeme dostat pomocí matice homomorfismu, který v sobě má tohle
+    všechno v podstatě zahrnuto, stačí vektor $\vec{w_{\mathcal{B}}}$ vynázobit maticí homomorfismu:
+    \[
+        \vec{v_{\overline{\mathcal{B}}}} =
+        \begin{pmatrix}
+            2 & 4 & 3
+        \end{pmatrix} \cdot
+        \begin{pmatrix}
+            0 & 0 & 1 & 0\\
+            1 & 0 & 3 & -1\\
+            2 & -1 & 5 & -3\\
+        \end{pmatrix} =
+        \begin{pmatrix}
+            10 & -3 & 29 & -13
+        \end{pmatrix}
+    \]
+\end{example}
+
+\begin{definition}[Matice přechodu]
+    Mějme speciální případ matice homomorfismu, kde\footnote{Přičemž $id$ označuje funkci identity.}:
+    \begin{align*}
+        \mathcal{V} & = \mathcal{W}, \; dim\,\mathcal{V} = n\\
+        \mathcal{B} &= (\vec{e_1}, \ldots, \vec{e_n})\\
+        \overline{\mathcal{B}} &= (\vec{f_1}, \ldots, \vec{f_n})\\
+        \varphi &= id
+    \end{align*}
+    A matici homomorfismu v tomto speciálním případě říkáme matice přechodu od
+    báze $\mathcal{B}$ k bází $\overline{\mathcal{B}}$ a značíme ji $M(\overline{\mathcal{B}}, \mathcal{B})$.
+\end{definition}
+
+Pro obecnou matici homomorfismu bychom museli přepsat obrazy do následujicí soustavy
+rovnic a tu vyřešit:
+\begin{align*}
+    \vec{e_1} &= a_{11} \cdot f_1 + \ldots + a_{1n} \cdot \vec{f_n}\\
+    &\vdots \\
+    \vec{e_n} &= a_{n1} \cdot f_1 + \ldots + a_{nn} \cdot \vec{f_n}\\
+\end{align*}
+Matici přechodu však můžeme vyjádřit jednodušeji, než obecnou matici homomorfismu,
+a to vyřešením následujicí maticové rovnice, která je ekvivalentní výše zmíněné soustavě
+rovnic, kde $M_{\mathcal{B}}$ a $M_{\overline{\mathcal{B}}}$ představují matice bází $\mathcal{B}$
+a $\overline{\mathcal{B}}$:
+\begin{align*}
+    M_{\mathcal{B}} &= A \cdot M_{\overline{\mathcal{B}}}\\
+    M_{\mathcal{B}} \cdot M_{\overline{\mathcal{B}}}^{-1} &= A
+\end{align*}
+Kde matice $A$ je matice přechodu.
+
+\begin{example}[Výpočet matice přechodu]
+    Spočítejte matici přechodu pro:
+    \begin{align*}
+        \mathcal{V} &= \mathbb{R}^3\\
+        \mathcal{B} &= \big ( (3, 1, 2), (3, 2, 0), (1, 0, 0) \big)\\
+         \overline{\mathcal{B}} &= \big ( (3, 3, 1), (4, 1, 0), (2, 2, -5) \big)
+    \end{align*}
+    Opět bychom měli nejprve ukázat, že se jedná o korektní báze. V tomto případě jsou obě
+    báze korektní a jejich matice mají hodnost 3, tak jak potřebujeme.
+
+    Když víme že se jedná o báze, můžeme spočítat matici přechodu:
+    \begin{align*}
+        M(\overline{\mathcal{B}}, \mathcal{B}) &=  M_{\mathcal{B}} \cdot M_{\overline{\mathcal{B}}}^{-1}
+    \end{align*}
+
+    Zapíšeme báze do matice:
+    \begin{align*}
+        M_{\mathcal{B}} & =
+        \begin{pmatrix}
+            3 & 1 & 2\\
+            3 & 2 & 0\\
+            1 & 0 & 0
+        \end{pmatrix}\\
+        M_{\overline{\mathcal{B}}} &=
+        \begin{pmatrix}
+            3 & 3 & 1\\
+            4 & 1 & 0\\
+            2 & 2 & -5
+        \end{pmatrix}
+    \end{align*}
+    A vyjádříme matici přechodu dle odvozeného vztahu:
+    \begin{align*}
+        M(\overline{\mathcal{B}}, \mathcal{B}) &=
+        \begin{pmatrix}
+            3 & 1 & 2\\
+            3 & 2 & 0\\
+            1 & 0 & 0
+        \end{pmatrix} \cdot
+        \begin{pmatrix}
+            3 & 3 & 1\\
+            4 & 1 & 0\\
+            2 & 2 & -5
+        \end{pmatrix} ^ {-1}
+    \end{align*}
+    Dopočítáním bychom dostali matici přechodu.
+
+    Následně pokud budeme mít nějaký vektor $\vec{u_{\mathcal{B}}}$ a vynásobíme ho
+    touto maticí přechodu dostaneme tentýž vektor v bázi $\overline{\mathcal{B}}$:
+    $$\vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) = \vec{u_{\overline{\mathcal{B}}, \mathcal{B}}}$$
+    Tato matice se často používá ke transformaci vektorů mezi různými bázemi.
+\end{example}
+
+Pak ještě Kureš dělal jeden obecný příklad na matici homomorfismů, tohle je do 0:50, pak už šel dělat
+další látku.
