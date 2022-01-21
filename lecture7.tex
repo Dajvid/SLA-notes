@@ -201,7 +201,7 @@ Kde matice $A$ je matice přechodu.
     \end{align*}
     A vyjádříme matici přechodu dle odvozeného vztahu:
     \begin{align*}
-        M(\overline{\mathcal{B}}, \mathcal{B}) &=
+        M(\overline{\mathcal{B}}, \mathcal{B}) &= M(\mathcal{B}) \cdot M(\overline{\mathcal{B}})^{-1} = 
         \begin{pmatrix}
             3 & 1 & 2\\
             3 & 2 & 0\\
@@ -215,11 +215,100 @@ Kde matice $A$ je matice přechodu.
     \end{align*}
     Dopočítáním bychom dostali matici přechodu.
 
-    Následně pokud budeme mít nějaký vektor $\vec{u_{\mathcal{B}}}$ a vynásobíme ho
-    touto maticí přechodu dostaneme tentýž vektor v bázi $\overline{\mathcal{B}}$:
-    $$\vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) = \vec{u_{\overline{\mathcal{B}}, \mathcal{B}}}$$
+    Následně pokud budeme mít nějaký vektor $\vec{u_{\mathcal{B}}}$ vyjádřený v bázi $\mathcal{B}$ a 
+    vynásobíme ho touto maticí přechodu dostaneme tentýž vektor v bázi $\overline{\mathcal{B}}$:
+    $$\vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) = \vec{u_{\overline{\mathcal{B}}}}$$
     Tato matice se často používá ke transformaci vektorů mezi různými bázemi.
 \end{example}
 
-Pak ještě Kureš dělal jeden obecný příklad na matici homomorfismů, tohle je do 0:50, pak už šel dělat
-další látku.
+\begin{theorem}[Podobnost matic endomorfismu v různých bázích]
+    Matice endomorfismu v různých bázích jsou podobné.
+\end{theorem}
+\begin{proof}[Matice homomorfismu v různých bázích]
+    Uvažujme vektorový prostor $\mathcal{V}$ dimenze $m$, který má dvě báze $\mathcal{B}$ a $\overline{\mathcal{B}}$,
+    a vektorový prostor $\mathcal{W}$ dimenze $n$, který má dvě báze $\mathcal{C}$ a $\overline{\mathcal{C}}$ následovně:
+    \begin{align*}
+        \mathcal{V}, \; dim\,\mathcal{V} &= m, \; \mathcal{B} = (\vec{e_1}, \ldots, \vec{e_m}),\; \overline{\mathcal{B}} = (\vec{f_1}, \ldots, \vec{f_m})\\
+        \mathcal{W}, \; dim\,\mathcal{W} &= n, \; \mathcal{C} = (\vec{g_1}, \ldots, \vec{g_m}),\; \overline{\mathcal{C}} = (\vec{h_1}, \ldots, \vec{h_m})
+    \end{align*}
+    Nechť $A$ je matice homomorfismu $\varphi: \mathcal{V} \rightarrow \mathcal{W}$ v bázích $\mathcal{B}, \mathcal{C}$
+    a $\overline{A}$ je matice homomorfismu $\varphi$ v bázích $\overline{\mathcal{B}}, \overline{\mathcal{C}}$.
+
+    Z výše uvedeného můžeme odvodit následujicí vztahy:
+    \begin{align}
+        \vec{w_{\mathcal{B}}} \cdot A & = \vec{v_{\mathcal{C}}}\\
+        \vec{w_{\overline{\mathcal{B}}}} \cdot \overline{A} & = \vec{v_{\overline{\mathcal{C}}}}\\
+        \vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) & = \vec{u_{\mathcal{B}}}\\
+        \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C}) & = \vec{v_{\mathcal{C}}}
+    \end{align}
+
+    A pomocí těchto vztahů odvodíme: 
+    \begin{align*}
+        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} 
+            &= \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\ 
+        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} 
+            &= \vec{u_{\mathcal{B}}} \cdot A \cdot M(\overline{\mathcal{C}}, \mathcal{C}) \\
+        M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} &= 
+            A \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\ 
+        \overline{A} &= 
+            M^{-1}(\overline{\mathcal{B}}, \mathcal{B}) \cdot A \cdot M(\overline{\mathcal{C}}, \mathcal{C})
+    \end{align*}
+
+    Pro $\mathcal{V} = \mathcal{W}$, tedy když $\varphi$ je endomorfismus dostaneme:
+    $$\overline{A} = M^{-1}(\overline{\mathcal{B}}, \mathcal{B}) \cdot A \cdot M(\overline{\mathcal{B}}, \mathcal{B})$$
+    A tedy matice $A$ a $\overline{A}$ jsou v takovém případě podobné.
+\end{proof}
+
+
+\subsection{Afinní prostory}
+\begin{definition}
+    Uvažujme neprázdnou množinu $\mathcal{A} \neq \emptyset$, 
+    reálný vektorový prostor $\mathcal{V}$, $dim\,\mathcal{V} = n$ a zobrazení $\varphi: \mathcal{A} 
+    \times \mathcal{A} \rightarrow \mathcal{V}$, kde $\varphi$ splňuje:
+    \begin{enumerate}[]
+        \item $\varphi(X, Z) = \varphi(X, Y) + \varphi(Y, Z) \forall X, Y, Z \in \mathcal{A}$. 
+        \item $\exists O \in \mathcal{A}$ tak, že 
+        $\varphi_{O}: \mathcal{A} \rightarrow \mathcal{V}$ definované $\varphi_O(X) = \varphi(O, X)$
+        je bijekce. % 1:14
+    \end{enumerate}
+
+    Potom trojici $(\mathcal{A}, \mathcal{V}, \varphi)$ nazveme afinní prostor.
+    Přičemž:
+    \begin{itemize}
+        \item $\mathcal{A}$ označujeme jako nosič afinního prostoru a prvky $\mathcal{A}$ se
+        nazývají body.
+        \item $\mathcal{V}$ označujeme jako zaměření afinního prostoru a jeho prvky nazýváme
+            volné vektory
+    \end{itemize}
+\end{definition}
+
+\begin{example}[Ověření afinního prostoru]
+    Mějme:
+    \begin{align*}
+        \mathcal{A} &= \mathbb{R}^n\\
+        \mathcal{V} &= \mathbb{R}^n\\
+        \varphi(X, Y) &= (y_1 - x_1, \ldots, y_n - x_n)
+    \end{align*}
+    Musíme ověřit, zda je splněno všechno co je požadováno v definici afinního prostoru.
+
+    Kontrola splnění podmínek pro $\varphi$
+    \begin{enumerate}
+        \item $\varphi(X, Y) + \varphi(Y, Z) = (z_1 - x_1, \ldots, z_n - x_n) = \varphi(X, Z)$
+        \item Stačí zvoli $O = [0, \ldots, 0]: \varphi_0(X) = \varphi(O, X) = (x_1, \ldots, x_n)$
+    \end{enumerate}
+    V bodu 2 vidíe že se jedná o bijekci, obě podmínky jsou tedy splněny. Bod $O$ v tomto případě dokonce
+    můžeme zvolit zcela libovolně a pořád se bude jednat o bijekci. Což vlastně znamená, že je v této
+    geometrii jedno kde zvolíme počátek.
+\end{example}
+
+\begin{example}[Ověření složitějšího afinního prostoru]
+    Mějme:
+    \begin{align*}
+        \mathcal{A} &= \{x_1, x_2 \in \mathbb{R}^2, \; \frac{x_1^2}{\alpha^2} - 
+        \frac{x_2^2}{\beta^2}; \; \alpha > 0, \beta > 0 \}\\
+        \mathcal{V} &= \mathbb{R}^n\\
+        \varphi(X, Y) &= (y_1 - x_1, \ldots, y_n - x_n)
+    \end{align*}
+    Jedná se o afinní prostor?
+    % 1:33
+\end{example}
