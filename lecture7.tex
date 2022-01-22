@@ -45,7 +45,7 @@
     Platnost druhé vlastnosti bychom ověřili podobným způsobem.
 
     Nyní přes $\varphi$ zobrazíme vektory báze prostoru $\mathcal{V}$ a vyjádříme tento
-    obrazk jako lineární kombinaci vektorů báze prostoru $\mathcal{W}$:
+    obraz jako lineární kombinaci vektorů báze prostoru $\mathcal{W}$:
     \begin{align*}
         \vec{w_1} & = \varphi(e_1) = (0, 1, 0, 0) =
             a_{11} \cdot (0, 0, 0, 1) + a_{12} \cdot (0, 0, -1, 0) + a_{13} \cdot (0, 1, 0, 0) + a_{14} \cdot (-1, 0, 0, 0)\\
@@ -123,7 +123,7 @@ Matici homomorfismu můžeme použít k rychlému převádění vektorů mezi b�
     na kanonickou bázi, zobrazení a nakonec převod do cílové báze.
 
     Stejný výsledek ovšem můžeme dostat pomocí matice homomorfismu, který v sobě má tohle
-    všechno v podstatě zahrnuto, stačí vektor $\vec{w_{\mathcal{B}}}$ vynázobit maticí homomorfismu:
+    všechno v podstatě zahrnuto, stačí vektor $\vec{w_{\mathcal{B}}}$ vynásobit maticí homomorfismu:
     \[
         \vec{v_{\overline{\mathcal{B}}}} =
         \begin{pmatrix}
@@ -224,7 +224,7 @@ Kde matice $A$ je matice přechodu.
 \begin{theorem}[Podobnost matic endomorfismu v různých bázích]
     Matice endomorfismu v různých bázích jsou podobné.
 \end{theorem}
-\begin{proof}[Matice homomorfismu v různých bázích]
+\begin{proof}
     Uvažujme vektorový prostor $\mathcal{V}$ dimenze $m$, který má dvě báze $\mathcal{B}$ a $\overline{\mathcal{B}}$,
     a vektorový prostor $\mathcal{W}$ dimenze $n$, který má dvě báze $\mathcal{C}$ a $\overline{\mathcal{C}}$ následovně:
     \begin{align*}
@@ -235,12 +235,12 @@ Kde matice $A$ je matice přechodu.
     a $\overline{A}$ je matice homomorfismu $\varphi$ v bázích $\overline{\mathcal{B}}, \overline{\mathcal{C}}$.
 
     Z výše uvedeného můžeme odvodit následujicí vztahy:
-    \begin{align}
+    \begin{align*}
         \vec{w_{\mathcal{B}}} \cdot A & = \vec{v_{\mathcal{C}}}\\
         \vec{w_{\overline{\mathcal{B}}}} \cdot \overline{A} & = \vec{v_{\overline{\mathcal{C}}}}\\
         \vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) & = \vec{u_{\mathcal{B}}}\\
         \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C}) & = \vec{v_{\mathcal{C}}}
-    \end{align}
+    \end{align*}
 
     A pomocí těchto vztahů odvodíme: 
     \begin{align*}
@@ -266,7 +266,7 @@ Kde matice $A$ je matice přechodu.
     reálný vektorový prostor $\mathcal{V}$, $dim\,\mathcal{V} = n$ a zobrazení $\varphi: \mathcal{A} 
     \times \mathcal{A} \rightarrow \mathcal{V}$, kde $\varphi$ splňuje:
     \begin{enumerate}[]
-        \item $\varphi(X, Z) = \varphi(X, Y) + \varphi(Y, Z) \forall X, Y, Z \in \mathcal{A}$. 
+        \item $\varphi(X, Z) = \varphi(X, Y) + \varphi(Y, Z)\,\forall X, Y, Z \in \mathcal{A}$. 
         \item $\exists O \in \mathcal{A}$ tak, že 
         $\varphi_{O}: \mathcal{A} \rightarrow \mathcal{V}$ definované $\varphi_O(X) = \varphi(O, X)$
         je bijekce. % 1:14
@@ -296,7 +296,7 @@ Kde matice $A$ je matice přechodu.
         \item $\varphi(X, Y) + \varphi(Y, Z) = (z_1 - x_1, \ldots, z_n - x_n) = \varphi(X, Z)$
         \item Stačí zvoli $O = [0, \ldots, 0]: \varphi_0(X) = \varphi(O, X) = (x_1, \ldots, x_n)$
     \end{enumerate}
-    V bodu 2 vidíe že se jedná o bijekci, obě podmínky jsou tedy splněny. Bod $O$ v tomto případě dokonce
+    V bodu 2 vidíme, že se jedná o bijekci, obě podmínky jsou tedy splněny. Bod $O$ v tomto případě dokonce
     můžeme zvolit zcela libovolně a pořád se bude jednat o bijekci. Což vlastně znamená, že je v této
     geometrii jedno kde zvolíme počátek.
 \end{example}

@@ -18,8 +18,8 @@
             \forall a,b \in F \; \forall \vec{u} \in V$
         \item $1 \cdot \vec{u} = \vec{u}, \forall \vec{u} \in \mathcal{V}$
     \end{enumerate}
-    Tedy pokud máme nějaké pole $F$, nějakou abelovskou grupu $\mathcal{V}$ a definovaný
-    skalární součin $\cdot$ s uvedenými vlastnostmi. Potom řekneme, že $\mathcal{V}$ je
+    Tedy pokud máme nějaké pole $F$, nějakou abelovskou grupu $\mathcal{V}$ a definovanou operaci
+    násobení skalárem $\cdot$ s uvedenými vlastnostmi. Potom řekneme, že $\mathcal{V}$ je
     vektorovým prostorem nad polem $F$.
 
     Prvkům $\mathcal{V}$ pak budeme říkat vektory. Prvkům $F$ často říkáme skaláry,
@@ -62,7 +62,7 @@ se dostaneme později, kdy ověření platnosti není tak jednoduché.
 
 \begin{definition}[Triviální vektorový prostor]
     Uvažujme libovolné pole $F$ a abelovskou grupu
-    $$(V, +), \mathcal{V} = \{\vec{o}\}$$
+    $$(\mathcal{V}, +), \mathcal{V} = \{\vec{o}\}$$
     Což je zároveň minimální případ grupy, protože ta z definice vždy musí
     obsahovat minimálně jeden prvek, kterým je neutrální prvek.
 
@@ -111,7 +111,7 @@ Další příklady vektorových prostorů:
     potom řekneme, že $\mathcal{W}$ je vektorovým podprostorem vektorového prostu $\mathcal{V}$.
 
     Sjednocení dvou vektorových podprostorů obecně není vektorový podprostor.
-    Průnik podprostorů je podprostor.
+    Naopak průnik podprostorů je vždy podprostor.
 \end{definition}
 
 \begin{example}[Ověření vektorového podprostoru]
@@ -170,7 +170,7 @@ $$j = 1, \ldots, n$$
         2 & \sqrt{2} & 3 & -\frac{1}{3}
         \end{pmatrix}  $$
 
-    Potom $a(2, 2) = a_{22} = \sqrt{2}$, $a(2, 4) = a_{24} = -\sqrt{1}{3}$
+    Potom $a(2, 2) = a_{22} = \sqrt{2}$, $a(2, 4) = a_{24} = -\sqrt{13}$
 \end{example}
 
 \subsection{Speciální případy matic}
@@ -182,7 +182,7 @@ pro případ matic čtvercových, ale některé se dají definovat i obecně pro
     řekneme že matice $A$ je horní trojúhelníková.
 
     Řečeno formálně, v matici musí platit:
-    $$i > j \Rightarrow a_{ij} = 0$$
+    $$i < j \Rightarrow a_{ij} = 0$$
 
     Podobně je definovaná dolní trojúhelníková matice, pouze se $i < j$ změni na $i > j$.
 \end{definition}

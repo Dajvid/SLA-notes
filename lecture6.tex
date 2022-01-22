@@ -78,7 +78,7 @@ předchozí přednášky.
             0 & 1 & 0 & 0\\
             0 & 0 & -13 & -39
         \end{pmatrix} \eqop{r_3 \cdot \frac{-1}{13}}
-        \begin{pmatrix}
+        \begin{pmatrix}[ccc|c]
             2 & 1 & -1 & 43\\
             0 & 1 & 0 & 0\\
             0 & 0 & 1 & 3
@@ -324,7 +324,7 @@ koeficienty.
     $$A = S\cdot A\cdot S^{-1}\; pro\; S=E,  \forall A$$
 
     Symetrie: Předpokládejme, že B je podobná A:
-    $$B = S\cdot A \cdot S$$
+    $$B = S\cdot A \cdot S^{-1}$$
     Potom musíme ukázat, že existuje regulární matice T taková, že:
     $$A = T \cdot B \cdot T^{-1}$$
     Pro splnění tohoto požadavku však stačí vzít $T = S^{-1}$

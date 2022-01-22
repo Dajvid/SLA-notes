@@ -42,11 +42,11 @@
         \item Vynásobením lineární kombinace z $lcM$ skalárem dostáváme lineární kombinaci z $lcM$.
     \end{enumerate}
     $lcM$ je tedy vektorový podprostor. A pro každý vektor $\vec{v} \in M$ určitě existuje
-    lineární kombinace $\vec{c}$ taková, že $\vec{v} = \vec{c}$. $lcM$ tedy určitě
+    lineární kombinace $\vec{c}$ taková, že $\vec{v} = \vec{c} \cdot lcM$ tedy určitě
     obsahuje $M$.
 
     Důkaz pro $\langle M \rangle \subseteq lcM$: plyne z toho, že $lcM$ je vektorový
-    podprostor obsahujicí $M$ a z toho, že $<M>$ je průnik všech takových vektorových
+    podprostor obsahujicí $M$ a z toho, že $\langle M \rangle$ je průnik všech takových vektorových
     podprostorů. A průnik je určitě podmnožinou.
 
     Důkaz pro $\langle M \rangle \supseteq lcM$:
@@ -56,7 +56,7 @@
     $$\vec{u_i} \in \mathcal{W}\; \forall\,\text{vektorové podprostory}\;
         \mathcal{W} \subseteq \mathcal{V}$$
     $$c_1 \cdot \vec{u_1} + \ldots + c_n \cdot \vec{u_n} \; \forall
-    \text{vektorové podprostory} \mathcal{W} \subseteq \mathcal{V}$$
+    \, \text{vektorové podprostory}\; \mathcal{W} \subseteq \mathcal{V}$$
     to znamená, že $\vec{v} \in \bigcap\limits_{i} \mathcal{W}_i$
 \end{proof}
 
@@ -73,9 +73,9 @@ o ekvivalentní definici lienárního obalu.
 \end{definition}
 
 \begin{definition}[Báze vektorového podprostoru]
-    Báze vektorového podprostoru $\mathcal{W}$ je uspořádaná n-tice $B$ lineárně
+    Báze $\mathcal{B}$ vektorového podprostoru $\mathcal{W}$ je uspořádaná n-tice lineárně
     nezávislých vektorů, které generují $\mathcal{W}$.
-    Kde \textit{generují} znamená, že $\langle B \rangle = \mathcal{W}$.
+    Kde \textit{generují} znamená, že $\langle \mathcal{B} \rangle = \mathcal{W}$.
 \end{definition}
 
 \begin{example}[Příklad báze vektorového podprostoru]
@@ -86,14 +86,14 @@ o ekvivalentní definici lienárního obalu.
         \item $(a, b, c) = a \cdot(1, 0, 0) + b \cdot (0, 1, 0) + c \cdot (0, 0, 1)$ \hfill
             $\mathcal{B}$ generuje celé $\mathcal{W}$
         \item $c_1 \cdot(1, 0, 0) + c_2 \cdot (0, 1, 0) + c_3 \cdot (0, 0, 1) = (0, 0, 0)
-            \Rightarrow c_1 = 0, c_2 =, c_3 = 0$ \hfill $\mathcal{B}$ je lineárně nezávislé
+            \Rightarrow c_1 = 0, c_2 = 0, c_3 = 0$ \hfill $\mathcal{B}$ je lineárně nezávislé
     \end{enumerate}
     A $\mathcal{B}$ je tedy báze vektorového podprostoru $\mathcal{W}$.
 \end{example}
 
 \begin{definition}[Dimenze vektorového prostoru]
     Počet prvků báze $\mathcal{B}$ budeme označovat jako dimenzi vektorového
-        prostoru $\langle B \rangle$
+        prostoru $\langle \mathcal{B} \rangle$
 \end{definition}
 
 \begin{example}[Báze vektorového prostoru matic] Uvažujme:
@@ -184,7 +184,7 @@ o ekvivalentní definici lienárního obalu.
         \text{tak, že}\, \varphi(\vec{v}) = \vec{w}\}$$
 \end{definition}
 
-\begin{theorem}[$ker\, \varphi$ a $im\, \varphi$ jsou vektorové podprostory $V$ a $W$
+\begin{theorem}[$ker\, \varphi$ a $im\, \varphi$ jsou vektorové podprostory $\mathcal{V}$ a $\mathcal{W}$
     v tomto pořadí]
 
     \begin{enumerate}
@@ -261,7 +261,7 @@ o ekvivalentní definici lienárního obalu.
 
     To, že $\varphi$ není injektivní znamená, že existují nějaké vektory $\vec{u}, \vec{v} \in
     \mathcal{V}$, pro které:
-    $$\vec{u \neq \vec{v}}, \varphi(\vec{u}) = \varphi(\vec{v})$$
+    $$\vec{u} \neq \vec{v}, \varphi(\vec{u}) = \varphi(\vec{v})$$
     potom
     $$\varphi(\vec{u} - \vec{v}) =\footnote{Tato rovnost vychází z definice homomorfismu.} \varphi(\vec{u}) - \varphi(\vec{u}) = \vec{o}$$
     Ovšem $\vec{u}$ je různé od $\vec{v}$ a tedy:
@@ -340,7 +340,6 @@ o ekvivalentní definici lienárního obalu.
 
 \begin{example}[Výpočet determinantu pro matice řádu 3]
     $$n = 3: S_3=\{(1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1)\}$$
-    $$det\,A = a_{11} \cdot a_{22} - a_{12} \cdot a_{21}$$
 
     $$det\,A = a_{11}\cdot a_{22}\cdot a_{33} +
                a_{12}\cdot a_{23}\cdot a_{31} +
