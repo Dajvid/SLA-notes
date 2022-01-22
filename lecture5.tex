@@ -259,7 +259,7 @@ pokud je zřejmá.
     \]
     Prvním krokem je zjistit, zda je $A$ vůbec regulární matice, tedy spočítat determinant $A$.
     $$|A| = 1 \cdot (-1) \cdot 4 + 3 \cdot 2 \cdot 3 - (4 \cdot 2 \cdot 2) = -2$$
-    Následně potřebujeme vyjádřit adjungovanou matici $A^+$
+    Následně potřebujeme vyjádřit adjungovanou matici $A^*$
     \[A^*=
         \begin{pmatrix}
             \begin{vmatrix}
@@ -470,7 +470,7 @@ Maximální hodnost matice označujeme jako plnou hodnost.
     \end{align*}
 
     Z upravené matice vidímě, že:
-    $$h(Q) = h(R) = 3$$
+    $$h(Q) = 3 = h(R)$$
 \end{example}
 
 \subsection{Výpočet determinantu pomocí ekvivalentních úprav}
@@ -586,7 +586,7 @@ Tuto obecnou soustavu lineárních rovnic můžeme zapsat maticově:
 \[
     \begin{pmatrix}
         a_{11} & \ldots & a_{1n} \\
-        \vdots & \vdots & \vdots\\
+        \vdots & \ddots & \vdots\\
         a_{m1} & \ldots & a_{mn}
     \end{pmatrix}
     \begin{pmatrix}
@@ -610,8 +610,7 @@ $$\vec{b} = \vec{o}$$
 Nazýváme takovou soustavu homogenní. Homogenní soustava lineárních rovnic je vždy řešitelná.
 Obecně řešení homogenní soustavy lineárních rovnic tvoří vektorový podprostor.
 
-V případě nehomogenních soustav se nejedná o vektorový podprostor, ale o affinní podprostor.
-
+A v případě nehomogenních soustav se nejedná o vektorový podprostor, ale o affinní podprostor.
 
 \subsubsection{Gaussova eliminační metoda}
 Matici soustavy\footnote{Tuto matici tvoří jednotlivé koeficienty.} $A$ a vektor absolutních členů
@@ -622,7 +621,7 @@ $\vec{b}$ zapíšeme do jedné rozšířené matice následovně:
     \end{pmatrix} =
     \begin{pmatrix}[ccc|c]
         a_{11} & \ldots & a_{1n} & b_1\\
-        \vdots & \vdots & \vdots & \vdots \\
+        \vdots & \ddots & \vdots & \vdots \\
         a_{m1} & \ldots & a_{mn} & b_m
     \end{pmatrix}
 \end{align*}
