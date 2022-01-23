@@ -201,7 +201,7 @@ Kde matice $A$ je matice přechodu.
     \end{align*}
     A vyjádříme matici přechodu dle odvozeného vztahu:
     \begin{align*}
-        M(\overline{\mathcal{B}}, \mathcal{B}) &= M(\mathcal{B}) \cdot M(\overline{\mathcal{B}})^{-1} = 
+        M(\overline{\mathcal{B}}, \mathcal{B}) &= M(\mathcal{B}) \cdot M(\overline{\mathcal{B}})^{-1} =
         \begin{pmatrix}
             3 & 1 & 2\\
             3 & 2 & 0\\
@@ -215,7 +215,7 @@ Kde matice $A$ je matice přechodu.
     \end{align*}
     Dopočítáním bychom dostali matici přechodu.
 
-    Následně pokud budeme mít nějaký vektor $\vec{u_{\mathcal{B}}}$ vyjádřený v bázi $\mathcal{B}$ a 
+    Následně pokud budeme mít nějaký vektor $\vec{u_{\mathcal{B}}}$ vyjádřený v bázi $\mathcal{B}$ a
     vynásobíme ho touto maticí přechodu dostaneme tentýž vektor v bázi $\overline{\mathcal{B}}$:
     $$\vec{u_{\mathcal{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) = \vec{u_{\overline{\mathcal{B}}}}$$
     Tato matice se často používá ke transformaci vektorů mezi různými bázemi.
@@ -242,15 +242,15 @@ Kde matice $A$ je matice přechodu.
         \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C}) & = \vec{v_{\mathcal{C}}}
     \end{align*}
 
-    A pomocí těchto vztahů odvodíme: 
+    A pomocí těchto vztahů odvodíme:
     \begin{align*}
-        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} 
-            &= \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\ 
-        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} 
+        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A}
+            &= \vec{v_{\mathcal{C}}} \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\
+        \vec{u_{\overline{B}}} \cdot M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A}
             &= \vec{u_{\mathcal{B}}} \cdot A \cdot M(\overline{\mathcal{C}}, \mathcal{C}) \\
-        M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} &= 
-            A \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\ 
-        \overline{A} &= 
+        M(\overline{\mathcal{B}}, \mathcal{B}) \cdot \overline{A} &=
+            A \cdot M(\overline{\mathcal{C}}, \mathcal{C})\\
+        \overline{A} &=
             M^{-1}(\overline{\mathcal{B}}, \mathcal{B}) \cdot A \cdot M(\overline{\mathcal{C}}, \mathcal{C})
     \end{align*}
 
@@ -260,14 +260,31 @@ Kde matice $A$ je matice přechodu.
 \end{proof}
 
 
+%7. přednáška 01:45 úplně out of nowhere
+Matice přechodu $M(\overline{\mathcal{B}}, \mathcal{B})$ je vždy regulární,
+tedy:
+$$det M(\overline{\mathcal{B}}, \mathcal{B}) \neq 0$$
+Můžeme tedy zavést následujicí relaci
+$$\mathcal{B} \sim \overline{\mathcal{B}}\; \text{pokud}\; det M(\overline{\mathcal{B}}, \mathcal{B}) > 0$$
+Takto definovaná relace $\sim$ je relací ekvivalence, která rozdělí množinu bází na dvě třídy
+ekvivalence a to na souhlasně orientované báze a opačně orientované báze. To, zda jsou báze souhlasně, nebo
+opačně orientované pak může prakticky ovlivnit například znaménko determinantu (který vyjadřuje obsah).
+Orientovaný vektorový prostor je pak vektorový prostor, ve kterém je určena jedna z těchto dvou tříd bází.
+
+
 \subsection{Afinní prostory}
+V případě Afinních a později i Euklidovských prostoru se budeme omezovat na reálné pole
+z jistých důvodů, které později uvidíme. I když by se to dalo nějakým způsobem rozšířit,
+zůstaneme omezeni na reálné pole s upozorněním na situace, kde by se to dalo rozšířit.
+
 \begin{definition}
-    Uvažujme neprázdnou množinu $\mathcal{A} \neq \emptyset$, 
-    reálný vektorový prostor $\mathcal{V}$, $dim\,\mathcal{V} = n$ a zobrazení $\varphi: \mathcal{A} 
+    Uvažujme neprázdnou množinu $\mathcal{A} \neq \emptyset$,
+    reálný vektorový prostor $\mathcal{V}$, $dim\,\mathcal{V} = n$ a zobrazení $\varphi: \mathcal{A}
     \times \mathcal{A} \rightarrow \mathcal{V}$, kde $\varphi$ splňuje:
     \begin{enumerate}[]
-        \item $\varphi(X, Z) = \varphi(X, Y) + \varphi(Y, Z)\,\forall X, Y, Z \in \mathcal{A}$. 
-        \item $\exists O \in \mathcal{A}$ tak, že 
+        \item $\varphi(X, Z) = \varphi(X, Y) + \varphi(Y, Z)\,\forall X, Y, Z \in \mathcal{A}$.
+        \hfill Respektuje sčítání vektorů
+        \item $\exists O \in \mathcal{A}$ tak, že
         $\varphi_{O}: \mathcal{A} \rightarrow \mathcal{V}$ definované $\varphi_O(X) = \varphi(O, X)$
         je bijekce. % 1:14
     \end{enumerate}
@@ -278,15 +295,15 @@ Kde matice $A$ je matice přechodu.
         \item $\mathcal{A}$ označujeme jako nosič afinního prostoru a prvky $\mathcal{A}$ se
         nazývají body.
         \item $\mathcal{V}$ označujeme jako zaměření afinního prostoru a jeho prvky nazýváme
-            volné vektory
+            (volné) vektory
     \end{itemize}
 \end{definition}
 
 \begin{example}[Ověření afinního prostoru]
     Mějme:
     \begin{align*}
-        \mathcal{A} &= \mathbb{R}^n\\
-        \mathcal{V} &= \mathbb{R}^n\\
+        \mathcal{A} &= \mathbb{R}^n\; \text{(pouze kartézská mocnina)}\\
+        \mathcal{V} &= \mathbb{R}^n\; \text{(vektorový prostor, včetně potřebných operací)}\\
         \varphi(X, Y) &= (y_1 - x_1, \ldots, y_n - x_n)
     \end{align*}
     Musíme ověřit, zda je splněno všechno co je požadováno v definici afinního prostoru.
@@ -294,7 +311,7 @@ Kde matice $A$ je matice přechodu.
     Kontrola splnění podmínek pro $\varphi$
     \begin{enumerate}
         \item $\varphi(X, Y) + \varphi(Y, Z) = (z_1 - x_1, \ldots, z_n - x_n) = \varphi(X, Z)$
-        \item Stačí zvoli $O = [0, \ldots, 0]: \varphi_0(X) = \varphi(O, X) = (x_1, \ldots, x_n)$
+        \item Stačí zvoli $O = [0, \ldots, 0]: \varphi_0(X) = \varphi(O, X) = (x_1, \ldots, x_n)$ a tedy: $\varphi_O :[x_1, \ldots, x_n] \rightarrow (x_1, \ldots, x_n)$
     \end{enumerate}
     V bodu 2 vidíme, že se jedná o bijekci, obě podmínky jsou tedy splněny. Bod $O$ v tomto případě dokonce
     můžeme zvolit zcela libovolně a pořád se bude jednat o bijekci. Což vlastně znamená, že je v této
@@ -304,11 +321,103 @@ Kde matice $A$ je matice přechodu.
 \begin{example}[Ověření složitějšího afinního prostoru]
     Mějme:
     \begin{align*}
-        \mathcal{A} &= \{x_1, x_2 \in \mathbb{R}^2, \; \frac{x_1^2}{\alpha^2} - 
-        \frac{x_2^2}{\beta^2}; \; \alpha > 0, \beta > 0 \}\\
-        \mathcal{V} &= \mathbb{R}^n\\
-        \varphi(X, Y) &= (y_1 - x_1, \ldots, y_n - x_n)
+        \mathcal{A} &= \{[x_1, x_2] \in \mathbb{R}^2, \; \frac{x_1^2}{\alpha^2} -
+        \frac{x_2^2}{\beta^2} = 1; \; \alpha > 0, \beta > 0 \}\\
+        \mathcal{V} &= \mathbb{R}\\
+        \varphi(X, Y) &= x_2 - y_2
     \end{align*}
     Jedná se o afinní prostor?
-    % 1:33
+
+
+    Je nutné ověřit platnost podmínek z definice affinního prostoru.
+
+    $\mathcal{A}$ je zjevně neprázdná množina, např. $[\alpha, 0] \in \mathcal{A}$.
+    Navíc se jedná o rovnici hyperboly.
+    Kontrola splnění podmínek pro $\varphi$
+    \begin{enumerate}
+        \item První podmínka zjevně platí.
+        \item Druhou podmínku nelze v tomto případě splnit.
+    \end{enumerate}
+    Druhá podmínka nelze splnit protože vezmeme li libovolný bod $O = [o_1, o_2]$,
+    potom můžeme vzít dva různé body $X = [a, x_2],\, \overline{X} = [b, x_2]$ ležící
+    na různých větvích hyperboly ve stejné výšce a dostaneme dva vzory, které se zobrazí
+    na jeden obraz následovně:
+    \begin{align*}
+        \varphi_O(X) &= x_n - o_2\\
+        \varphi_O(\overline{X}) &= x_n - o_2
+    \end{align*}
+    A nemůže se tedy jednat o bijekci, druhá podmínka tedy není splněna a
+    nejedná se o afinní prostor.
 \end{example}
+
+\begin{definition}[Repér afinního prostoru]
+    Uvažujme nosič afinního prostoru $\mathcal{A}$ se zvoleným počátkem $O$ a zaměření
+    afinního prostoru $\mathcal{V}$ na bázi $\mathcal{B} = (\vec{u_1},
+    \ldots, \vec{u_n})$.
+    Potom můžeme uvažovat následujicí $(n + 1)$-tici:
+    $$\langle O; \vec{u_1}, \ldots, \vec{u_n} \rangle$$
+    Kterou nazveme repár afinního prostoru.
+
+    Repér tedy vyjadřuje počátek a bázové vektory afinního prostoru.
+
+    Změna repéru obecně obsahuje dva kroky:
+    \begin{enumerate}
+        \item Změnu báze vektorového prostoru (např. pomocí matice přechodu).
+        \item Posunutí počátku (přidání nějakého vektoru).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Dimenze afinního prostoru]
+    Uvažujme afinní prostor $(\mathcal{A}, \mathcal{V}, \varphi)$ dimenze afinního
+    prostoru je dimenze jeho zaměření.
+    $$dim (\mathcal{A}, \mathcal{V}, \varphi) = dim \mathcal{V}$$
+\end{definition}
+
+\begin{definition}[Vnitřní součin]
+    Uvažujme reálný vektorový prostor $\mathcal{V}$, potom je vnitřní součin $\pi$ defiován následovně:
+    $$\pi: \mathcal{V} \times \mathcal{V} \rightarrow \mathbb{R}$$
+    A musí splňovat následujicí podmínky:
+    \begin{enumerate}
+        \item $\pi(\vec{u} + \vec{v}, \vec{w}) = \pi(\vec{u}, \vec{v}) + \pi(\vec{v}, \vec{w})\;
+        \forall \vec{u}, \vec{v}, \vec{w} \in \mathcal{V}$ \hfill Aditivita v první složce
+
+        \item $\pi(c \cdot \vec{u}, \vec{v}) = c \cdot \pi(\vec{u}, \vec{v})\; \forall c\in \mathbb{R},
+        \forall \vec{u}, \vec{v} \in \mathcal{V}$ \hfill Homogenita v první složce
+
+        \item $\pi(\vec{u}, \vec{v}) = \pi(\vec{v}, \vec{u})\;
+        \forall \vec{u}, \vec{v} \in \mathcal{V}$ \hfill Symetrie
+
+        \item $\pi(\vec{u}, \vec{u}) \geq 0\;\text{a pokud}\; \pi(\vec{u}, \vec{u}) = 0 \Rightarrow \vec{u} = \vec{o}$
+    \end{enumerate}
+    První dvě podmínky dohromady se nazívají linearita, linearita je tedy aditivita + homogenita. Nutnost platnosti
+    symetrie nám také implikuje nutnost platnosti aditivity a homogenity i v druhé složce.
+
+    Pokud jsou všechny tyto podmínky splněny, řekneme že $\pi$ je vnitřní součin\footnote{Často se také říká
+    skalární součin, případně dot product a místo $\pi(\vec{u}, \vec{v})$ pak používáme
+    značení $\vec{u} \dot \vec{v}$} na $\mathcal{V}$.
+\end{definition}
+
+Nejčastěji je vnitřní součin definován následovně:
+$$\pi(\vec{u}, \vec{v}) = \sum_{i=1}^n u_i \cdot v_i = u_1 \cdot v_1 + \ldots + u_n \cdot v_n$$
+%2:03 velmi rychle ukázal že to splňuje všechny požadavky z předchozí definice
+
+Ale můžeme ho zavést i jinak, například nad $\mathbb{R}^2$ takto:
+$$\pi_{new}(\vec{u}, \vec{v}) = 3\cdot u_1 \cdot v_1 - u_1 \cdot v_2 - u_2 \cdot v_2 + 2 \cdot u_2 \cdot v_2$$
+Důležité je splnění vlastností požadovaných z definice (které jsou v tomto případě splněny).
+
+Nejobvyklejší vnitřní součin tedy není jediný a můžeme ho zavést i nějak jinak. V případě že ho zavedeme jinak,
+tak to má ovšem nějaké konsekvence, protože o vnitřní součin se opírá velikost vektorů, úhly mezi vektory a
+vlastně celá geometrie. Běžný vnitřní součin vede na základní \uv{plochou} geometrii, které bude probírána
+dále.
+
+\begin{definition}[Euklidovský prostor]
+    Afinní prostor, na kterém je definovaný vnitřní součin nazveme Euklidovský prostor.
+\end{definition}
+
+\begin{definition}[Norma vektoru indukovaná vnitřním součinem]
+    $$||\vec{u}|| = \sqrt{\pi(\vec{u}, \vec{u})}$$
+\end{definition}
+
+\begin{definition}[Metrika indukovaná vnitřním součinem]
+    $$d(X, Y) = ||\varphi(X, Y)||$$
+\end{definition}
