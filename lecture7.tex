@@ -356,7 +356,7 @@ zůstaneme omezeni na reálné pole s upozorněním na situace, kde by se to dal
     \ldots, \vec{u_n})$.
     Potom můžeme uvažovat následujicí $(n + 1)$-tici:
     $$\langle O; \vec{u_1}, \ldots, \vec{u_n} \rangle$$
-    Kterou nazveme repár afinního prostoru.
+    Kterou nazveme repér afinního prostoru.
 
     Repér tedy vyjadřuje počátek a bázové vektory afinního prostoru.
 
@@ -366,6 +366,30 @@ zůstaneme omezeni na reálné pole s upozorněním na situace, kde by se to dal
         \item Posunutí počátku (přidání nějakého vektoru).
     \end{enumerate}
 \end{definition}
+
+\begin{definition}[Polohový vektor (radius vektor)]
+Polohový vektor bodu $x$ budeme značit $\vec{r}_x$
+\end{definition}
+
+\begin{example}[Změna repéru]
+    Uvažjumě bod $X$ vyjádřený v reperu $\mathcal{R}$ s počátkem $O$ a bází $\mathcal{B}$:
+    \begin{align*}
+        X &= [1, 1, 1]_\mathcal{R}\\
+        \mathcal{R} &: O = [1, 2, 3],\; \vec{u_1} = (1, 1, 1),\; \vec{u_2} = (1,1,0),\;\vec{u_3} = (1, 0, 0)\\
+    \end{align*}
+    Vyjádřete bod $X$ v repéru $\overline{\mathcal{R}}$ s počátkem $O_1$ a bází $\overline{\mathcal{B}}$:
+    $$\overline{\mathcal{R}} : O = [3, 2, 1],\; \vec{u_1} = (1, 2, 3),\; \vec{u_2} = (0,2,3),\;\vec{u_3} = (0, 3, 2)$$
+
+    Báze $\mathcal{B}$ repéru $\mathcal{R}$ je zřejmě báze (má správnou hodnost). U báze $\overline{\mathcal{B}}$ repéru
+    $\overline{\mathcal{R}}$ to není tak zřejmé na první pohled, ale také se jedná o korektní bázi, hodnost můžeme snadno
+    ověřit úpravou na trojuhelníkový tvar.
+
+    Bod x můžeme poté v repéru $\overline{\mathcal{R}}$ vyjádřit následovně:
+    \begin{align*}
+        \vec{r}_{x_{\overline{\mathcal{R}}}} = \vec{r}_{x_{\mathcal{R}}} \cdot
+            M(\overline{\mathcal{B}}, \mathcal{B}) + \vec{r}_{O_{\overline{\mathcal{R}}}}
+    \end{align*}
+\end{example}
 
 \begin{definition}[Dimenze afinního prostoru]
     Uvažujme afinní prostor $(\mathcal{A}, \mathcal{V}, \varphi)$ dimenze afinního

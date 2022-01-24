@@ -1,0 +1,370 @@
+\section{Osmá přednáška}
+\subsection{Aplikace vnitřního součinu}
+
+\begin{theorem}[Schwarzova nerovnost]
+    $$\vec{u} \cdot \vec{v} \leq ||\vec{u}|| \cdot ||\vec{v}||$$
+\end{theorem}
+\begin{proof}
+    Předpokládejme, že $\vec{u} = \vec{v}$, potom:
+    \begin{align*}
+        LS&: |\vec{u} \cdot \vec{u}|\\
+        PS&: \sqrt{\vec{u} \cdot \vec{u}} \cdot \sqrt{\vec{u} \cdot \vec{u}}
+            = \sqrt{(\vec{u} \cdot \vec{u})^2}\\
+        LS &= PS
+    \end{align*}
+
+    Nyní předpokládejme, že $\vec{u} \neq \vec{v}$, potom:
+    \begin{align*}
+        (t \vec{u} + \vec{v})^2 &\leq 0\; \forall t \in \mathbb{R}\, \text{tzn. i pro }\,
+            t= \frac{-\vec{u} \cdot \vec{v}}{\vec{u}^2}\\
+    \end{align*}
+    Dosadíme $t$ a upravíme:
+    \begin{align*}
+        (\frac{-\vec{u} \cdot \vec{v}}{\vec{u}^2} \vec{u} + \vec{v})^2 &\geq 0\\
+        (\frac{-\vec{u} \cdot \vec{v}}{\vec{u}^2} \vec{u} + \vec{v})
+            (\frac{-\vec{u} \cdot \vec{v}}{\vec{u}^2} \vec{u} + \vec{v}) &\geq 0\\
+        \frac{\vec{u}^2 \vec{v}^2}{\vec{u}^4} \vec{u}^2 - 2\frac{\vec{u}\vec{v}}{\vec{u}^2} +
+            \vec{v}^2 &\geq 0\\
+        \vec{u}^2\vec{v}^2 - 2\vec{u}\cdot \vec{v}\vec{u} \cdot \vec{v} + \vec{u}^2\vec{v}^2 &\geq 0\\
+        \vec{u}^2\vec{v}^2 &\geq (\vec{u} \vec{v})^2\\
+        ||\vec{u}|| \cdot ||\vec{v}|| &\geq |\vec{u} \cdot \vec{v}|
+    \end{align*}
+    %0:25
+\end{proof}
+
+Když nyní vezmeme následujicí výraz:
+$$\frac{|\vec{u} \cdot \vec{v}|}
+{||\vec{u}|| \cdot||\vec{v}||}$$
+
+Budeme předpokládat, že $\vec{u}$ a $\vec{v}$ jsou nenulové
+vektory, potom díky Schwarzově nerovnosti můžeme vyvodit
+následujicí ohraničení:
+$$0 \leq \frac{|\vec{u} \cdot \vec{v}|}
+{||\vec{u}|| \cdot||\vec{v}||} \leq 1$$
+A když odstraníme absolutní hodnotu v čitateli:
+$$-1 \leq \frac{\vec{u} \cdot \vec{v}}
+{||\vec{u}|| \cdot||\vec{v}||} \leq 1$$
+
+Když si uvědomíme, jak vypadá funkce $cosinus$ na
+intervalu $\langle0, \pi \rangle$, která je na tomto
+intervalu monotonní. Tak dostaneme jednoznačně dané $\varphi \in \langle 0,
+\pi \rangle$ takto:
+
+$$cos \varphi = \frac{\vec{u} \cdot
+\vec{u}}{||\vec{u}|| \cdot ||\vec{v}||}$$
+
+Toto $\varphi$ pak nazveme odchylka vektorů $\vec{u}$ a $\vec{v}$.
+
+\subsection{Gram-Schmidtův ortogonalizační proces}
+
+\begin{definition}[Ortogonální báze]
+    Uvažujme bázi $\mathcal{B}$ v případě, že jsou všechny vektory této
+    báze navzájem ortogonální, tedy jejich odchylka je $\varphi = \frac{\pi}{2}$,
+    potom takovou bázi nazveme ortogonální.
+\end{definition}
+
+\begin{definition}[Ortonormální báze]
+    Je li báze $\mathcal{B}$ ortogonální a k tomu jsou všechny
+    její vektory jednotkové, nazveme tuto bází ortonormální.
+\end{definition}
+
+Nyní budeme řešit úlohu, jak nějakou libovolnou bázi ortogonalizovat,
+případně i ortonormalizovat. Tento proces se jmenuje Gramschmituv proces.
+
+Předpokládejme, že máme nějaký vektorový prostor $\mathcal{V}$ a jeho bázové
+vektory $\vec{v_1}, \ldots, \vec{v_n}$
+Nyní hledáme ortogonální bázi $\vec{u_1}, \ldots, \vec{u_n}$.
+První vektor můžeme vzít stejný jako z původní báze:
+$$\vec{u_1} = \vec{v_1}$$
+Další vektor potřebujeme vhodně \uv{naklonit}, aby byl ortogonální
+k $\vec{u_1}$ a můžeme ho vyjádřit takto:
+\begin{align*}
+    \vec{u_2} &= \vec{v_2} - c \cdot \vec{u_1}\\
+    \vec{u_1} \cdot \vec{u_2} &= 0
+\end{align*}
+Dosadíme $u_2$ z první rovnice do druhé a vyjádříme $c$:
+\begin{align*}
+    \vec{u_1} \cdot (\vec{v_2} - c \cdot \vec{u_1}) &= 0\\
+    \vec{u_1} \cdot \vec{v_2} - \vec{u_1} \cdot c \cdot \vec{u_1} &= 0\\
+    c &= \frac{-\vec{u_1} \cdot \vec{v_2}}{\vec{u_1}\cdot \vec{u_1}}
+\end{align*}
+A druhý  $\vec{v_2}$ nové báze tedy určíme jako
+$$\vec{u_2} = \vec{v_2} - \frac{-\vec{u_1} \cdot \vec{v_2}}{\vec{u_1}\cdot
+    \vec{u_1}} \cdot \vec{u_1}$$
+Stejným způsobem bychom pokračovali dále a $\vec{u_3}$ stejným způsobem vyjádřili
+jako
+$$\vec{u_3} = \vec{v_3} - \frac{\vec{u_1}\cdot \vec{v_3}}{\vec{u_1} \cdot \vec{u_1}}\cdot
+    \vec{u_1} - \frac{\vec{u_2}\cdot \vec{v_3}}{\vec{u_2} \cdot \vec{u_2}}\cdot \vec{u_2}$$
+
+Tímto způsobem můžeme tedy nalézt ortogonální bázi, pokud potřebujeme bázi ortonormální, tak
+stačí najít ortogonální bázi a znormalizovat všechny její vektory takto:
+$$\vec{w_i} = \frac{\vec{u_i}}{||\vec{u_i}||}$$
+
+\begin{example}[Využití Gram-Schmidtova procesu k ortogonalizaci a ortonormalizaci báze]
+    Uvažujme vektorový prostor $\mathcal{V} = \mathbb{R}^5$ a
+    množinu vektorů $\mathcal{W}$:
+    $$\mathcal{W} = \{ (\vec{v_1}, \vec{v_2}, \vec{v_3}, \vec{v_4}, \vec{v_5});
+        \vec{v_1} + \vec{v_3} = \vec{v_2},\; \vec{v_3} + \vec{v_5} = 2 \cdot
+        \vec{v_4}\}$$
+    \begin{enumerate}
+        \item Ukažte, že $\mathcal{W}$ je vektorový podprostor vektorového prostoru
+        $\mathcal{V}$ a najděte nějakou jeho bázi.
+        \item Bázi pomocí G-S procesu ortogonalizujte a následně ortonormalizujte.
+    \end{enumerate}
+
+    $\mathcal{W}$ můžeme o něco jasněji vyjádřit takto:
+    $$\mathcal{W} = \{(a, a + b, b, c, 2 \cdot c - b);\, a, b, c
+    \in \mathbb{R}\}$$
+    K ověření že se jedná o vektorový podprosto by bylo nutné ověřit podmínky z definice
+    vektorového podprostoru. Ty tady zjevně platí.
+    A bázi $\mathcal{W}$ můžeme zvolit následovně:
+    $$\mathcal{B} = \{
+        \vec{v_1} = (1, 1, 0, 0, 0),\,
+        \vec{v_2} = (0, 0, 0, 1, 2),\,
+        \vec{v_3} = (0, 1, 1, 0, -1)
+    \}$$
+    Určitě se jedná o bázi, protože $\vec{v_1}$ vlastně vyjadřuje složku
+    $a$, $\vec{v_3}$ vyjadřuje složku $b$, a $\vec{v_2}$ vyjadřuje složku $c$.
+
+    Můžeme si všimnout, že vektory $\vec{v_1}$ a $\vec{v_2}$ už jsou ortogonální:
+    $$\vec{v_1} \cdot \vec{v_2} = 0$$
+    Proto ho můžeme také rovnou využít a zjednodušit si práci.
+    \begin{align*}
+        \vec{u_1} &= \vec{v_1} = (1, 1, 0, 0, 0)\\
+        \vec{u_2} &= \vec{v_2} = (0, 0, 0, 1, 2)\\
+    \end{align*}
+    A pomocí těchto $\vec{u_1}$ a $\vec{u_2}$ vyjádříme k nim ortogonální $\vec{u_3}$:
+    \begin{align*}
+        \vec{u_3} &= \vec{v_3} - \frac{\vec{u_1}\cdot \vec{v_3}}{\vec{u_1} \cdot \vec{u_1}}\cdot
+        \vec{u_1} - \frac{\vec{u_2}\cdot \vec{v_3}}{\vec{u_2} \cdot \vec{u_2}}\cdot \vec{u_2}\\
+        \vec{u_3} &= (0, 1, 1, 0, -1) - \frac{1}{2} \cdot (1, 1, 0, 0, 0) - \frac{-2}{5}\cdot (0, 0, 0, 1, 2)\\
+        \vec{u_3} &= (0, 1, 1, 0, -1) - (\frac{1}{2}, \frac{1}{2}, 0, 0, 0) - (0, 0, 0, \frac{-2}{5}, \frac{-4}{5})\\
+        \vec{u_3} &= (\frac{-1}{2}, \frac{1}{2}, 1, \frac{2}{5}, \frac{-1}{5})
+    \end{align*}
+
+    Ortogonální bázi $\mathcal{B}_{ortg}$ vektorového podprostoru
+    $\mathcal{W}$ můžeme tedy vyjádřit jako:
+    $$\mathcal{B}_{ortg} = \{
+        \vec{u_1} = (1, 1, 0, 0, 0),\,
+        \vec{u_2} = (0, 0, 0, 1, 2),\,
+        \vec{v_3} = (\frac{-1}{2}, \frac{1}{2}, 1, \frac{2}{5}, \frac{-1}{5})
+    \}$$
+    A následně můžeme bázi $\mathcal{B}_{ortg}$ normalizovat a dostat ortonormální
+    bázi $\mathcal{B}_{ortn} = \{\vec{w_1}, \vec{w_2}, \vec{w_3}\}$:
+    \begin{align*}
+        \vec{w_1} &= \vec{u_1} \cdot \frac{1}{||\vec{u_1}||} = (1, 1, 0, 0, 0) \cdot \frac{1}{\sqrt{2}} =
+            (\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0, 0)\\
+        \vec{w_2} &= \vec{u_2} \cdot \frac{1}{||\vec{u_2}||} = (0, 0, 0, 1, 2) \cdot \frac{1}{\sqrt{5}} =
+            (0, 0, 0, \frac{1}{\sqrt{5}}, \frac{2}{\sqrt{5}})\\
+        \vec{w_3} &= \vec{u_3} \cdot \frac{1}{||\vec{u_3}||} = (\frac{-1}{2},
+        \frac{1}{2}, 1, \frac{2}{5}, \frac{-1}{5}) \cdot \frac{1}{\sqrt{\frac{17}{10}}} =
+        (\frac{-1}{2 \cdot \sqrt{\frac{17}{10}}}, \frac{1}{{2 \cdot \sqrt{\frac{17}{10}}}},
+        \frac{1}{\sqrt{\frac{17}{10}}}, \frac{2}{5 \cdot {\sqrt{\frac{17}{10}}}}, \frac{-1}{5 \cdot {\sqrt{\frac{17}{10}}}}) \\
+    \end{align*}
+\end{example}
+
+
+\begin{example}[Využití Gram-Schmidtova procesu k ortogonalizaci báze]
+    Uvažujme vektorový prostor $\mathcal{V} = \mathbb{R}^6$ a podprostor
+    $\mathcal{W}$ definovaný následovně:
+    $$\mathcal{W} = \{(\vec{v_1}, \vec{v_2}, \vec{v_3}, \vec{v_4}, \vec{v_5}, \vec{v_6});\;
+    \vec{v_1} + \vec{v_2} + \vec{v_3} = \vec{v_4} + \vec{v_5},\,
+    \vec{v_1} + \vec{v_3} + \vec{v_4} = 2\cdot \vec{v_2} + \vec{v_5},\,
+    3\cdot \vec{v_1} - \vec{v_4} = 3\cdot \vec{v_2} - \vec{v_5}\}$$
+
+    \begin{enumerate}
+        \item Ukažte, že $\mathcal{W}$ je vektorový podprostor vektorového prostoru
+        $\mathcal{V}$ a najděte nějakou jeho bázi.
+        \item Bázi pomocí G-S procesu ortogonalizujte.
+    \end{enumerate}
+
+    Upravami lineárních rovnic vyjádříme vztahy ve vhodnějším tvaru:
+    \begin{align*}
+        \vec{v_4} &= \frac{3}{2} \vec{v_2}\\
+        \vec{v_3} &= -4 \vec{v_1} + 5 \vec{v_2} \\
+        \vec{v_5} &= -3 \vec{v_1} + \frac{9}{2} \vec{v_2}
+    \end{align*}
+    A z nich můžeme vytvořit vhodnější předpis vektorového podprostoru $\mathcal{W}$:
+    \begin{align*}
+        \mathcal{W} &= \{(b, a,-4b + 5a , \frac{3a}{2}, -3b + \frac{9a}{2}, c)\}
+    \end{align*}
+    Z toho můžeme odvodit bází $\mathcal{B}$:
+    \begin{align*}
+        \mathcal{B} = \{\vec{v_2} = (1, 0, -4, 0, -3, 0),\, \vec{v_3} = (0, 2, 10, 3, 9, 0),\, \vec{v_1} = (0, 0, 0, 0, 0, 1)\}
+    \end{align*}
+
+    Vydíme že poslední vektor je kolmý s prvním i druhým. Prvná dva mezi sebou však kolmé nejsou.
+    \begin{align*}
+        \vec{u_1} & = \vec{v_1}\\
+        \vec{u_2} &= \vec{v_2}\\
+        \vec{u_3} &= \vec{v_3} - \frac{\vec{v_3} \cdot \vec{u_1}}{\vec{u_1}
+        \cdot \vec{u_1}} \cdot \vec{u_1} - \frac{\vec{v_3} \cdot \vec{u_2}}{\vec{u_2}
+        \cdot \vec{u_2}} \vec{u_2} = (0, 2, 10, 3, 9, 0) + \frac{67}{26} \cdot (1, 0, -4, 0, -3, 0)\\
+    \end{align*}
+\end{example}
+% 1:25 výpočet křivky které bude odrážet paprsky do jednoho bodu
+
+Jako další příklad aplikace vnitřního součinu můžeme uvést definici roviny pomocí
+proměnného polohového vektoru $\vec{r} = (x, y, z)$ a pevného normálového vektoru
+$\vec{n} = (a, b, c)$ takto:
+$$\vec{r} \cdot \vec{n} = d$$
+
+\subsection{Další druhy součinu}
+\begin{definition}[Vnější součin]
+    Vnější součin $n$ vektorů $\vec{u_1} \ldots \vec{u_n}$ budeme značit jako
+    $[\vec{u_1}, \ldots, \vec{u_n}]$ a definujeme ho takto:
+    \[
+        [\vec{u_1}, \ldots, \vec{u_n}] =
+        \begin{vmatrix}
+            u_{11} & \ldots & u_{1n}\\
+            \vdots & \ddots & \vdots\\
+            u_{n1} & \ldots & u_{nn}\\
+        \end{vmatrix}
+    \]
+
+    Operace vnějšího součinu má aplikaci ve výpočtu n-rozměrného objemu. V případě
+    že nejsou vektory souhlasně orientované s vektory báze, výjde záporný.
+
+    Jedná se o zobrazení $\mathcal{V} \times \ldots \times \mathcal{V} \rightarrow F$
+\end{definition}
+
+\begin{definition}[Vektorový součin]
+    Vektorový součin je $(n-1)$-arní operace $\mathcal{V} \times \ldots \times \mathcal{V}
+    \rightarrow \mathcal{V}$ definovaná takto:
+
+    \[
+      \vec{u_1} \times \ldots \times \vec{u_n} =
+      \begin{vmatrix}
+        v_{11} & \ldots & v_{1n} \\
+        \vdots & \ddots & \vdots \\
+        v_{(n-1)1} & \ldots & v_{(n-1)n} \\
+        \vec{e_1} & \ldots & \vec{e_n}
+      \end{vmatrix}
+    \]
+    kde vektory $\vec{e_1}, \ldots, \vec{e_n}$ jsou vektory kanonické báze $F^n$.
+\end{definition}
+
+%příklad s rotujicím tělesem na aplikaci vektorového součinu 1:45
+
+\subsection{Geometrie}
+Budeme pracovat v prostoru $E_2$, respektive $E_3$, což je afinní prostory
+s vektorovým prostorem $\mathbb{R}^2$ respektive $\mathbb{R}^3$ a nosičem
+$\mathbb{R}^2$ respektive $\mathbb{R}^3$ a vnitřním součinem
+$\pi(\vec{u}, \vec{v}) = \sum_{i=1}^n u_i \cdot v_i$
+
+V prostoru $E_2$ lze uvažovat tyto afinní podprostory:
+\begin{itemize}
+    \item bod
+    \item přímka
+\end{itemize}
+
+V prostoru $E_3$ lze uvažovat tyto afinní podprostory:
+\begin{itemize}
+    \item bod
+    \item přímka
+    \item rovina
+\end{itemize}
+
+\begin{definition}[Přímka v $E_3$]
+    Přímka v $E_3$ je množina bodů, kterou můžeme parametricky vyjádřit jako:
+    $$X = A + t\cdot \vec{u}$$
+    Nebo v rozepsaném tvaru:
+    \begin{align*}
+        x &= a_1 + t \cdot u_1\\
+        y &= a_2 + t \cdot u_2\\
+        z &= a_3 + t \cdot u_3
+    \end{align*}
+    Vyloučením parametru $t$ dostaneme dvě obecné rovnice přímky.
+\end{definition}
+
+\begin{example}[Vyjádření přímky v obecném tvaru z bodu a vektoru]
+    \begin{align*}
+        A &= [0, 1, 0]\\
+        \vec{u} &= (1, 1, 2)
+    \end{align*}
+
+    \begin{align*}
+        x &= 0 + t\\
+        y &= 1 + t\\
+        z &= 0 + 2t
+    \end{align*}
+
+    Vyloučíme parametr $t$:
+    \begin{align*}
+        x -y + 1&= 0\\
+        2x -z &=0
+    \end{align*}
+\end{example}
+
+\begin{definition}[Rovina v $E_3$]
+    Rovina v $E_2$ je množina bodů, kterou můžeme parametricky vyjádřit jako:
+    $$A + t\cdot \vec{u} + s \cdot \vec{v}$$
+    Nebo v rozepsaném tvaru:
+    \begin{align*}
+        x &= a_1 + t\cdot u_1 + s \cdot v_1\\
+        y &= a_2 + t\cdot u_2 + s \cdot v_2\\
+        z &= a_3 + t\cdot u_3 + s \cdot v_3\\
+    \end{align*}
+    Vyloučením parametrů $t$ a $s$ dostaneme jednu obecnou rovnici roviny.
+\end{definition}
+
+\begin{example}[Vyjádření roviny ze tří bodů]
+    \begin{align*}
+        A &= [3, 5, 3]\\
+        B &= [-2, 1, -1]\\
+        C &= [7, 6, 4]
+    \end{align*}
+    Z bodů vytvoříme dva vektory:
+    \begin{align*}
+        \vec{AB} = [-5, -4, -4] = \vec{u}\\
+        \vec{AC} = [4, 1, 1] = \vec{v}
+    \end{align*}
+    Vidíme že jsou nezávislé a můžeme z nich vytvořit parametrické rovnice roviny.
+    \begin{align*}
+        x &= 3 - 5 \cdot t + 4\cdot s\\
+        y &= 5 - 4 \cdot t + s\\
+        z &= 3 - 4 \cdot t + s\\
+    \end{align*}
+    Vyloučíme parametr odečtením druhé a třetí rovnice:
+    $$y - z = 2$$
+\end{example}
+
+\subsubsection{Vzájemné polohy dvou přímek}
+V prostoru $E_3$ važujme přímku $p$ definovanou bodem $A$ a vektorem $\vec{u}$. A
+přímku $q$ definovanou bodem $B$ a vektorem $\vec{v}$:
+\begin{align*}
+    p&: \;\; A,\,\vec{u}\\
+    q&: \;\; B,\,\vec{v}\\
+\end{align*}
+
+Sestrojíme matice $K$ a $L$:
+\begin{align*}
+    K &=
+    \begin{pmatrix}
+        u_1 & u_2 & u_3\\
+        v_1 & v_2 & v_3\\
+    \end{pmatrix}\\
+    L &=
+    \begin{pmatrix}
+        u_1 & u_2 & u_3\\
+        v_1 & v_2 & v_3\\
+        b_1 - a_1 & b_2 - a_2 &  b_3 - a_3
+    \end{pmatrix}
+\end{align*}
+
+Potom můžeme vzájemnou polohu klasifikovat pomocí hodností matic $K$ a $L$ tak jak je popsáno
+tabulce \ref{tab:roviny_poloha}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|}
+    \hline
+     & \multicolumn{1}{l|}{h(K)} & \multicolumn{1}{l|}{$h(L)$} \\ \hline
+    totožné & 1 & 1 \\ \hline
+    rovnoběžné & 1 & 2 \\ \hline
+    různoběžné & 2 & 2 \\ \hline
+    mimoběžné & 2 & 3 \\ \hline
+    \end{tabular}
+    \caption{Klasifikace vzájemné polohy dvou přímek v $E_3$}
+    \label{tab:roviny_poloha}
+\end{table}
+
