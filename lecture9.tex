@@ -1,0 +1,230 @@
+\section{Osmá přednáška}
+\subsection{Geometrie}
+
+\begin{example}[Příčka mimoběžek]
+    Mějme přímky $p$ a $q$ a bod $K$:
+    \begin{align*}
+        p&:\;\;\;A=[2, 1, 1],\,B = [3, 2, 6]\\
+        q&:\;\;\;C=[2, -5, -1],\,D = [0, -4, 3]\\
+        K &= [-3, 0, 3]
+    \end{align*}
+    Bodem $K$ veďte příčku $r$ k mimoběžkám $p,\,q$.
+
+    Pro oveření že $p$ a $q$ jsou mimoběžky vytvoříme matici $P$ a určíme její hodnost.
+    \begin{align*}
+        P &= \begin{pmatrix}
+            \vec{AB}\\
+            \vec{CD}\\
+            \vec{AC}
+        \end{pmatrix} =
+        \begin{pmatrix}
+            1 & 1 & 5\\
+            -2 & 1 & 4\\
+            0 & -6 & -2
+        \end{pmatrix} \eqop{}
+        \begin{pmatrix}
+            1 & 1 & 5\\
+            0 & 3 & 14\\
+            0 & -6 & -2
+        \end{pmatrix} \eqop{}
+        \begin{pmatrix}
+            1 & 1 & 5\\
+            0 & 3 & 14\\
+            0 & 0 & 26
+        \end{pmatrix} = R\\
+        h(R) &= 3 = h(P)
+    \end{align*}
+    Matice má plnou hodnost $3$ a určitě se tedy jedná o mimoběžky.
+
+    Máme tedy dvě přímky, které jsou mimoběžné a bod K, nyní hledáme
+    přímku, která prochází bodem $K$ a zároveň má nějaké body $P$, $Q$,
+    které tvoří průsečíky s přímkami $p$, $q$.
+
+   Pomocí vektoru $\vec{AB}$ a bodu $A$ vyjádříme bod $P$ pomocí parametru $t$:
+   $$P = [2 + t, 1 + t, 1 + 5t]$$
+   Podobně pomocí vektoru $\vec{CB}$ a bodu C vyjádříme bod $Q$ pomocí parametru $s$:
+   $$Q = [2 - 2s, -5 +s, -1 + 4s]$$
+
+   Nyní vyjádříme vektory $\vec{KP}$ a $\vec{KQ}$ o kterých víme, že mají být lineárně závislé.
+   \begin{align*}
+       \vec{KP} &= [5 + t, 1 + t, -2 + 5t]\\
+       \vec{KQ} &= [5 - 2s, -5 + s, -4 + 4s]
+   \end{align*}
+   A z toho, že vektory $\vec{KP}$ a $\vec{KL}$ mají být lineárně závislé můžeme odvodit:
+   \begin{align*}
+       \vec{KP} &= l \cdot \vec{KQ}\\
+       (5 + t, 1 + t, -2 + 5t) &= l \cdot (5 -2s, -5 + s, -4 + 4s)
+   \end{align*}
+    Uvážíme li proměnné $t, l, ls$, potom dostaneme soustavu 3 lineárních rovnic o
+    třech neznámých.
+    \begin{align*}
+    \begin{pmatrix}[ccc|c]
+        1 & -5 & 2 & -5\\
+        1 & 5 & -1 & -1\\
+        5 & 4 & -4 & 2
+    \end{pmatrix}
+    \end{align*}
+
+    Z této soustavy nám k vyřešení úlohy stačí vyjádřit neznámou $k$, nebo $s$,
+    k čemuž se nám hodí cramerovo pravidlo:
+    \begin{align*}
+        t &= \frac{
+            \begin{vmatrix}
+                -5 & -5 & 2\\
+                -1 & 5 & -1\\
+                2 & 4 & -4\\
+            \end{vmatrix}
+        }{
+            \begin{vmatrix}
+                1 & -5 & 2\\
+                1 & 5 & -1\\
+                5 & 4 & -4\\
+            \end{vmatrix}
+        } = \frac{100 - 8 + 10 - (20 + 20 -20)}{-20 + 8 + 25 - (50 -4 + 20)} =
+        \frac{78}{-53}
+    \end{align*}
+    A můžeme vyjádřit vektoř $\vec{KT}$:
+    $$KP = (\frac{265 - 82}{53}, \frac{53 - 82}{53}, \frac{-106 - 410}{53}) =
+    (\frac{183}{53}, \frac{-29}{53}, \frac{-516}{53})$$
+    Nás zajímá pouze směr tohoto vektoru, můžeme si pomocí něj tedy určit směrový vektor,
+    který bude vhodně vynásobený:
+    $$\vec{u} = (183, -29, -516)$$
+\end{example}
+
+\subsubsection{Úlohy o vzdálenostech}
+Vzdálenost dvou bodů můžeme vyjádřit jako
+$$d(A, B) = ||\varphi (A,B)|| = \sqrt{\pi(\varphi(A, B)),\, \varphi(A, B)} =
+\sqrt{(b_1 - a_1)^2 + \ldots + (b_n - a_n)^2}$$
+
+\subsubsection{Vzdálenost bodu a přímky}
+Máme nějaký bod $A$ a přímku $p$ a chceme zjistit jejich vzájemnou
+vzdálenost $d(A, p)$.
+Pro tento problém existuje obecný vzorec. Nám jde ale spíše
+o to, jak takový vzorec odvodit, než ho jen použít.
+
+Možnost řešení: vezmeme rovinu $\rho$ která bude kolmá k $p$ a zároveň bude procházet
+bodem $A$, najdeme průsečík $K$ roviny $\rho$ a přímky $p$ (který bude jediný) a spočítáme
+vzdálenost bodů $K$ a $A$.
+
+\subsubsection{Vzdálenost bodu a roviny}
+V případě vzdálenosti bodu a roviny můžeme použít obdobný přístup.
+Máme nějaký bod $A$ a rovinu $\rho$, chceme spočítat $d(A, \rho)$.
+
+K rovině najdeme kolmou přímku $p$,
+která prochází bodem $A$. Najdeme průsečík $K$ přímky $p$ a roviny $\rho$,
+a spočítáme vzdálenost bodů $K$ a $A$.
+
+\subsubsection{Vzdálenost dvou rovnoběžných přímek}
+Máme dvě rovnoběžky $p$ a $q$ a chceme vypočítat jejich vzájemnou
+vzdálenost $d(p, q)$.
+
+Na jedné z rovnoběžek si můžeme zvolit libovolný bod a postupovat
+stejně jako při výpočtu vzdálenosti bodu a přímky.
+
+\subsubsection{Vzdálenost prímky od roviny}
+Máme přímku $p$ a rovnoběžnou rovinu $\rho$ a chceme spočítat jejich vzájemnou
+vzdálenost $d(p, \rho)$.
+
+Na přímce $p$ můžeme zvolíme libovolný bod a postupovat stejně
+jako při výpočtu vzdálenosti bodu a roviny.
+
+\subsubsection{Vzdálenost dvou rovnoběžných rovin}
+Máme dvě rovnoběžné roviny $\rho$ a $\sigma$ a chceme spočítat
+$d(\rho, \sigma)$.
+
+Na jedné z rovin si můžeme zvolit libovolný bod a postupovat
+stejně jako při výpočtu vzdálenosti roviny a bodu.
+
+\subsubsection{Vzdálenost dvou mimoběžných přímek}
+Máme dvě mimoběžné přímky $p$ a $q$ a chceme spočítat jejich
+vzájemnou vzdálenost $d(p, q)$.
+
+Vezmeme dvě navzájem rovnoběžné roviny a v nichž leží přímky $p$ a $q$.
+Normálový vektor rovin můžeme najít jako cross product směrových vektorů
+přímek $p$ a $q$. A následně můžeme postupovat jako v případě vzdálenosti dvou
+rovin.
+
+\subsection{Úlohy o úhlech}
+Nejprve si připomeňme co je to odchylka vektorů.
+Odchylka vektorů $\vec{u}$ a $\vec{v}$ se definuje jako
+$\varphi \in \langle 0, \pi \rangle$, které splňuje:
+$$cos\,\varphi = \frac{\vec{u} \cdot
+\vec{v}}{||\vec{u}|| \cdot ||\vec{v}||}$$
+
+\subsubsection{Vzájemný úhel dvou přímek}
+Úhel dvou různoběžných přímek budeme brát jako
+menší z úhlů, které mezi sebou svírají, a můžeme ho určit jako:
+$$cos\,\varphi = \frac{|\vec{u} \cdot \vec{v}|}{||\vec{u}|| \cdot ||\vec{v}||}$$
+kde $||$ v čitateli vyjadřuje absolutní hodnotu.
+
+V případě že přímky budou mimoběžné, tak jejich úhel vypočítáme
+úplně stejně a vždycky to bude pravý úhel.
+
+\subsubsection{Vzájemný uhel přímky a roviny}
+Máme rovinu $\rho$ a přímu $p$, které tuto rovinu protíná.
+A chceme spočítat jejich vzájemný úhel.
+
+Zkonstruujeme pomocnou rovinu $\sigma$, která je kolmá na rovinu
+$\varphi$ ve které leží přímka $p$. K vytvoření této roviny stačí vzít bod
+na přímce $p$, směrový vektor přímky $p$ a normálový vektor roviny $\rho$.
+Roviny $\rho$ a $\sigma$ se poté protnou v přímce $q$
+A nyní stačí spočítat vzájemný úhel přímek $p$ a $q$.
+
+\subsubsection{Vzájemný úhel dvou rovin}
+Úhle dvou roviny můžeme vypočítat jako odchylku
+normálových vektorů, které vezmeme tak, aby jejich odchylka
+byla $\leq \frac{\pi}{2}$
+
+\subsubsection{Souhrnný příklad}
+\begin{example}[Souhrnný příklad]
+    Rovina $\rho$ prochází body $A = [2, 1, 2]$, $B = [4, 0, 1]$ a $C = [-3, 3, 4]$.
+    Rovina $\sigma$ je rovnoběžná s $\rho$ a má od ní vzdálenost $4\sqrt{2}$.
+    Na rovině $\sigma$ leží bod $S = [5, 0, ?]$
+
+    Spočtěte vzdálenost $B$ a $S$.
+
+    Nejprve si vyjádříme obecnou rovnici roviny $\rho$:
+    \begin{align*}
+        x &= 2 + 2t -5s \\
+        y &= 1 - 1t + 2s\\
+        z &= 2 - 1t + 2s\\
+        \\
+        y - z +1 &= 0
+    \end{align*}
+    Normálový vektor $\vec{n}$ k rovině $\sigma$ je tedy $\vec{n} = (0, 1, -1)$ a
+    rovinu $\rho$ pomocí něj můžeme vyjádřit jako:
+    $$y - z + d = 0$$
+    Musíme však ještě vyjádřit neznámou $d$.
+
+    Normálový vektor $\vec{n}$ upravíme tak, aby jeho délka byla rovna vzdálenosti obou rovin.
+    \begin{align*}
+        ||\vec{n}|| &= \sqrt{0^2 + 1^2 + (-1)^2} = \sqrt{2}\\
+        \vec{n_1} &= 4 \cdot \vec{n} = (0, 4, -4)\\
+        \vec{n_2} &= -4 \cdot \vec{n} = (0, -4, 4)\\
+    \end{align*}
+    Nyní přičteme $\vec{n_1}$ k nějakému bodu $E = [0, 0, 1]$, který leží na $\rho$ a dostaneme bod,
+    který leží na $\sigma$:
+    \begin{align*}
+        S_1 &= R + \vec{n_1} = [0, 4, -3]\\
+        S_2 &= R + \vec{n_2} = [0, -4, 5]
+    \end{align*}
+    A dosazením do rovnice pro rovinu $\sigma$ můžeme získat hodnotu neznámé $d$, pro
+    který máme dvě možná řešení.
+    \begin{align*}
+       \sigma_1&:\; y - z - 7 = 0\\
+       \sigma_2&:\; y - z + 9 = 0
+    \end{align*}
+    Nyní můžeme podle obecné rovnice pro rovinu $\sigma$ vyjádřit bod $S$.
+    \begin{align*}
+        S_1 &= [5, 0, -7]\\
+        S_2 &= [5, 0, 9]
+    \end{align*}
+
+    A teď už jen spočítáme vzdálenosti bodů jak je požadování v zadání.
+    \begin{align*}
+        d(B, S_1) &= \sqrt{1 + 0 + 64} = \sqrt{65}\\
+        d(B, S_1) &= \sqrt{1 + 0 + 64} = \sqrt{65}
+    \end{align*}
+\end{example}
+
+\subsection{Formy}
