@@ -1,4 +1,4 @@
-\section{Osmá přednáška}
+\section{Devátá přednáška}
 \subsection{Geometrie}
 
 \begin{example}[Příčka mimoběžek]
@@ -223,8 +223,208 @@ byla $\leq \frac{\pi}{2}$
     A teď už jen spočítáme vzdálenosti bodů jak je požadování v zadání.
     \begin{align*}
         d(B, S_1) &= \sqrt{1 + 0 + 64} = \sqrt{65}\\
-        d(B, S_1) &= \sqrt{1 + 0 + 64} = \sqrt{65}
+        d(B, S_2) &= \sqrt{1 + 0 + 64} = \sqrt{65}
     \end{align*}
 \end{example}
 
 \subsection{Formy}
+Uvažujme dva vektorové prostory $\mathcal{V}$ a $\mathcal{W}$, obecně nad nějakým
+polem $F$. A uvažujme množinu všech homomorfismů z $\mathcal{V}$ do $\mathcal{W}$, kterou
+budeme značit jako:
+$$Hom(\mathcal{V}, \mathcal{W})$$
+Tyto homomorfismy můžeme sčítat, mějme nějaké dva konkrétní homomorfismy
+$\alpha, \beta \in Hom(\mathcal{V}, \mathcal{W})$,
+potom můžeme zavést operaci sčítání jako:
+$$(\alpha + \beta)(\vec{v}) = \alpha(\vec{v}) + \beta(\vec{v})$$
+Kde znak $+$ na levé straně představuje novou operaci sčítání homomorfismů,
+kterou právě definujeme a $+$ na pravé straně představuje sčítání ve vektorovém prostoru
+$\mathcal{W}$.
+
+Takto definované sčítání homomorfismů splňuje axiomy Abelovské grupy
+(asociativita, neutrální prvek, inverzní prvek, komutativita).
+Asociativita a komutativita zjevně platí a vyplývá z asociativity a komutativity
+ve vektorovém prostoru $\mathcal{W}$.
+
+O něco zajímavější je neutrální
+prvek, musíme najít takový homomorfismus, který bude tvořit neutrální prvek.
+A bude jím nulový homomorfismus o (homomorfismus, který libovolný vektor zobrazí
+na nulový vektor).
+
+Inverzním prvkem je potom opačný homomorfismus.
+
+Podobně můžeme definovat operaci pro násobení homomorfismu skalárem:
+$$(k \cdot \alpha)(\vec{v}) = k \cdot \alpha(\vec{v})$$
+
+A takto definované násobení skalárem zjevně splňuje podmínky
+pro násobení skalárem z definice vektorového prostoru.
+
+$Hom(\mathcal{V}, \mathcal{W})$ v kombinaci s výše definovanými operacemi $+$ a $\cdot$
+tedy tvoří vektorový prostor nad nějakým tělesem $F$.
+
+\begin{example}[Homomorfismus]
+    \begin{align*}
+        \mathcal{V} &= \mathbb{R}^2\\
+        \mathcal{W} &= \mathbb{R}^3\\
+        \alpha(\vec{v}) &= \alpha((v_1, v_2)) =
+        (\alpha_{11} \cdot v_1 + \alpha_{12} \cdot v_2,\,
+        \alpha_{21} \cdot v_1 + \alpha_{22} \cdot v_2,\,
+        \alpha_{31} \cdot v_1 + \alpha_{32} \cdot v_2)
+    \end{align*}
+    V tomto případě tedy bude celkem 6 souřadnic homomorfismu a jedná se tedy
+    o vektorový prostor s dimenzí 6. Obecně pak platí,
+    že dimenze homomorfismu je rovna součinu dimenzí obou vektorových prostorů.
+    $$dim\,\alpha = dim\,\mathcal{V} \cdot dim \mathcal{W} = 2 \cdot 3 = 6$$
+\end{example}
+
+Uvažujme specialní případ, kdy $\mathcal{W} = F$.
+Máme tedy $Hom(\mathcal{V}, F)$, což je opět vektorový prostor, a protože
+toto je dosti specialní, že cílový prostor je přímo to pole, tak má i specialní
+označení $\mathcal{V}^*$ a říkáme mu dualní prostor
+$$\mathcal{V}^* = Hom(\mathcal{V}, F)$$
+Jeho prvky jsou samozřejmě vektory, ale budeme je nazývat lineární formy.
+
+Dále budeme pro běžné vektory používat značení s šipkou jako doposud, například:
+$$\vec{u}, \vec{v},\ldots \in \mathcal{V}$$
+Ale pro vektory, které jsou linearními formami budeme používat řecká písmena:
+$$\alpha, \beta, \ldots \in \mathcal{V}^*$$
+
+Formu můžeme aplikovat na nějaký vektor:
+$$\alpha(\vec{u})$$
+Výsledkem této operace pak bude nějaké číslo, respektive prvek nějakého pole F,
+nad kterým pracujeme.
+
+Dimenze dualního prostoru je stejná jako dimence původního protostu, protože
+dimenzi lze opět vyjádřit jako součin dimenzí jednotlivých prostorů a dimenze $F$
+je 1. Dimenzi $\mathcal{V}$ tedy pouze vynásobíme jedničkou a dostaneme opět stejnou dimenzi.
+$$dim\,\mathcal{V}^* = dim\, \mathcal{V} \cdot dim\,F = dim\,\mathcal{V} \cdot 1 = dim\,\mathcal{V}$$
+
+Nyní si můžeme klást zajímavou otázku: Když budeme mít nějaký vektorový prostor $\mathcal{V}$
+s nějakou bází, tak jakou bázi má k němu dualní prostor $\mathcal{V}^*$?
+
+Uvažujme vektorový prostor $\mathcal{V}$ s bází $\mathcal{B}$
+\begin{align*}
+    \mathcal{V}\;\mathcal{B} = \{\vec{v_1}, \ldots, \vec{v_n}\}\\
+\end{align*}
+Zřejmě $dim \mathcal{V} = |\mathcal{B}| = n$
+Potom bázi duálního prostoru $\mathcal{V}^*$ označme $\alpha_1, \ldots, \alpha_n$
+a můžeme ji vzít takto:
+\begin{align*}
+    \alpha_i(\vec{v_j}) = \delta_{ij}
+\end{align*}
+Kde $\delta$ představuje Kroneckerovo delta, tedy 1 pokud $i=j$ a 0 v případě že $i \neq j$.
+Což zjevně není jednoznačné a můžeme mít více možností.
+
+Pak můžeme libovolnou linearní formu $\varphi \in \mathcal{V}^*$ vyjádřit jako linearní
+kombinaci prvků báze:
+$$c_1 \cdot \alpha_1 + \ldots + c_n \cdot \alpha_n$$
+Stačí vzít $c_i$ jako $\varphi(\vec{v_i})$.
+\begin{align*}
+    \varphi(\vec{v_1}) &= c_1 \alpha_1(\vec{v_1}) + \ldots + c_n \alpha_n(\vec{v_n}) =
+    \varphi(\vec{v_1}) \delta_{11} + \varphi(\vec{v_2}) \delta_{12} + \ldots + \varphi(\vec{v_m}) \delta_{1n}
+    = \varphi(\vec{v_1}) + 0 +\ldots + 0 = \varphi(\vec{v_1})\\
+    \varphi(\vec{v_2}) &= \varphi(\vec{v_2}) \\
+    \varphi(\vec{v_3}) &= \varphi(\vec{v_3})\\
+    \vdots
+\end{align*}
+Kroneckerovo delta nám tedy zajistí, že formu $\varphi$ skutečně vyjádříme jako linearní kombinaci
+bázových forem.
+
+\begin{example}
+    Vektorový prostor $\mathcal{V} \subseteq \mathbb{R}^5$ je dán vztahy:
+    \begin{align*}
+        v_1 &= v_2\\
+        v_1 + v_2 + v_3 &= v_4 + v_5
+    \end{align*}
+    Určete bázi a dimenzi $\mathcal{V}$ a najděte bázi $\mathcal{V}^*$.
+
+    $$\mathcal{V} = \{(a, a, b, c, 2a + b -c) \forall a, b, c \in \mathbb{R}\}$$
+    Dimenze vektorového prostoru je $\mathcal{V}$ tedy 3.
+    A jeho bázi můžeme vyjádřit jako:
+    $$\mathcal{B} = \big( (1, 1, 0, 0, 2), (0, 0, 1, 0, 1), (0, 0, 0, 1, -1) \big)$$
+
+    Získali jsme tedy bázi prostoru $\mathcal{V}$ a nyní z ní chceme sestrojit bázi duálního
+    prostoru $\mathcal{V}^*$.
+
+    Báze dualního prostoru se v tomto případě bude skládat ze tří forem $\alpha_1,\,\alpha_2,\,\alpha_3$.
+
+    Nejprve vyjádříme $\alpha_1$.
+    \begin{align*}
+        \alpha_1(\vec{v_1}) &= 1\\
+        \alpha_1(\vec{v_2}) &= 0\\
+        \alpha_1(\vec{v_3}) &= 0
+    \end{align*}
+    Z toho můžeme odvodit následujicí rovnice:
+    \begin{align*}
+        \alpha_{11} \cdot 1 + \alpha_{12} \cdot 1 + \alpha_{13} \cdot 0 + \alpha_{14} \cdot 0 + \alpha_{15} \cdot 2 &= 1\\
+        \alpha_{11} \cdot 0 + \alpha_{12} \cdot 0 + \alpha_{13} \cdot 1 + \alpha_{14} \cdot 0 + \alpha_{15} \cdot 1 &= 0\\
+        \alpha_{11} \cdot 0 + \alpha_{12} \cdot 0 + \alpha_{13} \cdot 0 + \alpha_{14} \cdot 1 + \alpha_{15} \cdot (-1) &= 0
+    \end{align*}
+    Nyní stačí najít libovolné řešení této soustavy a tím vyjádřit $\alpha_1$.
+    Parametricky můžeme řešení popsat jako:
+    $$(1-q-2p,\, q,\, -p,\, p,\, p)$$
+    Můžeme $p$ a $q$ zvolit jako 0, potom dostaneme jedno z možných řešení:
+    $$(1, 0, 0, 0, 0, 0)$$
+    Potom můžeme říct, že první forma funguje takto:
+    $$\alpha_1(\vec{u}) = u_1$$
+
+    Velmi podobně můžeme postupovat u ostatních dvou forem.
+    Pro $\alpha_2$:
+    \begin{align*}
+        \alpha_{21} \cdot 1 + \alpha_{22} \cdot 1 + \alpha_{25} \cdot 2 &= 0\\
+        \alpha_{23} \cdot 1 + \alpha_{25} \cdot 1 &= 1\\
+        \alpha_{24} \cdot 1 + \alpha_{25} \cdot (-1) &= 0
+    \end{align*}
+    A zase stačí najít alespoň jedno řešení této soustavy, například:
+    $$(0, 0, 1, 0, 0, 0)$$
+    Druhá bázová forma tedy může být:
+    $$\alpha_2(\vec{u}) = u_3$$
+
+    Pro $\alpha_3$:
+    \begin{align*}
+        \alpha_{31} \cdot 1 + \alpha_{32} \cdot 1 + \alpha_{35} \cdot 2 &= 0\\
+        \alpha_{33} \cdot 1 + \alpha_{35} \cdot 1 &= 0\\
+        \alpha_{34} \cdot 1 + \alpha_{35} \cdot (-1) &= 1
+    \end{align*}
+    Opět stačí najít alespoň jedno řešení této soustavy, například:
+    $$(0, 0, 0, 1, 0, 0)$$
+    Třetí bázová forma tedy může být:
+    $$\alpha_3(\vec{u}) = u_4$$
+
+    To k čemu předchozí teorie směřovala je, že když vezmeme nějakou libovolnou formu,
+    která působí na $\mathcal{V}$, tak tuto libovolnou formu lze vyjádřit jako lineární
+    kombinaci těchto bázových forem.
+
+    Vezměmě formu
+    $$\varphi(\vec{u})) = u_1 + 2u_2 + 3u_3 + 4u_4 + 5u_5$$
+    A ukážeme, že $\varphi$ lze na $\mathcal{V}^*$ vyjádřit jako linearní kombinaci
+    $\alpha_1$, $\alpha_2$ a $\alpha_3$.
+
+    \begin{align*}
+        \varphi &= c_1 \cdot \alpha_1 + c_2 \cdot \alpha_2 + c_3 \cdot \alpha_3\\
+        kde:
+        c_1 &= \varphi(\vec{v_1}) = 13\\
+        c_2 &= \varphi(\vec{v_2}) = 8\\
+        c_3 &= \varphi(\vec{v_3}) = -1\\
+        \\
+        \varphi &= 13 \cdot \alpha_1 + 8 \cdot \alpha_2 - \alpha_3\\
+    \end{align*}
+
+    Nyní uvažujme $\vec{v} = (4, 4, 2, 3, 7) \in \mathcal{V}$ pomocí původního předpisu můžeme
+    $\varphi(\vec{v})$ vyjádřit takto:
+    $$\varphi(\vec{v}) 4 + 2\cdot4 + 3\cdot2 + 4\cdot3 + 5\cdot7 = 4 + 8 + 6 + 12+35 = 65$$
+    A s použitím nového předpisu takto:
+    $$\varphi(\vec{v}) = 13 \cdot 4 + 8 \cdot 2 - 3 = 65$$
+
+    Pomocí duální báze jsme se dostali ke stejnému výsledku. Takto můžeme vyjádřit opravdu
+    libovolnou formu na příslušném vektorovém prostoru.
+\end{example}
+
+S linearními formami se můžeme setkat například v analýze. Diferenciál v bodě můžeme uvažovat
+jako základní příklad lineárních forem. I když se tento \uv{jazyk} forem v analýze příliš nezažil,
+ale $dx$ je vlastně lineární forma, která přiřazuje vektoru jeho první souřadnici a
+$dy$ je vlastně lineární forma, která přiřazuje vektoru jeho druhou souřadnici, obecně $d_{x_i}$
+je lineární forma přiřazujicí vektoru jeho i-tou souřadnici. Při integrování tak vlastně integrujeme
+linearní formy a ne funkce jako takové.
+
+
+
