@@ -1,0 +1,176 @@
+\section{Dvanáctá přednáška}
+\subsection{Rychlý průlet bilinearních forem}
+\begin{definition}[Bilineární forma]
+    Bilineární forma je zobrazení typu $\mathcal{V} \times \mathcal{V} \rightarrow \mathbb{R}$,
+    které splňuje následujicí vlastnosti:
+    \begin{itemize}
+        \item $\beta(\vec{u} + \vec{v}, \vec{w}) = \beta(\vec{u}, \vec{w}) + \beta(\vec{v}, \vec{w})$ \hfill Aditivita v první složce
+        \item $\beta(c\cdot \vec{u}, \vec{v}) = c \cdot \beta(\vec{u}, \vec{v})$ \hfill Homogenita v první složce
+        \item $\beta(\vec{u}, \vec{v} + \vec{w}) = \beta(\vec{u}, \vec{v}) + \beta(\vec{u}, \vec{w})$ \hfill Aditivita v druhé složce
+        \item $\beta(\vec{u}, c\cdot \vec{v}) = c \cdot \beta(\vec{u}, \vec{v})$ \hfill Homogenita v druhé složce
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Symetrická bilineární forma]
+    Bilineární forma se nazývá symetrická, jestliže:
+    $$\beta(\vec{u}, \vec{v}) = \beta(\vec{v}, \vec{u})\; \forall \vec{u}, \vec{v}$$
+\end{definition}
+
+
+\begin{definition}[Antisymetrická bilineární forma]
+    Bilineární forma se nazývá antisymetrická, jestliže:
+    $$\beta(\vec{u}, \vec{v}) = -\beta(\vec{v}, \vec{u})\; \forall \vec{u}, \vec{v}$$
+\end{definition}
+
+\begin{definition}[Pozitivně definitní bilineární forma]
+    Bilineární forma se nazývá pozitivně definitní, jestliže:
+    $$\beta(\vec{u}, \vec{u}) > 0 \; \forall \vec{u} \neq \vec{o}$$
+
+    Příkladem bilineární formy s touto vlastností může být třeba:
+    $$\beta(\vec{u}, \vec{v}) = u_1 v_1 + 2 u_2 v_2$$
+\end{definition}
+
+\begin{definition}[Pozitivně semidefinitní bilineární forma]
+    Bilineární forma se nazývá pozitivně definitní, jestliže:
+    $$\beta(\vec{u}, \vec{u}) \geq 0 \; \forall \vec{u} \neq \vec{o}$$
+
+    Příkladem bilineární formy s touto vlastností může být třeba:
+    $$\beta(\vec{u}, \vec{v}) = u_1 v_1$$
+\end{definition}
+
+\begin{definition}[Negativně definitní bilineární forma]
+    Bilineární forma se nazývá negativně definitní, jestliže:
+    $$\beta(\vec{u}, \vec{u}) < 0 \; \forall \vec{u} \neq \vec{o}$$
+
+    Příkladem bilineární formy s touto vlastností může být třeba:
+    $$\beta(\vec{u}, \vec{v}) = -u_1 v_1 - 2 u_2 v_2$$
+\end{definition}
+
+\begin{definition}[Negativně semidefinitní bilineární forma]
+    Bilineární forma se nazývá negativně definitní, jestliže:
+    $$\beta(\vec{u}, \vec{u}) \leq 0 \; \forall \vec{u} \neq \vec{o}$$
+
+    Příkladem bilineární formy s touto vlastností může být třeba:
+    $$\beta(\vec{u}, \vec{v}) = -u_1 v_1$$
+\end{definition}
+
+\begin{definition}[Indefinitní bilineární forma]
+    Bilineární forma se nazývá indefinitní, jestliže neplatí žádná z výše uvedených definitností.
+
+    Příkladem bilineární formy s touto vlastností může být třeba:
+    $$\beta(\vec{u}, \vec{v}) = u_1 v_1 - u_2 v_2$$
+\end{definition}
+
+Vnítřní součin $\pi(\vec{u}, \vec{v})$ je příkladem symetrické pozitivně definitní
+bilineární formy.
+
+Obecně bilineární forma vypadá takto:
+$$\beta( \vec{u}, \vec{v} ) = \sum_{i,j = 1}^n \beta_{ij} \cdot u_i \cdot v_j$$
+A k tomu můžeme asociaovat matici takto:
+\[
+\begin{pmatrix}
+    \beta_{11} & \ldots & \beta{1n}\\
+    \vdots & \ddots & \vdots\\
+    \beta_{n1} & \ldots & \beta{ nn}\\
+\end{pmatrix}
+\]
+Jedná se o matici $n\times n$ na základě této matice jsme schopni identifikovat
+zda je bilineární forma pozitivně definitní, případně její další vlastnosti.
+
+\begin{definition}[Minor]
+    Minor je subdeterminant nějakého matice řádu $k, 1 \leq k \leq n$ která vznikne vybráním
+    libovolných $k$ řádků a libovolných $k$ sloupců z původní matice.
+
+    Například vybrané řádky (2, 3, 4) a sloupce (3, 5, 8).
+\end{definition}
+
+\begin{definition}[Hlavní minor]
+    Hlavní minor je minor, ve kterém jsou vybrané řádky a sloupce stejné.
+
+    Pro hlavní minor mohou být tedy vybrány například řádky (2, 3, 4) a sloupce (2, 3, 4).
+\end{definition}
+
+\begin{definition}[Vedoucí hlavní minor]
+    Vedoucí hlavní minor je takový hlaví minor, ve kterém vybrané řádky a sloupce
+    postupují v přirozeném pořadí.
+
+    Například tedy minor pro který jsou vybrány řádky (1, 2, 3) a sloupce (1, 2, 3).
+\end{definition}
+
+\begin{theorem}[Sylvestrovo kritérium]
+    Bilineární forma $\beta$ je pozitivně definitní $\Leftrightarrow$ všechny
+    vedoucí hlavní minory jsou kladné, tedy:
+    $$M_1 > 0 \wedge M_2 > 0 \wedge \ \wedge M_n > 0$$
+
+    Bilineární forma $\beta$ je negativně definitní $\Leftrightarrow$ všechny
+    vedoucí hlavní minory střídají znaménka takto:
+    $$(-1)^1\cdot M_1 > 0 \wedge (-1)^2 \cdot M_2 > 0 \wedge \ldots \wedge (-1)^n \cdot M_n$$
+\end{theorem}
+
+Pokud jsou všechny hlavní minory nezáporné, potom je bilineární forma pozitivně semidefinitní.
+
+Pokud všechny hlavní minory střídají znaménka, potom je bilineární forma negativně semidefinitní.
+
+\begin{example}
+    Uvažujme vektorový prostor $\mathcal{V} = \mathbb{R}^3$ a formu $\beta$.
+    $$\beta(\vec{u}, \vec{v}) = 2 u_1 v_1 + 3 u_2 v_2 + 4 u_1 v_3 + 4 u_3 v_1$$
+    Určete zda je $\beta$ pozitivně definitní bilineární forma $\beta$.
+
+    Formě $\beta$ můžeme přiřadati následujicí matici:
+    \[
+        \begin{pmatrix}
+            2 & 0 & 4\\
+            0 & 3 & 0\\
+            4 & 0 & 0
+        \end{pmatrix}
+    \]
+
+    Vidíme že matice je symetrická, protože bilineární forma $\beta$ je také symetrická.
+
+    A nyní můžeme počítat vedoucí hlavní minory minory
+    \begin{align*}
+        M_1 &= \begin{vmatrix}
+            2
+        \end{vmatrix} = 2\\
+        M_2 &= \begin{vmatrix}
+            2 & 0\\
+            0 & 3
+        \end{vmatrix} = -6\\
+        M_3 &= \begin{vmatrix}
+            2 & 0 & 4\\
+            0 & 3 & 0\\
+            4 & 0 & 0
+        \end{vmatrix} = -48
+    \end{align*}
+
+    Vidíme že vedoucí hlavní minory $M_1$, $M_2$ a $M_3$ nejsou kladné, a dle sylvestrova kritérie
+    $\beta$ tedy není pozitivně definitní bilineární forma.
+\end{example}
+
+\begin{example}
+    Uvažujme vektorový prostor $\mathcal{V} = \mathbb{R}^2$
+    a zobrazení $\beta: \mathcal{V} \times \mathcal{V} \rightarrow \mathbb{R}$
+    $$\mathcal{B}(\vec{u}, \vec{v}) = 2\vec{u_1}\vec{v_1}+ \vec{u_2}\vec{v_1} + \vec{u_2}\vec{v_2}$$
+    Jedná se o bilineární formu?
+
+    Musíme ověřit, že je lineární v první i druhé složce. To můžeme jednoduše udělat přímým ověřením
+    a dojdeme k závěru, že je opravdu lineární v obou složkách.
+
+    Jedná se o symetrickou bilineární formu?
+    $$\beta(\vec{v}, \vec{u}) = 2\vec{v_1}\vec{u_1}+ \vec{v_2}\vec{u_1} + \vec{v_2}\vec{u_2} \neq
+    2\vec{u_1}\vec{v_1}+ \vec{u_2}\vec{v_1} + \vec{u_2}\vec{v_2}$$
+    Vidíme tedy že se nejedná o symetrickou bilineární formu.
+
+    Je tato forma pozitivně definitní?
+    $$\beta(\vec{u}, \vec{u}) = 2\vec{u_1}^2 + \vec{u_2}\vec{u_1} + \vec{u_2}^2$$
+    Existuje takový vektor $\vec{u}$, pro který tento výraz výjde záporně?
+
+    Ke každé bilineární formě můžeme asociovat matici, v tomto případě tuto:
+    \[
+    \begin{pmatrix}
+        2 & 1\\
+        0 & 1
+    \end{pmatrix}
+    \]
+\end{example}
+

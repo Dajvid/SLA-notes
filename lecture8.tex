@@ -15,7 +15,7 @@
 
     Nyní předpokládejme, že $\vec{u} \neq \vec{v}$, potom:
     \begin{align*}
-        (t \vec{u} + \vec{v})^2 &\leq 0\; \forall t \in \mathbb{R}\, \text{tzn. i pro }\,
+        (t \vec{u} + \vec{v})^2 &\geq 0\; \forall t \in \mathbb{R}\, \text{tzn. i pro }\,
             t= \frac{-\vec{u} \cdot \vec{v}}{\vec{u}^2}\\
     \end{align*}
     Dosadíme $t$ a upravíme:
@@ -69,7 +69,7 @@ Toto $\varphi$ pak nazveme odchylka vektorů $\vec{u}$ a $\vec{v}$.
 \end{definition}
 
 Nyní budeme řešit úlohu, jak nějakou libovolnou bázi ortogonalizovat,
-případně i ortonormalizovat. Tento proces se jmenuje Gramschmituv proces.
+případně i ortonormalizovat. Tento postup se nazývá Gram-Schmidtův.
 
 Předpokládejme, že máme nějaký vektorový prostor $\mathcal{V}$ a jeho bázové
 vektory $\vec{v_1}, \ldots, \vec{v_n}$
@@ -345,7 +345,7 @@ V prostoru $E_3$ lze uvažovat tyto afinní podprostory:
 \end{example}
 
 \subsubsection{Vzájemné polohy dvou přímek}
-V prostoru $E_3$ važujme přímku $p$ definovanou bodem $A$ a vektorem $\vec{u}$. A
+V prostoru $E_3$ uvažujme přímku $p$ definovanou bodem $A$ a vektorem $\vec{u}$. A
 přímku $q$ definovanou bodem $B$ a vektorem $\vec{v}$:
 \begin{align*}
     p&: \;\; A,\,\vec{u}\\
